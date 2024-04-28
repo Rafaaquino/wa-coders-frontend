@@ -1,0 +1,53 @@
+<!--END ABOUT US-->
+<section class="section bg-light" id="features">
+  <div class="container">
+    <div class="row vertical-content mt-5">
+      <div class="col-lg-5">
+        <div class="features-box">
+          <h3>A software house that understands business.</h3>
+          <p class="text-muted web-desc">
+            We combine your company's vision with our expertise in software
+            development and business strategies to achieve extraordinary
+            results. Our goal is to deliver value in software development
+            projects. With our culture and a prepared team, we simplify
+            innovation through the latest development methodologies.
+          </p>
+          <ul class="text-muted list-unstyled mt-4 features-item-list">
+            <li class="">Multidisciplinary and qualified teams.</li>
+            <li class="">AI in software development.</li>
+            <li class="">Agility, flexibility and transparency.</li>
+            <li class="">
+              Professionals with more than 10 years of experience.
+            </li>
+          </ul>
+          <a (click)="openModal()" class="btn btn-primary mt-4"
+            >Get free quotes <i class="mdi mdi-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="features-img features-right text-right">
+          <img
+            src="assets/images/online-world.svg"
+            alt="macbook image"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END ABOUT US-->
+
+<p-dialog
+  header="Cotação de Desenvolvimento de Software"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '50%' }"
+>
+  <!-- Conteúdo do modal -->
+  <div class="modal-content">
+    <app-quote></app-quote>
+  </div>
+</p-dialog>

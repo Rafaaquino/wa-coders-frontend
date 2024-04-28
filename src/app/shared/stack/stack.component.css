@@ -1,0 +1,15 @@
+.stack-box {
+  background: #fff;
+  border-radius: var(--bs-border-radius) !important;
+  padding: 0.8rem;
+  margin: 0.8rem;
+  height: 6rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.stack-box img {
+  max-width: 100px;
+}

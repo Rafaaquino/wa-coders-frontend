@@ -1,0 +1,163 @@
+<!--FORM QUOTE--><!-- Step 1: Informações do Cliente -->
+<div *ngIf="currentStep === 1">
+  <h3>Step 1: Informações do Cliente</h3>
+  <form [formGroup]="clienteForm" (ngSubmit)="nextStep()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        formControlName="nome"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            clienteForm.get('nome').touched && clienteForm.get('nome').invalid
+        }"
+      />
+      <div
+        *ngIf="
+          clienteForm.get('nome').touched && clienteForm.get('nome').invalid
+        "
+        class="invalid-feedback"
+      >
+        Nome é obrigatório
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            clienteForm.get('email').touched && clienteForm.get('email').invalid
+        }"
+      />
+      <div
+        *ngIf="
+          clienteForm.get('email').touched && clienteForm.get('email').invalid
+        "
+        class="invalid-feedback"
+      >
+        Email é obrigatório
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="clienteForm.invalid"
+    >
+      Próximo
+    </button>
+  </form>
+</div>
+
+<!-- Step 2: Detalhes do Projeto -->
+<div *ngIf="currentStep === 2">
+  <h3>Step 2: Detalhes do Projeto</h3>
+  <form [formGroup]="projetoForm" (ngSubmit)="nextStep()">
+    <div class="form-group">
+      <label for="descricao">Descrição do Projeto:</label>
+      <textarea
+        id="descricao"
+        formControlName="descricao"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            projetoForm.get('descricao').touched &&
+            projetoForm.get('descricao').invalid
+        }"
+      ></textarea>
+      <div
+        *ngIf="
+          projetoForm.get('descricao').touched &&
+          projetoForm.get('descricao').invalid
+        "
+        class="invalid-feedback"
+      >
+        Descrição do projeto é obrigatória
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tecnologias">Tecnologias Utilizadas:</label>
+      <input
+        type="text"
+        id="tecnologias"
+        formControlName="tecnologias"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            projetoForm.get('tecnologias').touched &&
+            projetoForm.get('tecnologias').invalid
+        }"
+      />
+      <div
+        *ngIf="
+          projetoForm.get('tecnologias').touched &&
+          projetoForm.get('tecnologias').invalid
+        "
+        class="invalid-feedback"
+      >
+        Tecnologias são obrigatórias
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="prevStep()">
+      Anterior
+    </button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="projetoForm.invalid"
+    >
+      Próximo
+    </button>
+  </form>
+</div>
+
+<!-- Step 3: Revisão e Envio -->
+<div *ngIf="currentStep === 3">
+  <h3>Step 3: Revisão e Envio</h3>
+  <form [formGroup]="cotacaoForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="valor">Valor da Cotação:</label>
+      <input
+        type="number"
+        id="valor"
+        formControlName="valor"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            cotacaoForm.get('valor').touched && cotacaoForm.get('valor').invalid
+        }"
+      />
+      <div
+        *ngIf="
+          cotacaoForm.get('valor').touched && cotacaoForm.get('valor').invalid
+        "
+        class="invalid-feedback"
+      >
+        Valor da cotação é obrigatório
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="observacoes">Observações:</label>
+      <textarea
+        id="observacoes"
+        formControlName="observacoes"
+        class="form-control"
+      ></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="prevStep()">
+      Anterior
+    </button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="cotacaoForm.invalid"
+    >
+      Enviar Cotação
+    </button>
+  </form>
+</div>
