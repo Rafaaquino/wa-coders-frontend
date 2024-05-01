@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ILoginResponse } from 'src/app/models/login-response.interface';
-import { IMessages } from 'src/app/models/messages.interface';
 import { LoginService } from 'src/app/services/login.service';
-import { Message, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { ILoginResponse } from 'src/app/models/login-response.interface';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +15,6 @@ import { Message, MessageService } from 'primeng/api';
  */
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  messages: IMessages;
-  msgs: any[] = [];
-  showMessage: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -62,10 +58,5 @@ export class LoginComponent implements OnInit {
       summary: '',
       detail: error,
     });
-  }
-
-  hide() {
-    this.showMessage = false;
-    this.msgs = [];
   }
 }
