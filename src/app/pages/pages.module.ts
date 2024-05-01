@@ -8,13 +8,16 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { IndexComponent } from './index/index.component';
-import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasscomponent } from './forgotPass/forgotPass.component';
 import { codeAuthPassword } from './codeAuthPassword/codeAuthPassword.component';
+import { LoginComponent } from './login/login.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -29,11 +32,14 @@ import { codeAuthPassword } from './codeAuthPassword/codeAuthPassword.component'
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule,
     ScrollToModule.forRoot(),
     NgbModalModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
+    MessageModule,
+    MessagesModule,
   ],
+  providers: [MessageService],
 })
 export class PagesModule {}
