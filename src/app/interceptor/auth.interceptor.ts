@@ -7,12 +7,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { AuthService } from './../services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private _authService: AuthService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -29,6 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError((error) => {
           if (error instanceof HttpErrorResponse) {
             if (error.status === 401) {
+              this._authService.logout();
             }
           }
           return throwError(error);
