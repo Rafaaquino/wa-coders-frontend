@@ -26,6 +26,7 @@
                     instructions to reset your password.
                   </div>
                   <form [formGroup]="recoveryPassForm" (ngSubmit)="submit()">
+                    <p-messages></p-messages>
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input
@@ -36,10 +37,31 @@
                         placeholder="Enter Email"
                         required
                       />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          recoveryPassForm.get('email').invalid &&
+                          (recoveryPassForm.get('email').dirty ||
+                            recoveryPassForm.get('email').touched)
+                        "
+                      >
+                        <div
+                          *ngIf="recoveryPassForm.get('email').errors.required"
+                        >
+                          Email is required
+                        </div>
+                        <div *ngIf="recoveryPassForm.get('email').errors.email">
+                          Email not valid
+                        </div>
+                      </div>
                     </div>
 
                     <div class="d-grid mt-3">
-                      <button type="submit" class="btn btn-primary">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="recoveryPassForm.invalid"
+                      >
                         Reset your Password
                       </button>
                     </div>
