@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ILoginResponse } from 'src/app/models/login-response.interface';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { IMessages } from 'src/app/models/messages.interface';
 import { LoginService } from 'src/app/services/login.service';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,15 @@ import { LoginService } from 'src/app/services/login.service';
  */
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  messages: IMessages;
+  msgs: any[] = [];
+  showMessage: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private _loginService: LoginService,
-    private _authService: AuthService
+    private _messageService: MessageService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -43,12 +47,25 @@ export class LoginComponent implements OnInit {
     console.log(response);
     localStorage.setItem('token', response.token);
     localStorage.setItem('userId', response.userId);
-    this._authService.loggedin(true);
-    this._authService.setUser(response.userId);
     this.router.navigateByUrl('dashboard');
   }
 
   onSubmitError(error: any) {
+    const erro = error.error.message;
     console.log(error.error.message);
+    this.show(erro);
+  }
+
+  show(error: string) {
+    this._messageService.add({
+      severity: 'error',
+      summary: '',
+      detail: error,
+    });
+  }
+
+  hide() {
+    this.showMessage = false;
+    this.msgs = [];
   }
 }
