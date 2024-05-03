@@ -17,6 +17,8 @@ import { QuoteComponent } from './quote/quote.component';
 import { DialogModule } from 'primeng/dialog';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { CalendarModule } from 'primeng/calendar';
 
 import { ScrollspyDirective } from './scrollspy.directive';
 
@@ -44,6 +46,8 @@ import { SendEmailService } from '../services/send-email.service';
     DialogModule,
     MessageModule,
     MessagesModule,
+    ProgressBarModule,
+    CalendarModule,
   ],
   // tslint:disable-next-line: max-line-length
   exports: [

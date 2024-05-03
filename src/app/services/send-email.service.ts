@@ -12,7 +12,7 @@ export class SendEmailService {
 
   sendMail(email: ISendMail): Observable<ISendMail> {
     return this.http.post<ISendMail>(
-      environment.host_api + `/emails/send`,
+      environment.host_api + `/emails/send-email`,
       email
     );
   }

@@ -1,0 +1,17 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css");
+
+.invalid-feedback {
+  display: block;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+.d-n {
+  display: none;
+}
+
+.d-b {
+  display: block;
+}

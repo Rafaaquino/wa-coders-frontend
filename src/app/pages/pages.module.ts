@@ -8,17 +8,17 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { IndexComponent } from './index/index.component';
-import { SignupComponent } from './signup/signup.component';
-import { ResetPasswordComponent } from './resetPassword/resetPassword.component';
+import { SignupComponent } from './Auth/signup/signup.component';
+import { ResetPasswordComponent } from './Auth/resetPassword/resetPassword.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasscomponent } from './forgotPass/forgotPass.component';
-import { codeAuthPassword } from './codeAuthPassword/codeAuthPassword.component';
-import { LoginComponent } from './login/login.component';
+import { ForgotPasscomponent } from './Auth/forgotPass/forgotPass.component';
+import { codeAuthPassword } from './Auth/codeAuthPassword/codeAuthPassword.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     IndexComponent,
@@ -39,6 +39,7 @@ import { MessageService } from 'primeng/api';
     SharedModule,
     MessageModule,
     MessagesModule,
+    DropdownModule,
   ],
   providers: [MessageService],
 })
