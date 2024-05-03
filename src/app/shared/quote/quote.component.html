@@ -15,7 +15,7 @@
     [formGroup]="quoteForm.get('step1')"
     class="form-group"
   >
-    <h2>Contact Information</h2>
+    <h3>Contact Information</h3>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6 col-sm-6">
@@ -122,7 +122,7 @@
     [formGroup]="quoteForm.get('step2')"
     class="form-group"
   >
-    <h2>General Information</h2>
+    <h3>General Information</h3>
     <div class="form-group">
       <label>Service Type*:</label>
       <select formControlName="serviceType" class="form-control">
@@ -135,12 +135,12 @@
       </select>
       <div
         *ngIf="
-          quoteForm.get('step2.platform').invalid &&
-          quoteForm.get('step2.platform').touched
+          quoteForm.get('step2.serviceType').invalid &&
+          quoteForm.get('step2.serviceType').touched
         "
         class="invalid-feedback"
       >
-        Plataform is required
+        Service type is required
       </div>
     </div>
 
@@ -208,7 +208,7 @@
     [formGroup]="quoteForm.get('step3')"
     class="form-group"
   >
-    <h2>Functional Requirements:</h2>
+    <h3>Functional Requirements:</h3>
     <!-- Add form fields for step 3 -->
     <div class="form-group">
       <label>Project scope*:</label>
@@ -256,7 +256,7 @@
     [formGroup]="quoteForm.get('step4')"
     class="form-group"
   >
-    <h2>Technology</h2>
+    <h3>Technology</h3>
     <!-- Add form fields for step 4 -->
     <div class="row">
       <label for="">Technology preference*: </label>
@@ -285,7 +285,7 @@
     [formGroup]="quoteForm.get('step5')"
     class="form-group"
   >
-    <h2>Design and Security</h2>
+    <h3>Design and Security</h3>
     <!-- Add form fields for step 5 -->
     <div class="form-group">
       <label>Design and user experience :</label>
@@ -314,7 +314,7 @@
     [formGroup]="quoteForm.get('step6')"
     class="form-group"
   >
-    <h2>Budget</h2>
+    <h3>Budget</h3>
     <!-- Add form fields for step 5 -->
     <div class="form-group">
       <label>Approximate budget*:</label>

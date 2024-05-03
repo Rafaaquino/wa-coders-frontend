@@ -1,11 +1,26 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css");
-
 .invalid-feedback {
   display: block;
 }
 
+.progress-bar {
+  background-color: #0a9d2b;
+}
+
+.progress,
+.progress-bar {
+  height: 10px !important;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
 .form-control {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+}
+
+label {
+  margin-bottom: 0.5rem;
 }
 
 .d-n {
@@ -14,4 +29,8 @@
 
 .d-b {
   display: block;
+}
+
+h3 {
+  padding: 1rem 0;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICountry } from 'src/app/models/country.interface';
+import { SendEmailService } from 'src/app/services/send-email.service';
 
 @Component({
   selector: 'app-quote',
@@ -12,7 +13,7 @@ import { ICountry } from 'src/app/models/country.interface';
  */
 export class QuoteComponent implements OnInit {
   quoteForm: FormGroup;
-  currentStep: number = 2;
+  currentStep: number = 1;
   selectedCountry: any;
   countries: ICountry[];
   value: Date;
@@ -60,7 +61,10 @@ export class QuoteComponent implements OnInit {
     { name: "I don't know yet", code: 'dont-know' },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private _sendEmailService: SendEmailService
+  ) {
     this.countries = [
       { name: 'United States', code: 'US' },
       { name: 'Canada', code: 'CA' },
@@ -131,14 +135,10 @@ export class QuoteComponent implements OnInit {
   submitForm() {
     if (this.quoteForm.valid) {
       this.removeFalseValues(this.quoteForm.value);
-      const formValues = {
-        ...this.quoteForm.value.step1,
-        ...this.quoteForm.value.step2,
-        ...this.quoteForm.value.step3,
-        ...this.quoteForm.value.step4,
-        ...this.quoteForm.value.step5,
-        ...this.quoteForm.value.step6,
-      };
+      this._sendEmailService.sendMailQuote(this.quoteForm.value).subscribe({
+        next: this.onSubmitQuoteSuccess.bind(this),
+        error: this.onSubmitQuoteError.bind(this),
+      });
 
       console.log(this.quoteForm.value);
     } else {
@@ -146,14 +146,38 @@ export class QuoteComponent implements OnInit {
     }
   }
 
+  onSubmitQuoteSuccess(response) {
+    console.log(response);
+    this.quoteForm.reset();
+    this.currentStep = 1;
+  }
+
+  onSubmitQuoteError(error) {
+    console.log(error);
+  }
+
   removeFalseValues(form: any): void {
     if (form && form.step4) {
+      const prefferTecnologies = {};
       Object.keys(form.step4).forEach((key) => {
         if (!form.step4[key]) {
           delete form.step4[key];
         }
+        if (form.step4[key]) {
+          prefferTecnologies[key] = key;
+        }
       });
+      const prefferTecnologys = this.extractTechnologies(prefferTecnologies);
+      form['step4'] = { prefferTecnology: prefferTecnologys };
     }
+  }
+
+  extractTechnologies(prefferTecnologys: any): string[] {
+    const selectedTechnologies: string[] = [];
+    Object.keys(prefferTecnologys).forEach((key) => {
+      selectedTechnologies.push(key);
+    });
+    return selectedTechnologies;
   }
 
   markFormGroupTouched(formGroup: FormGroup) {
