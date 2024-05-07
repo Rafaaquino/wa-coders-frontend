@@ -10,7 +10,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prd": "ng build --configuration=production",
-    "heroku-postbuild": "ng build --configuration=production",
+    "heroku-postbuild": "ng build --configuration=production --output-path docs --base-href /",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
