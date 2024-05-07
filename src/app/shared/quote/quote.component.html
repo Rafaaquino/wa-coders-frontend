@@ -1,163 +1,381 @@
-<!--FORM QUOTE--><!-- Step 1: Informações do Cliente -->
-<div *ngIf="currentStep === 1">
-  <h3>Step 1: Informações do Cliente</h3>
-  <form [formGroup]="clienteForm" (ngSubmit)="nextStep()">
+<form [formGroup]="quoteForm" (ngSubmit)="submitForm()">
+  <!-- Step 1 - Contact Information -->
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [style.width]="getProgress()"
+      [attr.aria-valuenow]="currentStep"
+      aria-valuemin="1"
+      aria-valuemax="6"
+    ></div>
+  </div>
+  <div
+    *ngIf="currentStep === 1"
+    [formGroup]="quoteForm.get('step1')"
+    class="form-group"
+  >
+    <h3>Contact Information</h3>
     <div class="form-group">
-      <label for="nome">Nome:</label>
-      <input
-        type="text"
-        id="nome"
-        formControlName="nome"
-        class="form-control"
-        [ngClass]="{
-          'is-invalid':
-            clienteForm.get('nome').touched && clienteForm.get('nome').invalid
-        }"
-      />
-      <div
-        *ngIf="
-          clienteForm.get('nome').touched && clienteForm.get('nome').invalid
-        "
-        class="invalid-feedback"
-      >
-        Nome é obrigatório
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form-control"
-        [ngClass]="{
-          'is-invalid':
-            clienteForm.get('email').touched && clienteForm.get('email').invalid
-        }"
-      />
-      <div
-        *ngIf="
-          clienteForm.get('email').touched && clienteForm.get('email').invalid
-        "
-        class="invalid-feedback"
-      >
-        Email é obrigatório
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="clienteForm.invalid"
-    >
-      Próximo
-    </button>
-  </form>
-</div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <label>Name*:</label>
+          <input type="text" formControlName="firstName" class="form-control" />
+          <div
+            *ngIf="
+              quoteForm.get('step1.firstName').invalid &&
+              quoteForm.get('step1.firstName').touched
+            "
+            class="invalid-feedback"
+          >
+            Name is required
+          </div>
+        </div>
 
-<!-- Step 2: Detalhes do Projeto -->
-<div *ngIf="currentStep === 2">
-  <h3>Step 2: Detalhes do Projeto</h3>
-  <form [formGroup]="projetoForm" (ngSubmit)="nextStep()">
+        <div class="col-md-6 col-sm-6">
+          <label>Last Name*:</label>
+          <input type="text" formControlName="lastName" class="form-control" />
+          <div
+            *ngIf="
+              quoteForm.get('step1.lastName').invalid &&
+              quoteForm.get('step1.lastName').touched
+            "
+            class="invalid-feedback"
+          >
+            Name is required
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="form-group">
-      <label for="descricao">Descrição do Projeto:</label>
+      <label>Email*:</label>
+      <input type="email" formControlName="email" class="form-control" />
+      <div
+        *ngIf="
+          quoteForm.get('step1.email').invalid &&
+          quoteForm.get('step1.email').touched
+        "
+        class="invalid-feedback"
+      >
+        Invalid email format
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <label>Country*:</label>
+          <select formControlName="country" class="form-control">
+            <option value="" disabled>Select Country</option>
+            <ng-container *ngFor="let country of countries">
+              <option [value]="country.code">
+                {{ country.name }}
+              </option>
+            </ng-container>
+          </select>
+          <div
+            *ngIf="
+              quoteForm.get('step1.country').invalid &&
+              quoteForm.get('step1.country').touched
+            "
+            class="invalid-feedback"
+          >
+            Invalid email format
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>City*:</label>
+          <input type="text" formControlName="city" class="form-control" />
+          <div
+            *ngIf="
+              quoteForm.get('step1.city').invalid &&
+              quoteForm.get('step1.city').touched
+            "
+            class="invalid-feedback"
+          >
+            Invalid email format
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Company Name*:</label>
+      <input type="text" formControlName="company" class="form-control" />
+      <div
+        *ngIf="
+          quoteForm.get('step1.company').invalid &&
+          quoteForm.get('step1.company').touched
+        "
+        class="invalid-feedback"
+      >
+        Company name is required
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 - General Information -->
+  <div
+    *ngIf="currentStep === 2"
+    [formGroup]="quoteForm.get('step2')"
+    class="form-group"
+  >
+    <h3>General Information</h3>
+    <div class="form-group">
+      <label>Service Type*:</label>
+      <select formControlName="serviceType" class="form-control">
+        <option value="" disabled>Select service</option>
+        <ng-container *ngFor="let service of servicesType">
+          <option [value]="service.code">
+            {{ service.name }}
+          </option>
+        </ng-container>
+      </select>
+      <div
+        *ngIf="
+          quoteForm.get('step2.serviceType').invalid &&
+          quoteForm.get('step2.serviceType').touched
+        "
+        class="invalid-feedback"
+      >
+        Service type is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Objective of the software*:</label>
       <textarea
-        id="descricao"
-        formControlName="descricao"
+        type="text"
+        formControlName="objectiveSoftware"
+        placeholder="Brief description of the software's purpose"
         class="form-control"
-        [ngClass]="{
-          'is-invalid':
-            projetoForm.get('descricao').touched &&
-            projetoForm.get('descricao').invalid
-        }"
       ></textarea>
       <div
         *ngIf="
-          projetoForm.get('descricao').touched &&
-          projetoForm.get('descricao').invalid
+          quoteForm.get('step2.objectiveSoftware').invalid &&
+          quoteForm.get('step2.objectiveSoftware').touched
         "
         class="invalid-feedback"
       >
-        Descrição do projeto é obrigatória
+        Objective is required
       </div>
     </div>
     <div class="form-group">
-      <label for="tecnologias">Tecnologias Utilizadas:</label>
-      <input
-        type="text"
-        id="tecnologias"
-        formControlName="tecnologias"
-        class="form-control"
-        [ngClass]="{
-          'is-invalid':
-            projetoForm.get('tecnologias').touched &&
-            projetoForm.get('tecnologias').invalid
-        }"
-      />
+      <label>Preferred platform *:</label>
+      <select formControlName="platform" class="form-control">
+        <option value="" disabled>Select Plataform</option>
+        <ng-container *ngFor="let plat of plataforms">
+          <option [value]="plat.code">
+            {{ plat.name }}
+          </option>
+        </ng-container>
+      </select>
       <div
         *ngIf="
-          projetoForm.get('tecnologias').touched &&
-          projetoForm.get('tecnologias').invalid
+          quoteForm.get('step2.platform').invalid &&
+          quoteForm.get('step2.platform').touched
         "
         class="invalid-feedback"
       >
-        Tecnologias são obrigatórias
+        Plataform is required
       </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="prevStep()">
-      Anterior
-    </button>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="projetoForm.invalid"
-    >
-      Próximo
-    </button>
-  </form>
-</div>
+    <div class="form-group">
+      <label for="">Project completion deadline*:</label>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="value"
+        formControlName="deadline"
+      />
+      <div
+        *ngIf="
+          quoteForm.get('step2.deadline').invalid &&
+          quoteForm.get('step2.deadline').touched
+        "
+        class="invalid-feedback"
+      >
+        Deadline is required
+      </div>
+    </div>
+  </div>
 
-<!-- Step 3: Revisão e Envio -->
-<div *ngIf="currentStep === 3">
-  <h3>Step 3: Revisão e Envio</h3>
-  <form [formGroup]="cotacaoForm" (ngSubmit)="submitForm()">
+  <!-- Step 3 - Functional Requirements -->
+  <div
+    *ngIf="currentStep === 3"
+    [formGroup]="quoteForm.get('step3')"
+    class="form-group"
+  >
+    <h3>Functional Requirements:</h3>
+    <!-- Add form fields for step 3 -->
     <div class="form-group">
-      <label for="valor">Valor da Cotação:</label>
-      <input
-        type="number"
-        id="valor"
-        formControlName="valor"
+      <label>Project scope*:</label>
+      <textarea
+        type="text"
+        formControlName="projectScope"
+        placeholder="Detailed description of what the software should accomplish..."
         class="form-control"
-        [ngClass]="{
-          'is-invalid':
-            cotacaoForm.get('valor').touched && cotacaoForm.get('valor').invalid
-        }"
-      />
+      ></textarea>
       <div
         *ngIf="
-          cotacaoForm.get('valor').touched && cotacaoForm.get('valor').invalid
+          quoteForm.get('step3.projectScope').invalid &&
+          quoteForm.get('step3.projectScope').touched
         "
         class="invalid-feedback"
       >
-        Valor da cotação é obrigatório
+        Scope is required
       </div>
     </div>
+
     <div class="form-group">
-      <label for="observacoes">Observações:</label>
+      <label>Essential features:</label>
       <textarea
-        id="observacoes"
-        formControlName="observacoes"
+        type="text"
+        formControlName="features"
+        placeholder="List of key functionalities required..."
         class="form-control"
       ></textarea>
     </div>
-    <button type="button" class="btn btn-primary" (click)="prevStep()">
-      Anterior
+
+    <div class="form-group">
+      <label>Necessary integrations:</label>
+      <textarea
+        type="text"
+        formControlName="integrations"
+        placeholder="Any third-party systems or APIs that need to be integrated..."
+        class="form-control"
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Step 4 - Technology and Design -->
+  <div
+    *ngIf="currentStep === 4"
+    [formGroup]="quoteForm.get('step4')"
+    class="form-group"
+  >
+    <h3>Technology</h3>
+    <!-- Add form fields for step 4 -->
+    <div class="row">
+      <label for="">Technology preference*: </label>
+      <div
+        class="col-md-6"
+        *ngFor="let technology of prefferTecnology; let i = index"
+      >
+        <div class="form-check">
+          <input
+            type="checkbox"
+            [id]="technology.code"
+            [formControlName]="technology.code"
+            class="form-check-input"
+          />
+          <label [for]="technology.code" class="form-check-label">{{
+            technology.name
+          }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 - Design & Security -->
+  <div
+    *ngIf="currentStep === 5"
+    [formGroup]="quoteForm.get('step5')"
+    class="form-group"
+  >
+    <h3>Design and Security</h3>
+    <!-- Add form fields for step 5 -->
+    <div class="form-group">
+      <label>Design and user experience :</label>
+      <textarea
+        type="text"
+        formControlName="prefferDesing"
+        placeholder="Visual design style, user interface preferences..."
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Security requirements :</label>
+      <textarea
+        type="text"
+        formControlName="security"
+        placeholder="Specific security measures or compliance standards..."
+        class="form-control"
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Step 6 - Budget -->
+  <div
+    *ngIf="currentStep === 6"
+    [formGroup]="quoteForm.get('step6')"
+    class="form-group"
+  >
+    <h3>Budget</h3>
+    <!-- Add form fields for step 5 -->
+    <div class="form-group">
+      <label>Approximate budget*:</label>
+      <textarea
+        type="text"
+        formControlName="budget"
+        placeholder="Budget range or specific amount allocated for the project..."
+        class="form-control"
+        required
+      ></textarea>
+      <div
+        *ngIf="
+          quoteForm.get('step6.budget').invalid &&
+          quoteForm.get('step6.budget').touched
+        "
+        class="invalid-feedback"
+      >
+        Approximate budget is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Additional notes or requirements:</label>
+      <textarea
+        type="text"
+        formControlName="additionalNotes"
+        placeholder="Any other information relevant to the project..."
+        class="form-control"
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Form Submission -->
+  <div class="d-flex justify-content-between">
+    <button
+      type="button"
+      (click)="prevStep()"
+      [ngClass]="currentStep === 1 ? 'd-n' : 'd-b'"
+      [disabled]="currentStep === 1"
+      class="btn btn-primary"
+    >
+      Previous
+    </button>
+    <button
+      type="button"
+      (click)="nextStep()"
+      [ngClass]="currentStep === 6 ? 'd-n' : 'd-b'"
+      [disabled]="
+        !quoteForm.get('step' + currentStep)?.valid || currentStep === 6
+      "
+      class="btn btn-primary"
+    >
+      Next
     </button>
     <button
       type="submit"
-      class="btn btn-success"
-      [disabled]="cotacaoForm.invalid"
+      [ngClass]="currentStep !== 6 ? 'd-n' : 'd-b'"
+      [disabled]="currentStep !== 6"
+      class="btn btn-primary"
     >
-      Enviar Cotação
+      Submit
     </button>
-  </form>
-</div>
+  </div>
+</form>

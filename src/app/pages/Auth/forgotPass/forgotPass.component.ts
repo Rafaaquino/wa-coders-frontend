@@ -1,41 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { MessageService } from 'primeng/api';
 import { ForgotPasswordService } from 'src/app/services/forgot-password.service';
 
 @Component({
-  selector: 'app-resetPassword',
-  templateUrl: './resetPassword.component.html',
-  styleUrls: ['./resetPassword.component.css'],
+  selector: 'app-forgotPass',
+  templateUrl: './forgotPass.component.html',
+  styleUrls: ['./forgotPass.component.css'],
 })
 /**
- * ResetPasswordComponent
+ * ForgotPasscomponent
  */
-export class ResetPasswordComponent implements OnInit {
+export class ForgotPasscomponent implements OnInit {
   recoveryPassForm: FormGroup;
 
   constructor(
-    private router: Router,
+    private fb: FormBuilder,
     private _forgotPassService: ForgotPasswordService,
-    private fb: FormBuilder
+    private _messageService: MessageService,
+    private router: Router
   ) {
-    this.recoveryPassForm = fb.group({
+    this.recoveryPassForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
-      mathPassword: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   ngOnInit(): void {}
 
   submit() {
-    if (this.recoveryPassForm.invalid) {
-      return alert('Invalid Form');
-    }
-
     if (this.recoveryPassForm.valid) {
       this._forgotPassService
-        .resetPassword(this.recoveryPassForm.value)
+        .forgotPassword(this.recoveryPassForm.value)
         .subscribe({
           next: this.onSubmitSuccess.bind(this),
           error: this.onSubmitError.bind(this),
@@ -45,10 +42,20 @@ export class ResetPasswordComponent implements OnInit {
 
   onSubmitSuccess(res) {
     console.log(res);
-    this.router.navigateByUrl('/dashboard');
+    localStorage.setItem('email', res.email);
+    this.router.navigateByUrl('/code-auth-password');
   }
 
   onSubmitError(error) {
-    console.log(error);
+    console.log(error.error.message);
+    this.show(error.error.message);
+  }
+
+  show(error: string) {
+    this._messageService.add({
+      severity: 'error',
+      summary: '',
+      detail: error,
+    });
   }
 }

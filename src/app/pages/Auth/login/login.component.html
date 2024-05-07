@@ -1,5 +1,5 @@
 <div class="account-home-btn d-none d-sm-block">
-  <a href="/" class="text-white"><i class="mdi mdi-home h1"></i></a>
+  <a routerLink="/" class="text-white"><i class="mdi mdi-home h1"></i></a>
 </div>
 
 <section class="bg-account-pages vh-100">
@@ -13,7 +13,7 @@
                 <div class="text-center mt-3">
                   <h3 class="fw-bold">
                     <a
-                      href="/"
+                      routerLink="/"
                       class="text-dark text-uppercase account-pages-logo"
                       >WA Coders</a
                     >
@@ -22,16 +22,32 @@
                 </div>
                 <div class="p-3">
                   <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                    <p-messages></p-messages>
                     <div class="form-group">
                       <label for="email">Email</label>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control"
                         formControlName="email"
-                        id="username"
+                        id="email"
                         placeholder="Enter email"
                         required
                       />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          loginForm.get('email').invalid &&
+                          (loginForm.get('email').dirty ||
+                            loginForm.get('email').touched)
+                        "
+                      >
+                        <div *ngIf="loginForm.get('email').errors.required">
+                          Email is required
+                        </div>
+                        <div *ngIf="loginForm.get('email').errors.email">
+                          Email not valid
+                        </div>
+                      </div>
                     </div>
 
                     <div class="form-group">
@@ -44,6 +60,18 @@
                         placeholder="Enter password"
                         required
                       />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          loginForm.get('password').invalid &&
+                          (loginForm.get('password').dirty ||
+                            loginForm.get('password').touched)
+                        "
+                      >
+                        <div *ngIf="loginForm.get('password').errors.required">
+                          Email is required
+                        </div>
+                      </div>
                     </div>
 
                     <div class="form-check">
@@ -58,7 +86,11 @@
                     </div>
 
                     <div class="d-grid mt-3">
-                      <button type="submit" class="btn btn-primary">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="loginForm.invalid"
+                      >
                         Log In
                       </button>
                     </div>

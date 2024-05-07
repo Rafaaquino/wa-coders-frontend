@@ -1,36 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private subjUser$ = new BehaviorSubject<string | null>(null);
-  private subjLoggedIn$ = new BehaviorSubject<boolean>(false);
-
   constructor(private router: Router) {}
 
-  isAuthenticated(): Observable<boolean> {
-    return this.subjLoggedIn$.asObservable();
+  isUserloggedin() {
+    const token = this.getAuthorizationToken();
+
+    if (!token) return false;
+
+    if (this.isTokenExpired(token)) return false;
+
+    return true;
   }
 
-  loggedin(t: boolean) {
-    this.subjLoggedIn$.next(t);
+  getAuthorizationToken() {
+    const token = localStorage.getItem('token');
+    return token;
   }
 
-  getUser(): Observable<string | null> {
-    return this.subjUser$.asObservable();
+  getTokenExpiration(token: string): any {
+    const decoded: any = jwtDecode(token);
+    if (decoded.exp === undefined) {
+      return null;
+    }
+
+    return decoded;
   }
 
-  setUser(u: string) {
-    this.subjUser$.next(u);
+  isTokenExpired(token: string): boolean {
+    if (!token) return true;
+
+    const decoded = this.getTokenExpiration(token);
+    const currentTime = Date.now() / 1000;
+
+    if (decoded === undefined) return false;
+
+    return !(decoded.exp > currentTime);
   }
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    this.subjLoggedIn$.next(false);
     this.router.navigateByUrl('/login');
   }
 }

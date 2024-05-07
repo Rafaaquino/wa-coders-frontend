@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ILoginResponse } from 'src/app/models/login-response.interface';
 import { LoginService } from 'src/app/services/login.service';
+import { MessageService } from 'primeng/api';
+import { ILoginResponse } from 'src/app/models/login-response.interface';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _messageService: MessageService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,12 +43,20 @@ export class LoginComponent implements OnInit {
     console.log(response);
     localStorage.setItem('token', response.token);
     localStorage.setItem('userId', response.userId);
-    //this._authService.loggedIn(true);
-    // this._authService.setUser(response.userId);
     this.router.navigateByUrl('dashboard');
   }
 
   onSubmitError(error: any) {
+    const erro = error.error.message;
     console.log(error.error.message);
+    this.show(erro);
+  }
+
+  show(error: string) {
+    this._messageService.add({
+      severity: 'error',
+      summary: '',
+      detail: error,
+    });
   }
 }

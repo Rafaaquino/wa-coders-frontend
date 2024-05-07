@@ -18,17 +18,17 @@ export class ForgotPasswordService {
     );
   }
 
-  codeAuthPass(code: string): Observable<ILoginResponse> {
+  codeAuthPass(code: string, email: string): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>(
       environment.host_api + `/users/code-auth-recovery-password`,
-      code
+      { code, email }
     );
   }
 
-  resetPassword(newPass: IResetPassword): Observable<any> {
-    return this.http.post<any>(
-      environment.host_api + `/users/reset-password`,
-      newPass
-    );
+  resetPassword(newPass: IResetPassword, email: string): Observable<any> {
+    return this.http.post<any>(environment.host_api + `/users/reset-password`, {
+      newPass,
+      email,
+    });
   }
 }

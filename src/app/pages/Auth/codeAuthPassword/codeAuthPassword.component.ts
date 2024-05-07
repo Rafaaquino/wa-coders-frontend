@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForgotPasswordService } from 'src/app/services/forgot-password.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-codeAuthPassword',
@@ -17,9 +18,10 @@ export class codeAuthPassword implements OnInit {
   constructor(
     private router: Router,
     private _forgotPassService: ForgotPasswordService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _messageService: MessageService
   ) {
-    this.recoveryPassForm = fb.group({
+    this.recoveryPassForm = this.fb.group({
       code: [
         '',
         [Validators.required, Validators.minLength(6), Validators.maxLength(6)],
@@ -31,12 +33,12 @@ export class codeAuthPassword implements OnInit {
 
   submit() {
     if (this.recoveryPassForm.valid) {
-      this._forgotPassService
-        .codeAuthPass(this.recoveryPassForm.value)
-        .subscribe({
-          next: this.onSubmitSuccess.bind(this),
-          error: this.onSubmitError.bind(this),
-        });
+      const email = localStorage.getItem('email');
+      const code = this.recoveryPassForm.get('code').value;
+      this._forgotPassService.codeAuthPass(code, email).subscribe({
+        next: this.onSubmitSuccess.bind(this),
+        error: this.onSubmitError.bind(this),
+      });
     }
   }
 
@@ -49,5 +51,14 @@ export class codeAuthPassword implements OnInit {
 
   onSubmitError(error) {
     console.log(error);
+    this.show(error.error.message);
+  }
+
+  show(error: string) {
+    this._messageService.add({
+      severity: 'error',
+      summary: '',
+      detail: error,
+    });
   }
 }
