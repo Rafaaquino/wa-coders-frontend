@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host_api: 'http://localhost:3000/api/v1',
+  host_api: 'https://www.wacoders.com.br/api/v1',
 };
