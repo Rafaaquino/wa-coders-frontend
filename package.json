@@ -2,7 +2,8 @@
   "name": "Wa-coders",
   "version": "1.0.1",
   "engines": {
-    "node": "20.x"
+    "node": "20.x",
+    "npm": "10.x"
   },
   "scripts": {
     "ng": "ng",
