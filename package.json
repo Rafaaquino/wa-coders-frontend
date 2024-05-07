@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prd": "ng build --configuration=production",
+    "heroku-postbuild": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -26,6 +27,7 @@
     "@nicky-lenaers/ngx-scroll-to": "^14.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "5.3.2",
+    "express": "^4.19.2",
     "flag-icon-css": "^4.1.7",
     "jwt-decode": "^4.0.0",
     "primeicons": "^7.0.0",

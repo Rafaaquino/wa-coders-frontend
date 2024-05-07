@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dorsin": {
+    "waCoders": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dorsin",
+            "outputPath": "dist/wa-coders",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "dorsin:build"
+            "buildTarget": "waCoders:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "dorsin:build:production"
+              "buildTarget": "waCoders:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "dorsin:build"
+            "buildTarget": "waCoders:build"
           }
         },
         "test": {
@@ -97,11 +97,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dorsin:serve"
+            "devServerTarget": "waCoders:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dorsin:serve:production"
+              "devServerTarget": "waCoders:serve:production"
             }
           }
         }
