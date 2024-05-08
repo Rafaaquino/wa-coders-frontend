@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  host_api: 'http://localhost:3000/api/v1',
+  host_api: 'https://wa-coders-backend-api-7f146f8b0faa.herokuapp.com/api/v1',
 };
