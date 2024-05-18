@@ -8,6 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server",
+    "start:dev": "ng serve",
     "build": "ng build",
     "build:prd": "ng build --configuration=production",
     "heroku-postbuild": "ng build --configuration=production",
