@@ -2131,6 +2131,10 @@ ul.pattern .color8 {
   #style-switcher {
     display: none;
   }
+
+  .p-dialog {
+    width: 95% !important;
+  }
 }
 [data-bs-theme="dark"] .mode-btn .mode-light {
   display: none !important;
