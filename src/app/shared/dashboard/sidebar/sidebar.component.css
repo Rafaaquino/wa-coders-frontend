@@ -144,7 +144,7 @@ ul {
   transition: transform 0.3s ease;
 }
 
-.open-sidebar .open_btn_icon {
+.open-sidebar #open_btn_icon {
   transform: rotate(180deg);
 }
 
