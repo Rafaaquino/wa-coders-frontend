@@ -24,6 +24,7 @@ import { ScrollspyDirective } from './scrollspy.directive';
 
 import { SendEmailService } from '../services/send-email.service';
 import { SidebarComponent } from './dashboard/sidebar/sibebar.component';
+import { NavDashComponent } from './dashboard/nav/nav.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
@@ -40,6 +41,7 @@ import { SidebarComponent } from './dashboard/sidebar/sibebar.component';
     StackComponent,
     QuoteComponent,
     SidebarComponent,
+    NavDashComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +67,7 @@ import { SidebarComponent } from './dashboard/sidebar/sibebar.component';
     StackComponent,
     QuoteComponent,
     SidebarComponent,
+    NavDashComponent,
   ],
   providers: [SendEmailService],
 })
