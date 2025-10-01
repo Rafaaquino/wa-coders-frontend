@@ -4,7 +4,7 @@
   right: 20px;
   background-color: #25D366;
   color: white;
-  padding: 15px;
+  padding: 12px;
   border-radius: 50%;
   text-align: center;
   z-index: 9999;
@@ -19,7 +19,7 @@
 }
 
 .pi {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 @keyframes pulse {
