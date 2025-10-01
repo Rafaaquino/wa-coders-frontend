@@ -31,9 +31,10 @@ export class QuoteComponent implements OnInit {
     { name: 'Website', code: 'Website' },
     { name: 'Mobile App Development', code: 'Mobile App Development' },
     {
-      name: 'Software Development Outsourcing',
-      code: 'Software Development Outsourcing',
+      name: 'Software Development',
+      code: 'Software Development',
     },
+    { name: 'Outsourcing', code: 'Outsourcing' },
     { name: 'UX/UI Design Branding', code: 'integrations and improvements' },
     {
       name: 'integrations and improvements',
@@ -71,6 +72,10 @@ export class QuoteComponent implements OnInit {
       { name: 'Australia', code: 'AU' },
       { name: 'Brazil', code: 'BR' },
       { name: 'England', code: 'UK' },
+      { name: 'Spain', code: 'ES' },
+      { name: 'Portugal', code: 'PT' },
+      { name: 'Germany', code: 'DE' },
+      { name: 'Italy', code: 'IT' },
     ];
   }
 
