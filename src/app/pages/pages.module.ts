@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { IndexComponent } from './index/index.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 import { ResetPasswordComponent } from './Auth/resetPassword/resetPassword.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasscomponent } from './Auth/forgotPass/forgotPass.component';
 import { codeAuthPassword } from './Auth/codeAuthPassword/codeAuthPassword.component';
@@ -19,13 +18,13 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
+import { DashboardModule } from './dashboard/dashboard.module';
 @NgModule({
   declarations: [
     IndexComponent,
     LoginComponent,
     SignupComponent,
     ResetPasswordComponent,
-    DashboardComponent,
     ForgotPasscomponent,
     codeAuthPassword,
   ],
@@ -40,6 +39,7 @@ import { DropdownModule } from 'primeng/dropdown';
     MessageModule,
     MessagesModule,
     DropdownModule,
+    DashboardModule,
   ],
   providers: [MessageService],
 })

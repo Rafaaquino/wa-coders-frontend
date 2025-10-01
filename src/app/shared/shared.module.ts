@@ -23,6 +23,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { ScrollspyDirective } from './scrollspy.directive';
 
 import { SendEmailService } from '../services/send-email.service';
+import { SidebarComponent } from './dashboard/sidebar/sibebar.component';
+import { NavDashComponent } from './dashboard/nav/nav.component';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
@@ -38,6 +40,8 @@ import { SendEmailService } from '../services/send-email.service';
     NavComponent,
     StackComponent,
     QuoteComponent,
+    SidebarComponent,
+    NavDashComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +66,8 @@ import { SendEmailService } from '../services/send-email.service';
     NavComponent,
     StackComponent,
     QuoteComponent,
+    SidebarComponent,
+    NavDashComponent,
   ],
   providers: [SendEmailService],
 })

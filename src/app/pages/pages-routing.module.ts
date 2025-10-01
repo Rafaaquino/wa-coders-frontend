@@ -4,7 +4,6 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 import { ResetPasswordComponent } from './Auth/resetPassword/resetPassword.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from '../services/auth/authGuardService';
 import { ForgotPasscomponent } from './Auth/forgotPass/forgotPass.component';
 import { codeAuthPassword } from './Auth/codeAuthPassword/codeAuthPassword.component';
@@ -37,8 +36,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     path: '**',
