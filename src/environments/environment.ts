@@ -4,5 +4,6 @@
 
 export const environment = {
   production: false,
-  host_api: 'https://wa-coders-backend-api-7f146f8b0faa.herokuapp.com/api/v1',
+  host_api: 'https://wa-coders-backend-api.vercel.app/' //VERCEL
+  //host_api: 'https://wa-coders-backend-api-7f146f8b0faa.herokuapp.com/api/v1', HEROKU
 };
