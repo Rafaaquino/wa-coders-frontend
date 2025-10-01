@@ -11,7 +11,7 @@
     "start:dev": "ng serve",
     "build": "ng build",
     "build:ghpages": "ng build --configuration production --base-href='/' --output-path=dist/wa-coders",
-    "deploy": "npm run build:ghpages && copy CNAME && npx angular-cli-ghpages --dir=dist/wa-coders --branch=gh-pages",
+    "deploy": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/wa-coders --branch=gh-pages",
     "heroku-postbuild": "ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
