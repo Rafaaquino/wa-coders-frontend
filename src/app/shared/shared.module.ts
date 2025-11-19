@@ -20,6 +20,8 @@ import { MessageModule } from 'primeng/message';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { CalendarModule } from 'primeng/calendar';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 import { ScrollspyDirective } from './scrollspy.directive';
 
 import { SendEmailService } from '../services/send-email.service';
@@ -52,6 +54,7 @@ import { NavDashComponent } from './dashboard/nav/nav.component';
     MessagesModule,
     ProgressBarModule,
     CalendarModule,
+    TranslateModule,
   ],
   // tslint:disable-next-line: max-line-length
   exports: [

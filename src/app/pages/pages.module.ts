@@ -19,6 +19,7 @@ import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     IndexComponent,
@@ -40,6 +41,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     MessagesModule,
     DropdownModule,
     DashboardModule,
+    TranslateModule,
   ],
   providers: [MessageService],
 })

@@ -3,12 +3,10 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
-        <h1 class="section-title text-center">Get In Touch</h1>
+        <h1 class="section-title text-center">{{ 'contact.title' | translate }}</h1>
         <div class="section-title-border mt-3"></div>
         <p class="section-subtitle text-muted text-center font-secondary pt-4">
-          Want to know more about how we work, talk about your challenges or ask
-          questions? Contact us. We love exchanging ideas about digital
-          products! Fill out the form and receive contact in less than 24 hours.
+          {{ 'contact.subtitle' | translate }}
         </p>
       </div>
     </div>
@@ -16,26 +14,24 @@
       <div class="col-lg-4">
         <div class="mt-4 pt-4">
           <p class="mt-4">
-            <span class="h5">Office Address 1:</span><br />
+            <span class="h5">{{ 'contact.officeAddress1' | translate }}</span><br />
             <span class="text-muted d-block mt-2"
               >601 Brickell Key Drive, Miami, FL 33131</span
             >
           </p>
           <p class="mt-4">
-            <span class="h5">Office Address 2:</span><br />
+            <span class="h5">{{ 'contact.officeAddress2' | translate }}</span><br />
             <span class="text-muted d-block mt-2"
               >1550 Av. Chucri Zaidan, São Paulo-BR</span
             >
           </p>
           <p class="mt-4">
-            <span class="h5">Working Hours:</span><br />
+            <span class="h5">{{ 'contact.workingHours' | translate }}</span><br />
             <span class="text-muted d-block mt-2">9:00AM to 6:00PM</span>
           </p>
           <p class="mt-4">
-            <span class="h5">E-mail</span><br />
-            <span class="text-muted d-block mt-2"
-              >contact&#64;wacoders.com</span
-            >
+            <span class="h5">{{ 'contact.email' | translate }}</span><br />
+            <span class="text-muted d-block mt-2">contact&#64;wacoders.com</span>
           </p>
         </div>
       </div>
@@ -57,7 +53,7 @@
                     id="name"
                     type="text"
                     class="form-control"
-                    placeholder="Your name*"
+                    [placeholder]="'contact.yourName' | translate"
                     formControlName="name"
                     required
                   />
@@ -70,7 +66,7 @@
                     id="email"
                     type="email"
                     class="form-control"
-                    placeholder="Your email*"
+                    [placeholder]="'contact.yourEmail' | translate"
                     formControlName="email"
                     required
                   />
@@ -88,26 +84,26 @@
                     required
                   >
                     <option value="" disabled selected>
-                      Select Subject...
+                      {{ 'contact.selectSubject' | translate }}
                     </option>
                     <option value="Custom Software Development">
-                      Custom Software Development
+                      {{ 'contact.customSoftwareDevelopment' | translate }}
                     </option>
-                    <option value="Website">Website</option>
+                    <option value="Website">{{ 'contact.website' | translate }}</option>
                     <option value="Mobile App Development">
-                      Mobile App Development
+                      {{ 'contact.mobileAppDevelopment' | translate }}
                     </option>
-                    <option value="Software Development">
-                      Software Development
+                    <option value="Software Development Outsourcing">
+                      {{ 'contact.softwareDevelopmentOutsourcing' | translate }}
                     </option>
                     <option value="Outsourcing">Outsourcing</option>
                     <option value="UX/UI Design Branding">
-                      UX/UI Design Branding
+                      {{ 'contact.uxUiDesignBranding' | translate }}
                     </option>
                     <option value="integrations and improvements">
-                      integrations and improvements
+                      {{ 'contact.integrationsAndImprovements' | translate }}
                     </option>
-                    <option value="Others">Others</option>
+                    <option value="Others">{{ 'contact.others' | translate }}</option>
                   </select>
                 </div>
               </div>
@@ -120,7 +116,7 @@
                     id="text"
                     rows="4"
                     class="form-control"
-                    placeholder="Your message..."
+                    [placeholder]="'contact.yourMessage' | translate"
                     formControlName="text"
                     required
                   ></textarea>
@@ -134,7 +130,7 @@
                   id="submit"
                   name="send"
                   class="submitBnt btn btn-primary"
-                  value="Send Message"
+                  [value]="'contact.sendMessage' | translate"
                 />
                 <div id="simple-msg"></div>
               </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-index',
@@ -20,6 +21,35 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
       .dark-modal .close {
         color: white;
       }
+      .language-selector {
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        margin-right: 15px;
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
+      .language-flag {
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s, transform 0.2s;
+        display: inline-block;
+        font-size: 1.5em !important;
+        line-height: 1em;
+        border-radius: 4px;
+        vertical-align: middle;
+      }
+      .language-flag:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      .language-flag.active {
+        opacity: 1;
+        border: 2px solid #4341cc;
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(67, 65, 204, 0.5);
+      }
     `,
   ],
 })
@@ -33,11 +63,22 @@ export class IndexComponent implements OnInit {
   private player;
   private ytEvent;
   currentSection = 'home';
+  currentLanguage: string = 'pt';
 
-  constructor(private route: Router, private modalService: NgbModal) {}
+  constructor(
+    private route: Router,
+    private modalService: NgbModal,
+    private translationService: TranslationService
+  ) {}
 
   ngOnInit() {
     this.verifyToken();
+    this.currentLanguage = this.translationService.getCurrentLanguage();
+  }
+
+  changeLanguage(language: string): void {
+    this.translationService.changeLanguage(language);
+    this.currentLanguage = language;
   }
 
   /**

@@ -15,11 +15,11 @@
     [formGroup]="quoteForm.get('step1')"
     class="form-group"
   >
-    <h3>Contact Information</h3>
+    <h3>{{ 'quote.contactInformation' | translate }}</h3>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <label>Name*:</label>
+          <label>{{ 'quote.name' | translate }}</label>
           <input type="text" formControlName="firstName" class="form-control" />
           <div
             *ngIf="
@@ -28,12 +28,12 @@
             "
             class="invalid-feedback"
           >
-            Name is required
+            {{ 'quote.nameRequired' | translate }}
           </div>
         </div>
 
         <div class="col-md-6 col-sm-6">
-          <label>Last Name*:</label>
+          <label>{{ 'quote.lastName' | translate }}</label>
           <input type="text" formControlName="lastName" class="form-control" />
           <div
             *ngIf="
@@ -42,14 +42,14 @@
             "
             class="invalid-feedback"
           >
-            Name is required
+            {{ 'quote.nameRequired' | translate }}
           </div>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>Email*:</label>
+      <label>{{ 'quote.email' | translate }}</label>
       <input type="email" formControlName="email" class="form-control" />
       <div
         *ngIf="
@@ -58,16 +58,16 @@
         "
         class="invalid-feedback"
       >
-        Invalid email format
+        {{ 'quote.invalidEmailFormat' | translate }}
       </div>
     </div>
 
     <div class="form-group">
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <label>Country*:</label>
+          <label>{{ 'quote.country' | translate }}</label>
           <select formControlName="country" class="form-control">
-            <option value="" disabled>Select Country</option>
+            <option value="" disabled>{{ 'quote.selectCountry' | translate }}</option>
             <ng-container *ngFor="let country of countries">
               <option [value]="country.code">
                 {{ country.name }}
@@ -81,12 +81,12 @@
             "
             class="invalid-feedback"
           >
-            Invalid email format
+            {{ 'quote.invalidEmailFormat' | translate }}
           </div>
         </div>
 
         <div class="col-md-6 col-sm-6">
-          <label>City*:</label>
+          <label>{{ 'quote.city' | translate }}</label>
           <input type="text" formControlName="city" class="form-control" />
           <div
             *ngIf="
@@ -95,14 +95,14 @@
             "
             class="invalid-feedback"
           >
-            Invalid email format
+            {{ 'quote.invalidEmailFormat' | translate }}
           </div>
         </div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>Company Name*:</label>
+      <label>{{ 'quote.companyName' | translate }}</label>
       <input type="text" formControlName="company" class="form-control" />
       <div
         *ngIf="
@@ -111,7 +111,7 @@
         "
         class="invalid-feedback"
       >
-        Company name is required
+        {{ 'quote.companyNameRequired' | translate }}
       </div>
     </div>
   </div>
@@ -122,11 +122,11 @@
     [formGroup]="quoteForm.get('step2')"
     class="form-group"
   >
-    <h3>General Information</h3>
+    <h3>{{ 'quote.generalInformation' | translate }}</h3>
     <div class="form-group">
-      <label>Service Type*:</label>
+      <label>{{ 'quote.serviceType' | translate }}</label>
       <select formControlName="serviceType" class="form-control">
-        <option value="" disabled>Select service</option>
+        <option value="" disabled>{{ 'quote.selectService' | translate }}</option>
         <ng-container *ngFor="let service of servicesType">
           <option [value]="service.code">
             {{ service.name }}
@@ -140,16 +140,16 @@
         "
         class="invalid-feedback"
       >
-        Service type is required
+        {{ 'quote.serviceTypeRequired' | translate }}
       </div>
     </div>
 
     <div class="form-group">
-      <label>Objective of the software*:</label>
+      <label>{{ 'quote.objectiveSoftware' | translate }}</label>
       <textarea
         type="text"
         formControlName="objectiveSoftware"
-        placeholder="Brief description of the software's purpose"
+        [placeholder]="'quote.objectivePlaceholder' | translate"
         class="form-control"
       ></textarea>
       <div
@@ -159,13 +159,13 @@
         "
         class="invalid-feedback"
       >
-        Objective is required
+        {{ 'quote.objectiveRequired' | translate }}
       </div>
     </div>
     <div class="form-group">
-      <label>Preferred platform *:</label>
+      <label>{{ 'quote.preferredPlatform' | translate }}</label>
       <select formControlName="platform" class="form-control">
-        <option value="" disabled>Select Plataform</option>
+        <option value="" disabled>{{ 'quote.selectPlatform' | translate }}</option>
         <ng-container *ngFor="let plat of plataforms">
           <option [value]="plat.code">
             {{ plat.name }}
@@ -179,11 +179,11 @@
         "
         class="invalid-feedback"
       >
-        Plataform is required
+        {{ 'quote.platformRequired' | translate }}
       </div>
     </div>
     <div class="form-group">
-      <label for="">Project completion deadline*:</label>
+      <label for="">{{ 'quote.projectCompletionDeadline' | translate }}</label>
       <input
         type="date"
         class="form-control"
@@ -197,7 +197,7 @@
         "
         class="invalid-feedback"
       >
-        Deadline is required
+        {{ 'quote.deadlineRequired' | translate }}
       </div>
     </div>
   </div>
@@ -208,14 +208,14 @@
     [formGroup]="quoteForm.get('step3')"
     class="form-group"
   >
-    <h3>Functional Requirements:</h3>
+    <h3>{{ 'quote.functionalRequirements' | translate }}</h3>
     <!-- Add form fields for step 3 -->
     <div class="form-group">
-      <label>Project scope*:</label>
+      <label>{{ 'quote.projectScope' | translate }}</label>
       <textarea
         type="text"
         formControlName="projectScope"
-        placeholder="Detailed description of what the software should accomplish..."
+        [placeholder]="'quote.projectScopePlaceholder' | translate"
         class="form-control"
       ></textarea>
       <div
@@ -225,26 +225,26 @@
         "
         class="invalid-feedback"
       >
-        Scope is required
+        {{ 'quote.scopeRequired' | translate }}
       </div>
     </div>
 
     <div class="form-group">
-      <label>Essential features:</label>
+      <label>{{ 'quote.essentialFeatures' | translate }}</label>
       <textarea
         type="text"
         formControlName="features"
-        placeholder="List of key functionalities required..."
+        [placeholder]="'quote.featuresPlaceholder' | translate"
         class="form-control"
       ></textarea>
     </div>
 
     <div class="form-group">
-      <label>Necessary integrations:</label>
+      <label>{{ 'quote.necessaryIntegrations' | translate }}</label>
       <textarea
         type="text"
         formControlName="integrations"
-        placeholder="Any third-party systems or APIs that need to be integrated..."
+        [placeholder]="'quote.integrationsPlaceholder' | translate"
         class="form-control"
       ></textarea>
     </div>
@@ -256,10 +256,10 @@
     [formGroup]="quoteForm.get('step4')"
     class="form-group"
   >
-    <h3>Technology</h3>
+    <h3>{{ 'quote.technology' | translate }}</h3>
     <!-- Add form fields for step 4 -->
     <div class="row">
-      <label for="">Technology preference*: </label>
+      <label for="">{{ 'quote.technologyPreference' | translate }} </label>
       <div
         class="col-md-6"
         *ngFor="let technology of prefferTecnology; let i = index"
@@ -285,24 +285,24 @@
     [formGroup]="quoteForm.get('step5')"
     class="form-group"
   >
-    <h3>Design and Security</h3>
+    <h3>{{ 'quote.designAndSecurity' | translate }}</h3>
     <!-- Add form fields for step 5 -->
     <div class="form-group">
-      <label>Design and user experience :</label>
+      <label>{{ 'quote.designAndUserExperience' | translate }}</label>
       <textarea
         type="text"
         formControlName="prefferDesing"
-        placeholder="Visual design style, user interface preferences..."
+        [placeholder]="'quote.designPlaceholder' | translate"
         class="form-control"
       ></textarea>
     </div>
 
     <div class="form-group">
-      <label>Security requirements :</label>
+      <label>{{ 'quote.securityRequirements' | translate }}</label>
       <textarea
         type="text"
         formControlName="security"
-        placeholder="Specific security measures or compliance standards..."
+        [placeholder]="'quote.securityPlaceholder' | translate"
         class="form-control"
       ></textarea>
     </div>
@@ -314,14 +314,14 @@
     [formGroup]="quoteForm.get('step6')"
     class="form-group"
   >
-    <h3>Budget</h3>
+    <h3>{{ 'quote.budget' | translate }}</h3>
     <!-- Add form fields for step 5 -->
     <div class="form-group">
-      <label>Approximate budget*:</label>
+      <label>{{ 'quote.approximateBudget' | translate }}</label>
       <textarea
         type="text"
         formControlName="budget"
-        placeholder="Budget range or specific amount allocated for the project..."
+        [placeholder]="'quote.budgetPlaceholder' | translate"
         class="form-control"
         required
       ></textarea>
@@ -332,16 +332,16 @@
         "
         class="invalid-feedback"
       >
-        Approximate budget is required
+        {{ 'quote.approximateBudgetRequired' | translate }}
       </div>
     </div>
 
     <div class="form-group">
-      <label>Additional notes or requirements:</label>
+      <label>{{ 'quote.additionalNotes' | translate }}</label>
       <textarea
         type="text"
         formControlName="additionalNotes"
-        placeholder="Any other information relevant to the project..."
+        [placeholder]="'quote.additionalNotesPlaceholder' | translate"
         class="form-control"
       ></textarea>
     </div>
@@ -356,7 +356,7 @@
       [disabled]="currentStep === 1"
       class="btn btn-primary"
     >
-      Previous
+      {{ 'quote.previous' | translate }}
     </button>
     <button
       type="button"
@@ -367,7 +367,7 @@
       "
       class="btn btn-primary"
     >
-      Next
+      {{ 'quote.next' | translate }}
     </button>
     <button
       type="submit"
@@ -375,7 +375,7 @@
       [disabled]="currentStep !== 6"
       class="btn btn-primary bnt-event-GoogleTag"
     >
-      Submit
+      {{ 'quote.submit' | translate }}
     </button>
   </div>
 </form>

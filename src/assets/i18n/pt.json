@@ -1,0 +1,171 @@
+{
+  "nav": {
+    "home": "Início",
+    "services": "Serviços",
+    "features": "Recursos",
+    "proccess": "Processo",
+    "technologies": "Tecnologias",
+    "contact": "Contato",
+    "login": "Entrar",
+    "dashboard": "Dashboard",
+    "tryItFree": "Experimente Grátis"
+  },
+  "home": {
+    "title": "Ajudamos sua empresa a desenvolver software de qualidade",
+    "description": "Ajudamos sua empresa a buscar inovação tecnológica através de soluções de desenvolvimento de software, modernização de aplicações ou serviços de transformação digital total."
+  },
+  "services": {
+    "title": "Nossos Serviços",
+    "subtitle": "Soluções completas de transformação digital e desenvolvimento de software.",
+    "customSoftware": {
+      "title": "Desenvolvimento de Software Personalizado",
+      "description": "Construa software personalizado adaptado às necessidades do negócio, incluindo interfaces front-end e tecnologia back-end central."
+    },
+    "website": {
+      "title": "Website",
+      "description": "Especializamo-nos em desenvolver sites profissionais e usar as técnicas de design web mais modernas."
+    },
+    "mobileApp": {
+      "title": "Desenvolvimento de Aplicativos Mobile",
+      "description": "Desenvolva aplicativos móveis de alto desempenho e seguros para dispositivos iOS e Android."
+    },
+    "outsourcing": {
+      "title": "Terceirização de Desenvolvimento de Software",
+      "description": "Alocamos grandes profissionais para se juntar à sua equipe de desenvolvimento e acelerar entregas de software."
+    },
+    "design": {
+      "title": "Design UX/UI e Branding",
+      "description": "Crie designs bonitos e fáceis de usar para sites, aplicativos móveis e outras interfaces humano-máquina."
+    },
+    "integrations": {
+      "title": "Integrações e Melhorias",
+      "description": "Melhorias ou novos escopos para sua solução de software. Implementamos melhorias e integrações com outras plataformas."
+    }
+  },
+  "features": {
+    "title": "Uma software house que entende de negócios.",
+    "description": "Combinamos a visão da sua empresa com nossa expertise em desenvolvimento de software e estratégias de negócio para alcançar resultados extraordinários. Nosso objetivo é entregar valor em projetos de desenvolvimento de software. Com nossa cultura e uma equipe preparada, simplificamos a inovação através das metodologias de desenvolvimento mais recentes.",
+    "item1": "Equipes multidisciplinares e qualificadas.",
+    "item2": "IA no desenvolvimento de software.",
+    "item3": "Agilidade, flexibilidade e transparência.",
+    "item4": "Profissionais com mais de 10 anos de experiência.",
+    "getFreeQuotes": "Obter orçamentos grátis",
+    "formQuote": "Formulário de Orçamento"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Quer saber mais sobre como trabalhamos, falar sobre seus desafios ou fazer perguntas? Entre em contato. Adoramos trocar ideias sobre produtos digitais! Preencha o formulário e receba contato em menos de 24 horas.",
+    "officeAddress1": "Endereço do Escritório 1:",
+    "officeAddress2": "Endereço do Escritório 2:",
+    "workingHours": "Horário de Funcionamento:",
+    "email": "E-mail",
+    "yourName": "Seu nome*",
+    "yourEmail": "Seu e-mail*",
+    "selectSubject": "Selecione o Assunto...",
+    "yourMessage": "Sua mensagem...",
+    "sendMessage": "Enviar Mensagem",
+    "customSoftwareDevelopment": "Desenvolvimento de Software Personalizado",
+    "website": "Website",
+    "mobileAppDevelopment": "Desenvolvimento de Aplicativo Mobile",
+    "softwareDevelopmentOutsourcing": "Terceirização de Desenvolvimento de Software",
+    "uxUiDesignBranding": "Design UX/UI e Branding",
+    "integrationsAndImprovements": "Integrações e melhorias",
+    "others": "Outros"
+  },
+  "quote": {
+    "contactInformation": "Informações de Contato",
+    "name": "Nome*:",
+    "nameRequired": "Nome é obrigatório",
+    "lastName": "Sobrenome*:",
+    "email": "E-mail*:",
+    "invalidEmailFormat": "Formato de e-mail inválido",
+    "country": "País*:",
+    "selectCountry": "Selecione o País",
+    "city": "Cidade*:",
+    "companyName": "Nome da Empresa*:",
+    "companyNameRequired": "Nome da empresa é obrigatório",
+    "generalInformation": "Informações Gerais",
+    "serviceType": "Tipo de Serviço*:",
+    "selectService": "Selecione o serviço",
+    "serviceTypeRequired": "Tipo de serviço é obrigatório",
+    "objectiveSoftware": "Objetivo do software*:",
+    "objectivePlaceholder": "Breve descrição do propósito do software",
+    "objectiveRequired": "Objetivo é obrigatório",
+    "preferredPlatform": "Plataforma preferida *:",
+    "selectPlatform": "Selecione a Plataforma",
+    "platformRequired": "Plataforma é obrigatória",
+    "projectCompletionDeadline": "Prazo de conclusão do projeto*:",
+    "deadlineRequired": "Prazo é obrigatório",
+    "functionalRequirements": "Requisitos Funcionais:",
+    "projectScope": "Escopo do projeto*:",
+    "projectScopePlaceholder": "Descrição detalhada do que o software deve realizar...",
+    "scopeRequired": "Escopo é obrigatório",
+    "essentialFeatures": "Funcionalidades essenciais:",
+    "featuresPlaceholder": "Lista de funcionalidades principais necessárias...",
+    "necessaryIntegrations": "Integrações necessárias:",
+    "integrationsPlaceholder": "Quaisquer sistemas de terceiros ou APIs que precisem ser integrados...",
+    "technology": "Tecnologia",
+    "technologyPreference": "Preferência de tecnologia*:",
+    "designAndSecurity": "Design e Segurança",
+    "designAndUserExperience": "Design e experiência do usuário :",
+    "designPlaceholder": "Estilo de design visual, preferências de interface do usuário...",
+    "securityRequirements": "Requisitos de segurança :",
+    "securityPlaceholder": "Medidas de segurança específicas ou padrões de conformidade...",
+    "budget": "Orçamento",
+    "approximateBudget": "Orçamento aproximado*:",
+    "budgetPlaceholder": "Faixa de orçamento ou valor específico alocado para o projeto...",
+    "approximateBudgetRequired": "Orçamento aproximado é obrigatório",
+    "additionalNotes": "Notas adicionais ou requisitos:",
+    "additionalNotesPlaceholder": "Qualquer outra informação relevante para o projeto...",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "submit": "Enviar"
+  },
+  "pricing": {
+    "title": "Nossos Preços",
+    "subtitle": "Tabela de preços de call to action é realmente crucial para o seu site de negócios. Faça suas propostas se destacarem com opções incríveis.",
+    "economy": "Economia",
+    "deluxe": "Deluxe",
+    "ultimate": "Ultimate",
+    "billingPerMonth": "Cobrança Por Mês",
+    "bandwidth": "Largura de banda:",
+    "onlinespace": "Espaço online:",
+    "support": "Suporte:",
+    "domain": "Domínio",
+    "noHiddenFees": "Sem Taxas Ocultas",
+    "joinNow": "Junte-se Agora"
+  },
+  "footer": {
+    "copyright": "© WA Coders."
+  },
+  "stack": {
+    "process": {
+      "title": "Nosso processo. Simples, perfeito e eficiente",
+      "subtitle": "Em um mundo ideal, este site não existiria, um cliente reconheceria a importância de ter conteúdo web antes do design começar.",
+      "step1": {
+        "title": "Diga-nos o que você precisa",
+        "description": "Preencha um formulário para que possamos entender sua empresa."
+      },
+      "step2": {
+        "title": "Obtenha orçamentos grátis",
+        "description": "Discutiremos então a estrutura e abordagem da equipe, cronograma, orçamento e conjuntos de habilidades necessários."
+      },
+      "step3": {
+        "title": "Iniciar projeto",
+        "description": "Em questão de dias, finalizaremos as especificações do seu projeto, definiremos um modelo de desenvolvimento, selecionaremos e integraremos sua equipe."
+      },
+      "getStarted": "Começar"
+    },
+    "technologies": {
+      "title": "Tecnologias e aplicações",
+      "subtitle": "Usamos as melhores tecnologias atuais. <br />Abaixo apresentamos as linguagens e frameworks nos quais trabalhamos e temos expertise."
+    },
+    "getStarted": {
+      "title": "Vamos conversar sobre seus projetos?",
+      "subtitle": "Clique no botão abaixo e comece sua jornada conosco!<br />Analisaremos seu projeto e alinharemos orçamentos e entregas",
+      "button": "Começar",
+      "formQuote": "Formulário de Orçamento"
+    }
+  }
+}
+

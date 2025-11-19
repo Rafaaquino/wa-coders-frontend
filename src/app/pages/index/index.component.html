@@ -33,7 +33,7 @@
             [ngxScrollTo]="'#home'"
             href="javascript: void(0);"
             class="nav-link"
-            >Home</a
+            >{{ 'nav.home' | translate }}</a
           >
         </li>
         <li
@@ -44,7 +44,7 @@
             [ngxScrollTo]="'#services'"
             href="javascript: void(0);"
             class="nav-link"
-            >Services</a
+            >{{ 'nav.services' | translate }}</a
           >
         </li>
         <li
@@ -55,7 +55,7 @@
             [ngxScrollTo]="'#features'"
             href="javascript: void(0);"
             class="nav-link"
-            >Features</a
+            >{{ 'nav.features' | translate }}</a
           >
         </li>
         <li
@@ -66,7 +66,7 @@
             [ngxScrollTo]="'#proccess'"
             href="javascript: void(0);"
             class="nav-link"
-            >Proccess</a
+            >{{ 'nav.proccess' | translate }}</a
           >
         </li>
         <li class="nav-item" [ngClass]="{ active: currentSection === 'team' }">
@@ -74,7 +74,7 @@
             [ngxScrollTo]="'#team'"
             href="javascript: void(0);"
             class="nav-link"
-            >Technologies</a
+            >{{ 'nav.technologies' | translate }}</a
           >
         </li>
         <li
@@ -85,12 +85,26 @@
             [ngxScrollTo]="'#contact'"
             href="javascript: void(0);"
             class="nav-link"
-            >Contact</a
+            >{{ 'nav.contact' | translate }}</a
           >
         </li>
       </ul>
       <div class="nav-button ms-auto">
         <ul class="nav navbar-nav navbar-right">
+          <li class="language-selector">
+            <span
+              class="flag-icon flag-icon-br language-flag"
+              [ngClass]="{ active: currentLanguage === 'pt' }"
+              (click)="changeLanguage('pt')"
+              title="Português"
+            ></span>
+            <span
+              class="flag-icon flag-icon-us language-flag"
+              [ngClass]="{ active: currentLanguage === 'en' }"
+              (click)="changeLanguage('en')"
+              title="English"
+            ></span>
+          </li>
           <li>
             <button
               type="button"
@@ -98,7 +112,7 @@
               (click)="navigate()"
               *ngIf="!logged"
             >
-              Login
+              {{ 'nav.login' | translate }}
             </button>
 
             <button
@@ -107,7 +121,7 @@
               (click)="navigateDash()"
               *ngIf="logged"
             >
-              Dashboard
+              {{ 'nav.dashboard' | translate }}
             </button>
           </li>
         </ul>
@@ -129,12 +143,10 @@
         <div class="row">
           <div class="col-lg-8 offset-lg-2 text-white text-center">
             <h1 class="home-title">
-              We help your company develop quality software
+              {{ 'home.title' | translate }}
             </h1>
             <p class="pt-3 home-desc">
-              We help your company pursue technological innovation through
-              software development solutions, application modernization or total
-              digital transformation services.
+              {{ 'home.description' | translate }}
             </p>
             <!--<p class="play-shadow mt-4">
               <a (click)="openModal(content)" class="play-btn video-play-icon"
