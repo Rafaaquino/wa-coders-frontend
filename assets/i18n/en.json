@@ -1,0 +1,171 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "features": "Features",
+    "proccess": "Process",
+    "technologies": "Technologies",
+    "contact": "Contact",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "tryItFree": "Try it Free"
+  },
+  "home": {
+    "title": "We help your company develop quality software",
+    "description": "We help your company pursue technological innovation through software development solutions, application modernization or total digital transformation services."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Complete digital transformation and software development solutions.",
+    "customSoftware": {
+      "title": "Custom Software Development",
+      "description": "Build custom software tailored to business needs, including front-end interfaces and core back-end technology."
+    },
+    "website": {
+      "title": "Website",
+      "description": "We specialize in developing professional websites and use the most modern web design techniques."
+    },
+    "mobileApp": {
+      "title": "Mobile App Development",
+      "description": "Develop high performance, secure mobile applications for iOS and Android devices."
+    },
+    "outsourcing": {
+      "title": "Software Development Outsourcing",
+      "description": "We allocate great professionals to join your development team and accelerate software deliveries."
+    },
+    "design": {
+      "title": "UX/UI Design Branding",
+      "description": "Create beautiful, user-friendly designs for websites, mobile apps, and other human-machine interfaces."
+    },
+    "integrations": {
+      "title": "integrations and improvements",
+      "description": "Improvements or new scopes for your software solution. We implement improvements and integrations with other platforms"
+    }
+  },
+  "features": {
+    "title": "A software house that understands business.",
+    "description": "We combine your company's vision with our expertise in software development and business strategies to achieve extraordinary results. Our goal is to deliver value in software development projects. With our culture and a prepared team, we simplify innovation through the latest development methodologies.",
+    "item1": "Multidisciplinary and qualified teams.",
+    "item2": "AI in software development.",
+    "item3": "Agility, flexibility and transparency.",
+    "item4": "Professionals with more than 10 years of experience.",
+    "getFreeQuotes": "Get free quotes",
+    "formQuote": "Form Quote"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Want to know more about how we work, talk about your challenges or ask questions? Contact us. We love exchanging ideas about digital products! Fill out the form and receive contact in less than 24 hours.",
+    "officeAddress1": "Office Address 1:",
+    "officeAddress2": "Office Address 2:",
+    "workingHours": "Working Hours:",
+    "email": "E-mail",
+    "yourName": "Your name*",
+    "yourEmail": "Your email*",
+    "selectSubject": "Select Subject...",
+    "yourMessage": "Your message...",
+    "sendMessage": "Send Message",
+    "customSoftwareDevelopment": "Custom Software Development",
+    "website": "Website",
+    "mobileAppDevelopment": "Mobile App Development",
+    "softwareDevelopmentOutsourcing": "Software Development Outsourcing",
+    "uxUiDesignBranding": "UX/UI Design Branding",
+    "integrationsAndImprovements": "integrations and improvements",
+    "others": "Others"
+  },
+  "quote": {
+    "contactInformation": "Contact Information",
+    "name": "Name*:",
+    "nameRequired": "Name is required",
+    "lastName": "Last Name*:",
+    "email": "Email*:",
+    "invalidEmailFormat": "Invalid email format",
+    "country": "Country*:",
+    "selectCountry": "Select Country",
+    "city": "City*:",
+    "companyName": "Company Name*:",
+    "companyNameRequired": "Company name is required",
+    "generalInformation": "General Information",
+    "serviceType": "Service Type*:",
+    "selectService": "Select service",
+    "serviceTypeRequired": "Service type is required",
+    "objectiveSoftware": "Objective of the software*:",
+    "objectivePlaceholder": "Brief description of the software's purpose",
+    "objectiveRequired": "Objective is required",
+    "preferredPlatform": "Preferred platform *:",
+    "selectPlatform": "Select Plataform",
+    "platformRequired": "Plataform is required",
+    "projectCompletionDeadline": "Project completion deadline*:",
+    "deadlineRequired": "Deadline is required",
+    "functionalRequirements": "Functional Requirements:",
+    "projectScope": "Project scope*:",
+    "projectScopePlaceholder": "Detailed description of what the software should accomplish...",
+    "scopeRequired": "Scope is required",
+    "essentialFeatures": "Essential features:",
+    "featuresPlaceholder": "List of key functionalities required...",
+    "necessaryIntegrations": "Necessary integrations:",
+    "integrationsPlaceholder": "Any third-party systems or APIs that need to be integrated...",
+    "technology": "Technology",
+    "technologyPreference": "Technology preference*:",
+    "designAndSecurity": "Design and Security",
+    "designAndUserExperience": "Design and user experience :",
+    "designPlaceholder": "Visual design style, user interface preferences...",
+    "securityRequirements": "Security requirements :",
+    "securityPlaceholder": "Specific security measures or compliance standards...",
+    "budget": "Budget",
+    "approximateBudget": "Approximate budget*:",
+    "budgetPlaceholder": "Budget range or specific amount allocated for the project...",
+    "approximateBudgetRequired": "Approximate budget is required",
+    "additionalNotes": "Additional notes or requirements:",
+    "additionalNotesPlaceholder": "Any other information relevant to the project...",
+    "previous": "Previous",
+    "next": "Next",
+    "submit": "Submit"
+  },
+  "pricing": {
+    "title": "Our Pricing",
+    "subtitle": "Call to action pricing table is really crucial to your for your business website. Make your bids stand-out with amazing options.",
+    "economy": "Economy",
+    "deluxe": "Deluxe",
+    "ultimate": "Ultimate",
+    "billingPerMonth": "Billing Per Month",
+    "bandwidth": "Bandwidth:",
+    "onlinespace": "Onlinespace:",
+    "support": "Support:",
+    "domain": "Domain",
+    "noHiddenFees": "No Hidden Fees",
+    "joinNow": "Join Now"
+  },
+  "footer": {
+    "copyright": "© WA Coders."
+  },
+  "stack": {
+    "process": {
+      "title": "Our process. Simple, seamless, streamlined",
+      "subtitle": "In an ideal world this website wouldn't exist, a client would acknowledge the importance of having web copy before the Proin vitae ipsum vel ex finibus semper design starts.",
+      "step1": {
+        "title": "Tell us what you need",
+        "description": "Fill out a form so we can understand your company."
+      },
+      "step2": {
+        "title": "Get free quotes",
+        "description": "We will then discuss team structure and approach, timeline, budget, and required skill sets."
+      },
+      "step3": {
+        "title": "Start project",
+        "description": "In a matter of days, we will finalize your project specifications, define a development model, select and onboard your team."
+      },
+      "getStarted": "Get Started"
+    },
+    "technologies": {
+      "title": "Technologies and applications​",
+      "subtitle": "We use the best current technologies. <br />Below we present the languages and frameworks in which we work and have expertise."
+    },
+    "getStarted": {
+      "title": "Let's talk about your projects?",
+      "subtitle": "Click the button below and start your journey with us!<br />We will analyze your project and align budgets and deliveries",
+      "button": "Get Started",
+      "formQuote": "Form Quote"
+    }
+  }
+}
+
