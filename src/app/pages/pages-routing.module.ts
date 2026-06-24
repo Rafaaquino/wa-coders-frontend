@@ -7,6 +7,7 @@ import { ResetPasswordComponent } from './Auth/resetPassword/resetPassword.compo
 import { AuthGuard } from '../services/auth/authGuardService';
 import { ForgotPasscomponent } from './Auth/forgotPass/forgotPass.component';
 import { codeAuthPassword } from './Auth/codeAuthPassword/codeAuthPassword.component';
+import { PocPlanilhaOrcamentoComponent } from './poc-planilha-orcamento/poc-planilha-orcamento.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'poc-planilha-orcamento',
+    component: PocPlanilhaOrcamentoComponent,
   },
   {
     path: '**',

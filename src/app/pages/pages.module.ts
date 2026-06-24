@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasscomponent } from './Auth/forgotPass/forgotPass.component';
 import { codeAuthPassword } from './Auth/codeAuthPassword/codeAuthPassword.component';
 import { LoginComponent } from './Auth/login/login.component';
+import { PocPlanilhaOrcamentoComponent } from './poc-planilha-orcamento/poc-planilha-orcamento.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
@@ -25,6 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IndexComponent,
     LoginComponent,
     SignupComponent,
+    PocPlanilhaOrcamentoComponent,
     ResetPasswordComponent,
     ForgotPasscomponent,
     codeAuthPassword,
