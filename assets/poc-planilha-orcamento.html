@@ -1,2018 +1,1314 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>New OPP – Planilha de Custos</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: "Nunito", sans-serif;
-        background: #f1f5f9;
-        color: #0e1726;
-        min-height: 100vh;
-      }
-      :root {
-        --az: #4361ee;
-        --az2: #3351d0;
-        --az-l: #eaf0fb;
-        --vd: #00ab55;
-        --vd-l: #e6f7ef;
-        --vm: #e7515a;
-        --vm-l: #fff0f0;
-        --lj: #e2a03f;
-        --lj-l: #fff9ed;
-        --dk: #0e1726;
-        --dk2: #1b2e4b;
-        --dk3: #0f172a;
-        --gr: #888ea8;
-        --gr2: #e0e6ed;
-        --gr3: #f8fafc;
-        --wh: #fff;
-        --bd: var(--gr2);
-        --sh: 0 4px 24px rgba(94, 92, 154, 0.07);
-        --r: 8px;
-        --rl: 12px;
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New OPP – Planilha de Custos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height:100vh}
+:root{
+  --az:#4361ee;--az2:#3351d0;--az-l:#eaf0fb;
+  --vd:#00ab55;--vd-l:#e6f7ef;
+  --vm:#e7515a;--vm-l:#fff0f0;
+  --lj:#e2a03f;--lj-l:#fff9ed;
+  --rx:#534ab7;--rx-l:#f1effb;
+  --dk:#0e1726;--dk2:#1b2e4b;--dk3:#0f172a;
+  --gr:#888ea8;--gr2:#e0e6ed;--gr3:#f8fafc;
+  --wh:#fff;--bd:var(--gr2);
+  --sh:0 4px 24px rgba(94,92,154,.07);
+  --r:8px;--rl:12px;
+}
 
-      /* ── TOPBAR ── */
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 300;
-        background: var(--wh);
-        border-bottom: 1px solid var(--bd);
-        height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 22px;
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
-      }
-      .tl {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 800;
-        font-size: 15px;
-        color: var(--az);
-        text-decoration: none;
-      }
-      .logo-ico {
-        width: 28px;
-        height: 28px;
-        background: var(--az);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .logo-ico svg {
-        width: 15px;
-        height: 15px;
-        stroke: #fff;
-        fill: none;
-        stroke-width: 2.5;
-      }
-      .sep {
-        color: var(--gr2);
-        font-size: 20px;
-      }
-      .ptitle {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--dk);
-      }
-      .chip {
-        background: var(--az-l);
-        color: var(--az);
-        font-size: 10px;
-        font-weight: 700;
-        padding: 3px 11px;
-        border-radius: 20px;
-        border: 1px solid rgba(67, 97, 238, 0.2);
-      }
-      .topbar-r {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
+.topbar{position:sticky;top:0;z-index:300;background:var(--wh);border-bottom:1px solid var(--bd);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.tl{display:flex;align-items:center;gap:12px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:var(--az);text-decoration:none}
+.logo-ico{width:28px;height:28px;background:var(--az);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-ico svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2.5}
+.sep{color:var(--gr2);font-size:20px}
+.ptitle{font-size:13px;font-weight:700;color:var(--dk)}
+.chip{background:var(--az-l);color:var(--az);font-size:10px;font-weight:700;padding:3px 11px;border-radius:20px;border:1px solid rgba(67,97,238,.2)}
+.topbar-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.status-live{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;color:var(--vd);background:var(--vd-l);padding:4px 10px;border-radius:20px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--vd);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-      /* ── BUTTONS ── */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 7px 14px;
-        border-radius: var(--r);
-        font-family: inherit;
-        font-size: 12px;
-        font-weight: 700;
-        cursor: pointer;
-        border: 1px solid var(--bd);
-        background: var(--wh);
-        color: var(--dk2);
-        transition: all 0.15s;
-        white-space: nowrap;
-        line-height: 1;
-      }
-      .btn:hover {
-        background: var(--gr3);
-        border-color: #adb5bd;
-      }
-      .btn svg {
-        width: 13px;
-        height: 13px;
-        stroke-width: 2.2;
-        flex-shrink: 0;
-        fill: none;
-        stroke: currentColor;
-      }
-      .btn-az {
-        background: var(--az);
-        color: #fff;
-        border-color: var(--az);
-      }
-      .btn-az:hover {
-        background: var(--az2);
-        border-color: var(--az2);
-      }
-      .btn-vd {
-        background: var(--vd);
-        color: #fff;
-        border-color: var(--vd);
-      }
-      .btn-vd:hover {
-        background: #009648;
-      }
-      .btn-lj {
-        background: var(--lj);
-        color: #fff;
-        border-color: var(--lj);
-      }
-      .btn-lj:hover {
-        background: #c9891f;
-      }
-      .btn-ghost {
-        background: none;
-        border: 1px dashed var(--bd);
-        color: var(--gr);
-      }
-      .btn-ghost:hover {
-        color: var(--az);
-        border-color: var(--az);
-        background: var(--az-l);
-      }
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--r);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:var(--wh);color:var(--dk2);transition:all .15s;white-space:nowrap;line-height:1}
+.btn:hover{background:var(--gr3);border-color:#adb5bd}
+.btn svg{width:13px;height:13px;stroke-width:2.2;flex-shrink:0;fill:none;stroke:currentColor}
+.btn-az{background:var(--az);color:#fff;border-color:var(--az)}.btn-az:hover{background:var(--az2);border-color:var(--az2)}
+.btn-vd{background:var(--vd);color:#fff;border-color:var(--vd)}.btn-vd:hover{background:#009648}
+.btn-lj{background:var(--lj);color:#fff;border-color:var(--lj)}.btn-lj:hover{background:#c9891f}
+.btn-ghost{background:none;border:1px dashed var(--bd);color:var(--gr)}.btn-ghost:hover{color:var(--az);border-color:var(--az);background:var(--az-l)}
 
-      /* ── BODY ── */
-      .body {
-        padding: 18px 22px 56px;
-      }
+.body{padding:18px 22px 56px}
 
-      /* ── CABEÇALHO PROJETO ── */
-      .proj-hdr {
-        background: var(--wh);
-        border-radius: var(--rl);
-        padding: 18px 22px;
-        margin-bottom: 18px;
-        border: 1px solid var(--bd);
-        box-shadow: var(--sh);
-      }
-      .proj-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 12px;
-      }
-      .pf label {
-        display: block;
-        font-size: 9px;
-        font-weight: 700;
-        color: var(--gr);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 5px;
-      }
-      .pf input {
-        width: 100%;
-        background: var(--wh);
-        border: 1.5px solid var(--gr2);
-        border-radius: 6px;
-        padding: 6px 10px;
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--dk);
-        font-family: inherit;
-        outline: none;
-        transition:
-          border-color 0.15s,
-          box-shadow 0.15s;
-      }
-      .pf input:focus {
-        border-color: var(--az);
-        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-      }
-      .topbar-cliente {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--dk2);
-      }
-      .topbar-cnpj {
-        font-size: 10px;
-        font-weight: 600;
-        color: var(--gr);
-      }
+.proj-hdr{background:var(--wh);border:1px solid var(--bd);border-radius:var(--rl);padding:16px 22px;margin-bottom:16px;box-shadow:var(--sh)}
+.proj-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.pf label{display:block;font-size:8px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.pf input,.pf select{width:100%;background:var(--gr3);border:1px solid var(--bd);border-radius:6px;padding:5px 9px;font-size:11px;font-weight:600;color:var(--dk);font-family:inherit;outline:none;transition:border-color .15s,background .15s}
+.pf input:focus,.pf select:focus{background:var(--az-l);border-color:var(--az)}
+.pf input[type=date]{color-scheme:light}
+.pf select option{background:var(--wh);color:var(--dk)}
 
-      /* ── KPI ── */
-      .kpi-row {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 12px;
-        margin-bottom: 18px;
-      }
-      .kpi {
-        background: var(--wh);
-        border-radius: var(--rl);
-        border: 1px solid var(--bd);
-        padding: 13px 15px;
-        box-shadow: var(--sh);
-      }
-      .kpi-lbl {
-        font-size: 9px;
-        font-weight: 700;
-        color: var(--gr);
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        margin-bottom: 6px;
-      }
-      .kpi-val {
-        font-size: 18px;
-        font-weight: 800;
-        line-height: 1.1;
-        color: var(--dk);
-      }
-      .kpi-sub {
-        font-size: 9px;
-        color: var(--gr);
-        margin-top: 3px;
-      }
-      .c-az {
-        color: var(--az) !important;
-      }
-      .c-vd {
-        color: var(--vd) !important;
-      }
-      .c-vm {
-        color: var(--vm) !important;
-      }
-      .c-lj {
-        color: var(--lj) !important;
-      }
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);padding:11px 13px;box-shadow:var(--sh)}
+.kpi-lbl{font-size:9px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.kpi-val{font-size:16px;font-weight:800;line-height:1.1;color:var(--dk)}
+.kpi-sub{font-size:9px;color:var(--gr);margin-top:3px}
+.c-az{color:var(--az)!important}.c-vd{color:var(--vd)!important}.c-vm{color:var(--vm)!important}.c-lj{color:var(--lj)!important}.c-rx{color:var(--rx)!important}
 
-      /* ── TOOLBAR abaixo do KPI ── */
-      .toolbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 14px;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .toolbar-left {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .toolbar-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px;flex-wrap:wrap}
+.toolbar-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
-      /* ── DOIS PAINÉIS ── */
-      .two-panels {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
+.fee-cambio-bar{display:flex;align-items:center;gap:18px;background:var(--wh);border:1px solid var(--bd);border-radius:var(--rl);padding:10px 16px;margin-bottom:14px;box-shadow:var(--sh);flex-wrap:wrap}
+.fc-item{display:flex;align-items:center;gap:7px}
+.fc-item label{font-size:10px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.fc-item input,.fc-item select{padding:5px 9px;border:1px solid var(--bd);border-radius:6px;font-size:12px;font-weight:700;font-family:inherit;color:var(--dk);outline:none;background:var(--wh)}
+.fc-item input:focus,.fc-item select:focus{border-color:var(--az);box-shadow:0 0 0 3px rgba(67,97,238,.1)}
+.fc-divider{width:1px;height:24px;background:var(--bd)}
+.fc-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px}
+.fc-badge.auto{background:var(--vd-l);color:var(--vd)}
+.fc-badge.manual{background:var(--lj-l);color:var(--lj)}
+.fc-toggle{display:inline-flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.fc-toggle button{padding:5px 10px;font-size:10px;font-weight:700;border:none;background:var(--wh);color:var(--gr);cursor:pointer;font-family:inherit}
+.fc-toggle button.active{background:var(--az);color:#fff}
+.moeda-cols-wrap{display:flex;align-items:center;gap:6px}
+.moeda-pill{display:inline-flex;align-items:center;gap:5px;background:var(--az-l);color:var(--az);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+.moeda-pill button{background:none;border:none;color:var(--az);cursor:pointer;font-size:11px;padding:0;display:flex}
 
-      /* ── PANEL ── */
-      .panel {
-        background: var(--wh);
-        border-radius: var(--rl);
-        border: 1px solid var(--bd);
-        box-shadow: var(--sh);
-        overflow: clip;
-      }
-      .panel-hdr {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--bd);
-        background: #fafbfc;
-        gap: 8px;
-      }
-      .panel-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        font-weight: 800;
-        color: var(--dk);
-        flex: 1;
-        min-width: 0;
-      }
-      .panel-title svg {
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-        fill: none;
-        stroke-width: 2.2;
-      }
-      .tag {
-        font-size: 9px;
-        font-weight: 700;
-        padding: 2px 9px;
-        border-radius: 20px;
-        letter-spacing: 0.3px;
-        white-space: nowrap;
-      }
-      .tag-pre {
-        background: var(--vd-l);
-        color: var(--vd);
-      }
-      .tag-pos {
-        background: var(--vm-l);
-        color: var(--vm);
-      }
-      .panel-actions {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-        flex-shrink: 0;
-      }
+.three-panels-wrap{overflow-x:auto;padding-bottom:6px;margin-bottom:0}
+.three-panels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;min-width:1140px}
+.three-panels-wrap::-webkit-scrollbar{height:8px}
+.three-panels-wrap::-webkit-scrollbar-track{background:var(--gr3);border-radius:4px}
+.three-panels-wrap::-webkit-scrollbar-thumb{background:#c5ccd6;border-radius:4px}
+.three-panels-wrap::-webkit-scrollbar-thumb:hover{background:var(--gr)}
 
-      /* ── BANNER ── */
-      .panel-banner {
-        padding: 5px 14px;
-        font-size: 9px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.7px;
-        text-align: center;
-      }
-      .banner-pre {
-        background: #05704a;
-        color: #a7f3d0;
-      }
-      .banner-pos {
-        background: #9c2027;
-        color: #fecaca;
-      }
+.panel{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden}
+.panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--bd);background:#fafbfc;gap:8px}
+.panel-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--dk);flex:1;min-width:0}
+.panel-title svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke-width:2.2}
+.tag{font-size:8px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.3px;white-space:nowrap}
+.tag-pre{background:var(--vd-l);color:var(--vd)}
+.tag-pos{background:var(--vm-l);color:var(--vm)}
+.tag-int{background:var(--lj-l);color:var(--lj)}
+.panel-actions{display:flex;gap:5px;align-items:center;flex-shrink:0}
 
-      /* ── TABELA ── */
-      .gtable {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 11px;
-      }
-      .gtable thead th {
-        padding: 8px 8px;
-        text-align: right;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        white-space: nowrap;
-        background: #1b2e4b;
-        position: sticky;
-        top: 54px;
-        z-index: 5;
-        border-bottom: none;
-      }
-      .gtable thead th.left {
-        text-align: left;
-      }
-      .gtable thead th.ctr {
-        text-align: center;
-      }
-      .th-pre {
-        color: #86efac;
-      }
-      .th-pos {
-        color: #fca5a5;
-      }
+.panel-banner{padding:5px 14px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;text-align:center}
+.banner-pre{background:#05704a;color:#a7f3d0}
+.banner-pos{background:#9c2027;color:#fecaca}
+.banner-int{background:#854f0b;color:#fde9c8}
 
-      /* CATEGORIA */
-      .tr-cat {
-        cursor: pointer;
-        user-select: none;
-      }
-      .tr-cat td {
-        padding: 9px 12px;
-        font-weight: 700;
-        color: #1b2e4b;
-        font-size: 11px;
-        border-bottom: 2px solid #dee2e9;
-        background: #edf2f7;
-      }
-      .tr-subhdr th {
-        padding: 7px 8px;
-        text-align: right;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        white-space: nowrap;
-        background: #1b2e4b;
-        border-bottom: none;
-      }
-      .tr-subhdr th.left {
-        text-align: left;
-      }
-      .tr-subhdr th.ctr {
-        text-align: center;
-      }
-      .cat-num {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 22px;
-        height: 22px;
-        border-radius: 5px;
-        font-size: 10px;
-        font-weight: 800;
-        flex-shrink: 0;
-        color: #fff;
-      }
-      .cat-nome {
-        font-size: 12px;
-        font-weight: 800;
-        white-space: nowrap;
-        color: #1b2e4b;
-      }
-      .cat-fornec {
-        font-size: 9px;
-        font-weight: 600;
-        color: #888ea8;
-        white-space: nowrap;
-      }
-      .cat-actions {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-        opacity: 0;
-        transition: opacity 0.15s;
-        flex-shrink: 0;
-      }
-      .tr-cat:hover .cat-actions {
-        opacity: 1;
-      }
-      .cat-btn {
-        width: 22px;
-        height: 22px;
-        border-radius: 4px;
-        border: none;
-        background: rgba(0, 0, 0, 0.08);
-        color: #555e7d;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.12s;
-      }
-      .cat-btn:hover {
-        background: rgba(0, 0, 0, 0.18);
-      }
-      .cat-btn svg {
-        width: 11px;
-        height: 11px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2.2;
-      }
-      .cat-tot {
-        font-size: 12px;
-        font-weight: 800;
-        white-space: nowrap;
-        color: #1b2e4b;
-      }
-      .cat-usd {
-        font-size: 10px;
-        font-weight: 600;
-        color: #888ea8;
-        white-space: nowrap;
-      }
-      .chevron {
-        display: inline-block;
-        font-size: 13px;
-        transition: transform 0.18s;
-        flex-shrink: 0;
-        color: #888ea8;
-      }
-      .chevron.open {
-        transform: rotate(90deg);
-      }
+.gtable{width:100%;border-collapse:collapse;font-size:10px;table-layout:fixed}
+.gtable .left{text-align:left}
+.gtable .ctr{text-align:center}
 
-      /* ITEM */
-      .tr-item {
-        border-bottom: 1px solid var(--gr2);
-        transition: background 0.08s;
-      }
-      .tr-item:hover {
-        background: #f5f7ff;
-      }
-      .tr-item:nth-child(even):not(:hover) {
-        background: #fafbfc;
-      }
-      .tr-item td {
-        padding: 0;
-        vertical-align: middle;
-      }
+.tr-subhdr th{padding:6px 6px;text-align:right;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;background:#1b2e4b;color:rgba(255,255,255,.65)}
+.th-pre{color:#86efac!important}
+.th-pos{color:#fca5a5!important}
+.th-int{color:#fde9c8!important}
 
-      .inp-desc {
-        width: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: inherit;
-        font-size: 11px;
-        color: var(--dk);
-        padding: 7px 9px;
-      }
-      .inp-desc:focus {
-        background: var(--az-l);
-        color: var(--az);
-        border-radius: 3px;
-      }
-      .inp-num {
-        width: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: inherit;
-        font-size: 11px;
-        color: var(--dk);
-        padding: 7px 5px;
-        text-align: right;
-      }
-      .inp-num:focus {
-        background: var(--az-l);
-        color: var(--az);
-        border-radius: 3px;
-      }
+.tr-cat{cursor:pointer;user-select:none;background:#f5f6fa}
+.tr-cat:hover{background:#eef0f7}
+.tr-cat td{padding:7px 8px}
+.cat-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;color:#fff;font-size:9px;font-weight:800;flex-shrink:0}
+.cat-nome{font-size:11px;font-weight:800;color:var(--dk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-fornec{font-size:9px;font-weight:600;color:var(--gr);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-actions{display:flex;align-items:center;gap:3px;opacity:0;transition:opacity .15s;flex-shrink:0}
+.tr-cat:hover .cat-actions{opacity:1}
+.cat-btn{width:20px;height:20px;border-radius:4px;border:none;background:rgba(0,0,0,.06);color:var(--gr);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .12s}
+.cat-btn:hover{background:rgba(0,0,0,.12);color:var(--dk)}
+.cat-btn svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.2}
+.cat-tot{font-size:11px;font-weight:800;white-space:nowrap;color:var(--dk)}
+.cat-usd{font-size:9px;font-weight:600;color:var(--gr);white-space:nowrap}
+.chevron{display:inline-block;font-size:10px;transition:transform .18s;flex-shrink:0;color:var(--gr)}
+.chevron.open{transform:rotate(90deg)}
 
-      /* FAT badge select */
-      .fat-sel {
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: inherit;
-        font-size: 9px;
-        font-weight: 700;
-        cursor: pointer;
-        padding: 2px 4px;
-        border-radius: 20px;
-        min-width: 50px;
-        text-align: center;
-        -webkit-appearance: none;
-      }
-      .fat-sel.nf {
-        background: #eef2ff;
-        color: var(--az);
-      }
-      .fat-sel.nd {
-        background: var(--vd-l);
-        color: var(--vd);
-      }
-      .fat-sel.cli {
-        background: var(--vm-l);
-        color: var(--vm);
-      }
-      .fat-sel.sr {
-        background: var(--lj-l);
-        color: var(--lj);
-      }
-      .td-fat {
-        padding: 0 5px;
-        text-align: center;
-      }
+.tr-item{border-bottom:1px solid var(--gr2);transition:background .08s}
+.tr-item:hover{background:#f5f7ff}
+.tr-item td{padding:0;vertical-align:middle}
 
-      /* TOTAL célula */
-      .td-tot {
-        padding: 0 9px;
-        text-align: right;
-        font-size: 11px;
-        font-weight: 700;
-        white-space: nowrap;
-      }
-      .td-tot-pre {
-        color: var(--vd);
-      }
-      .td-tot-pos {
-        color: var(--vm);
-      }
-      .td-usd {
-        padding: 0 9px;
-        text-align: right;
-        font-size: 10px;
-        font-weight: 500;
-        color: var(--gr);
-        white-space: nowrap;
-      }
+.inp-desc{width:100%;background:transparent;border:none;outline:none;font-family:inherit;font-size:10px;color:var(--dk);padding:6px 8px}
+.inp-desc:focus{background:var(--az-l);color:var(--az);border-radius:3px}
+.inp-num{width:100%;background:transparent;border:none;outline:none;font-family:inherit;font-size:10px;color:var(--dk);padding:6px 4px;text-align:right}
+.inp-num:focus{background:var(--az-l);color:var(--az);border-radius:3px}
 
-      /* DEL */
-      .del-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 22px;
-        height: 22px;
-        border-radius: 5px;
-        border: none;
-        background: none;
-        cursor: pointer;
-        color: #c5ccd6;
-        transition: all 0.12s;
-        flex-shrink: 0;
-      }
-      .del-btn:hover {
-        background: var(--vm-l);
-        color: var(--vm);
-      }
-      .del-btn svg {
-        width: 12px;
-        height: 12px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2.2;
-      }
-      .td-del {
-        padding: 0 5px;
-        text-align: center;
-        width: 28px;
-      }
+.fat-sel{background:transparent;border:none;outline:none;font-family:inherit;font-size:8px;font-weight:700;cursor:pointer;padding:2px 3px;border-radius:20px;width:100%;text-align:center;-webkit-appearance:none;appearance:none}
+.fat-sel.nf{background:#eef2ff;color:var(--az)}
+.fat-sel.nd{background:var(--vd-l);color:var(--vd)}
+.fat-sel.sr{background:var(--rx-l);color:var(--rx)}
+.fat-sel.cli{background:var(--vm-l);color:var(--vm)}
+.td-fat{padding:0 3px;text-align:center}
 
-      /* ADD ITEM */
-      .add-item-wrap {
-        border-top: 1px dashed var(--gr2);
-      }
-      .add-item-btn {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 7px 9px;
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--az);
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-        transition: background 0.12s;
-      }
-      .add-item-btn:hover {
-        background: var(--az-l);
-      }
-      .add-item-btn svg {
-        width: 11px;
-        height: 11px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2.5;
-      }
+.td-tot{padding:0 8px;text-align:right;font-size:10px;font-weight:700;white-space:nowrap}
+.td-tot-pre{color:var(--vd)}
+.td-tot-pos{color:var(--vm)}
+.td-usd{padding:6px 8px;text-align:right;font-size:9px;font-weight:500;color:var(--gr);white-space:nowrap}
 
-      /* EXTRA COL HDR */
-      .inp-hdr {
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: inherit;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        padding: 0;
-        text-align: right;
-        cursor: text;
-        width: auto;
-        max-width: 80px;
-      }
-      .rm-col-btn {
-        background: rgba(255, 255, 255, 0.12);
-        border: none;
-        border-radius: 3px;
-        color: rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-        padding: 1px 4px;
-        font-size: 9px;
-        margin-left: 2px;
-        vertical-align: middle;
-        transition: color 0.12s;
-      }
-      .rm-col-btn:hover {
-        color: #fca5a5;
-      }
+.del-btn{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:5px;border:none;background:none;cursor:pointer;color:#c5ccd6;transition:all .12s;flex-shrink:0}
+.del-btn:hover{background:var(--vm-l);color:var(--vm)}
+.del-btn svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.2}
+.td-del{padding:0 4px;text-align:center;width:30px}
 
-      /* TOTAL GERAL */
-      .tr-grand td {
-        padding: 10px 9px;
-        font-size: 12px;
-        font-weight: 800;
-        background: var(--dk3);
-        color: #fff;
-        border-top: none;
-      }
-      .tr-grand .grand-val {
-        text-align: right;
-        font-size: 14px;
-        font-weight: 800;
-      }
-      .tr-grand .grand-usd {
-        text-align: right;
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.4);
-        font-weight: 600;
-      }
+.add-item-wrap{border-top:1px dashed var(--gr2)}
+.add-item-btn{width:100%;display:flex;align-items:center;gap:5px;padding:6px 8px;font-size:9px;font-weight:700;color:var(--az);background:none;border:none;cursor:pointer;font-family:inherit;transition:background .12s}
+.add-item-btn:hover{background:var(--az-l)}
+.add-item-btn svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.5}
 
-      /* ── ADD COL BTN ── */
-      .add-col-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 5px 10px;
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--gr);
-        background: none;
-        border: 1px dashed var(--bd);
-        border-radius: 6px;
-        cursor: pointer;
-        font-family: inherit;
-        white-space: nowrap;
-        transition: all 0.15s;
-      }
-      .add-col-btn:hover {
-        color: var(--az);
-        border-color: var(--az);
-        background: var(--az-l);
-      }
-      .add-col-btn svg {
-        width: 11px;
-        height: 11px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2.5;
-      }
+.inp-hdr{background:transparent;border:none;outline:none;font-family:inherit;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:0;text-align:right;cursor:text;width:auto;max-width:64px}
+.rm-col-btn{background:rgba(255,255,255,.12);border:none;border-radius:3px;color:rgba(255,255,255,.5);cursor:pointer;padding:1px 3px;font-size:8px;margin-left:2px;vertical-align:middle}
+.rm-col-btn:hover{color:#fca5a5}
 
-      /* ── RESUMO ── */
-      .resumo {
-        background: var(--wh);
-        border-radius: var(--rl);
-        border: 1px solid var(--bd);
-        box-shadow: var(--sh);
-        overflow: hidden;
-        margin-top: 20px;
-      }
-      .resumo-hdr {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 20px;
-        background: var(--dk3);
-      }
-      .resumo-hdr-t {
-        font-size: 13px;
-        font-weight: 800;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-      }
-      .resumo-hdr-t svg {
-        width: 17px;
-        height: 17px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2.2;
-      }
-      .resumo-body {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      .r-col {
-        padding: 20px 22px;
-        border-right: 1px solid var(--bd);
-      }
-      .r-col:last-child {
-        border-right: none;
-      }
-      .r-col-title {
-        font-size: 9px;
-        font-weight: 800;
-        color: var(--gr);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 13px;
-        padding-bottom: 9px;
-        border-bottom: 2px solid var(--bd);
-      }
-      .r-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding: 5px 0;
-        border-bottom: 1px solid #f1f5f9;
-        font-size: 11px;
-      }
-      .r-row:last-child {
-        border-bottom: none;
-      }
-      .r-row .rl {
-        color: var(--gr);
-      }
-      .r-row .rv {
-        font-weight: 700;
-        color: var(--dk);
-      }
-      .r-row .rv.vd {
-        color: var(--vd);
-      }
-      .r-row .rv.vm {
-        color: var(--vm);
-      }
-      .r-row .rv.lj {
-        color: var(--lj);
-      }
-      .r-row.tot {
-        padding: 9px 0;
-        margin-top: 5px;
-        border-top: 2px solid var(--bd);
-        border-bottom: none;
-      }
-      .r-row.tot .rl {
-        font-size: 13px;
-        font-weight: 800;
-        color: var(--dk);
-      }
-      .r-row.tot .rv {
-        font-size: 16px;
-        font-weight: 800;
-        color: var(--az);
-      }
-      .fee-sub {
-        font-size: 8px;
-        color: var(--gr);
-        display: block;
-      }
-      .var-bar {
-        height: 5px;
-        background: var(--gr2);
-        border-radius: 3px;
-        overflow: hidden;
-        margin: 8px 0 4px;
-      }
-      .var-fill {
-        height: 100%;
-        border-radius: 3px;
-        transition: width 0.4s;
-      }
+.tr-grand td{padding:9px 8px;font-size:11px;font-weight:800;background:var(--dk3);color:#fff}
+.tr-grand .grand-val{text-align:right;font-size:12px;font-weight:800}
+.tr-grand .grand-usd{text-align:right;font-size:9px;color:rgba(255,255,255,.4);font-weight:600}
 
-      /* ────────────────────────────────────────
-   MODAL
-──────────────────────────────────────── */
-      .modal-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 23, 42, 0.55);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s;
-        backdrop-filter: blur(2px);
-      }
-      .modal-backdrop.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-      .modal {
-        background: var(--wh);
-        border-radius: 16px;
-        width: 480px;
-        max-width: 96vw;
-        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.22);
-        transform: translateY(16px) scale(0.98);
-        transition: transform 0.2s;
-        overflow: hidden;
-      }
-      .modal-backdrop.open .modal {
-        transform: translateY(0) scale(1);
-      }
+.add-col-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 9px;font-size:9px;font-weight:700;color:var(--gr);background:none;border:1px dashed var(--bd);border-radius:6px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s}
+.add-col-btn:hover{color:var(--az);border-color:var(--az);background:var(--az-l)}
+.add-col-btn svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.5}
 
-      .modal-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 18px 22px;
-        border-bottom: 1px solid var(--bd);
-        background: linear-gradient(135deg, #4361ee, #2c4bd6);
-      }
-      .modal-head-title {
-        font-size: 15px;
-        font-weight: 800;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 9px;
-      }
-      .modal-head-title svg {
-        width: 18px;
-        height: 18px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2.2;
-      }
-      .modal-close {
-        width: 28px;
-        height: 28px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.15);
-        border: none;
-        cursor: pointer;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.15s;
-      }
-      .modal-close:hover {
-        background: rgba(255, 255, 255, 0.3);
-      }
-      .modal-close svg {
-        width: 14px;
-        height: 14px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2.5;
-      }
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px;text-align:center;color:var(--gr)}
+.empty-state svg{width:36px;height:36px;stroke:var(--gr2);fill:none;stroke-width:1.5;margin-bottom:10px}
+.empty-state strong{font-size:12px;color:var(--dk2);margin-bottom:4px}
+.empty-state span{font-size:11px;max-width:200px}
 
-      .modal-body {
-        padding: 22px;
-      }
-      .modal-body .form-group {
-        margin-bottom: 18px;
-      }
-      .modal-body .form-group:last-child {
-        margin-bottom: 0;
-      }
-      .modal-body label {
-        display: block;
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--dk2);
-        margin-bottom: 6px;
-        letter-spacing: 0.2px;
-      }
-      .modal-body label span {
-        color: var(--vm);
-        margin-left: 2px;
-      }
-      .modal-body input,
-      .modal-body select {
-        width: 100%;
-        padding: 9px 12px;
-        border: 1.5px solid var(--bd);
-        border-radius: 8px;
-        font-family: inherit;
-        font-size: 12px;
-        color: var(--dk);
-        outline: none;
-        background: var(--wh);
-        transition:
-          border-color 0.15s,
-          box-shadow 0.15s;
-      }
-      .modal-body input:focus,
-      .modal-body select:focus {
-        border-color: var(--az);
-        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.12);
-      }
-      .modal-body input::placeholder {
-        color: #c5ccd6;
-      }
-      .modal-hint {
-        font-size: 10px;
-        color: var(--gr);
-        margin-top: 5px;
-      }
+/* SEÇÃO 3 – USO INTERNO */
+.int-fornec-cell{padding:6px 8px;display:flex;align-items:center;gap:4px;min-height:16px}
+.int-fornec-input{flex:1;background:transparent;border:none;outline:none;font-family:inherit;font-size:10px;color:var(--dk);padding:6px 4px}
+.int-fornec-input:focus{background:var(--lj-l);border-radius:3px}
+.int-fornec-link{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;background:var(--lj-l);color:var(--lj);cursor:pointer;flex-shrink:0;border:none}
+.int-fornec-link svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.2}
+.int-fornec-link.linked{background:var(--vd-l);color:var(--vd)}
+.cnpj-tag{font-size:8px;color:var(--gr);white-space:nowrap;padding:0 4px}
+.td-rent{padding:6px 8px;text-align:right;font-size:10px;font-weight:800;white-space:nowrap}
+.td-rent.pos{color:var(--vd)}
+.td-rent.neg{color:var(--vm)}
+.lock-badge{display:inline-flex;align-items:center;gap:3px;font-size:8px;font-weight:700;color:var(--lj);background:var(--lj-l);padding:2px 6px;border-radius:20px}
+.lock-badge svg{width:9px;height:9px;fill:none;stroke:currentColor;stroke-width:2.5}
 
-      /* FORNECEDOR QUICK-ADD */
-      .fornec-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 8px;
-      }
-      .fornec-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 10px;
-        font-weight: 700;
-        background: var(--gr3);
-        border: 1px solid var(--bd);
-        color: var(--dk2);
-        cursor: pointer;
-        transition: all 0.12s;
-      }
-      .fornec-pill:hover,
-      .fornec-pill.sel {
-        background: var(--az-l);
-        border-color: var(--az);
-        color: var(--az);
-      }
-      .fornec-pill .fp-ico {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--az);
-        color: #fff;
-        font-size: 7px;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
+/* RESUMO */
+.resumo{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;margin-top:20px}
+.resumo-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--dk3)}
+.resumo-hdr-t{font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px}
+.resumo-hdr-t svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2.2}
+.resumo-body{display:grid;grid-template-columns:1fr 1fr 1fr 1fr}
+.r-col{padding:18px 20px;border-right:1px solid var(--bd)}
+.r-col:last-child{border-right:none}
+.r-col-title{font-size:9px;font-weight:800;color:var(--gr);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid var(--bd)}
+.r-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #f1f5f9;font-size:11px}
+.r-row:last-child{border-bottom:none}
+.r-row .rl{color:var(--gr)}
+.r-row .rv{font-weight:700;color:var(--dk)}
+.r-row .rv.vd{color:var(--vd)}.r-row .rv.vm{color:var(--vm)}.r-row .rv.lj{color:var(--lj)}.r-row .rv.rx{color:var(--rx)}
+.r-row.tot{padding:9px 0;margin-top:5px;border-top:2px solid var(--bd);border-bottom:none}
+.r-row.tot .rl{font-size:12px;font-weight:800;color:var(--dk)}
+.r-row.tot .rv{font-size:15px;font-weight:800;color:var(--az)}
+.fee-sub{font-size:8px;color:var(--gr);display:block}
+.var-bar{height:5px;background:var(--gr2);border-radius:3px;overflow:hidden;margin:8px 0 4px}
+.var-fill{height:100%;border-radius:3px;transition:width .4s}
 
-      /* CATEGORIA PREVIEW no modal */
-      .cat-preview {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border-radius: 10px;
-        margin-top: 14px;
-        background: var(--gr3);
-        border: 1px solid var(--bd);
-      }
-      .cat-preview-swatch {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        flex-shrink: 0;
-      }
-      .cat-preview-info .name {
-        font-size: 13px;
-        font-weight: 800;
-        color: var(--dk);
-      }
-      .cat-preview-info .fornec {
-        font-size: 10px;
-        color: var(--gr);
-        margin-top: 2px;
-      }
+/* SEÇÃO 4 – SOLICITAÇÕES DE PAGAMENTO */
+.pag-section{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;margin-top:16px}
+.pag-hdr{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:#2c1d54;flex-wrap:wrap;gap:8px}
+.pag-hdr-t{font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px}
+.pag-hdr-t svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2}
+.pag-table{width:100%;border-collapse:collapse;font-size:11px}
+.pag-table thead th{padding:9px 12px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:#f5f3fc;color:var(--rx);border-bottom:1px solid var(--bd)}
+.pag-table tbody td{padding:9px 12px;border-bottom:1px solid var(--gr2);vertical-align:middle}
+.pag-table tbody tr:hover{background:#faf9fe}
+.pag-cnpj{font-size:9px;color:var(--gr);font-weight:600}
+.pag-status{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px}
+.pag-status.pendente{background:var(--lj-l);color:var(--lj)}
+.pag-status.aprovacao{background:var(--az-l);color:var(--az)}
+.pag-status.aprovado{background:var(--vd-l);color:var(--vd)}
+.pag-pct{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;background:var(--gr3);padding:2px 7px;border-radius:5px;color:var(--dk2)}
+.pag-empty{padding:30px 20px;text-align:center;color:var(--gr);font-size:11px}
 
-      /* COLOR PICKER */
-      .color-picks {
-        display: flex;
-        gap: 7px;
-        flex-wrap: wrap;
-        margin-top: 8px;
-      }
-      .cp {
-        width: 26px;
-        height: 26px;
-        border-radius: 7px;
-        cursor: pointer;
-        border: 2px solid transparent;
-        transition:
-          transform 0.12s,
-          border-color 0.12s;
-        flex-shrink: 0;
-      }
-      .cp:hover {
-        transform: scale(1.15);
-      }
-      .cp.sel {
-        border-color: var(--dk);
-        transform: scale(1.1);
-      }
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(2px)}
+.modal-backdrop.open{opacity:1;pointer-events:all}
+.modal{background:var(--wh);border-radius:16px;width:480px;max-width:96vw;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(15,23,42,.22);transform:translateY(16px) scale(.98);transition:transform .2s}
+.modal-backdrop.open .modal{transform:translateY(0) scale(1)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--bd);background:linear-gradient(135deg,#4361ee,#2c4bd6);position:sticky;top:0;z-index:2}
+.modal-head-title{font-size:15px;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px}
+.modal-head-title svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.2}
+.modal-close{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.modal-close:hover{background:rgba(255,255,255,.3)}
+.modal-close svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.5}
+.modal-body{padding:22px}
+.modal-body .form-group{margin-bottom:18px}
+.modal-body .form-group:last-child{margin-bottom:0}
+.modal-body label{display:block;font-size:11px;font-weight:700;color:var(--dk2);margin-bottom:6px;letter-spacing:.2px}
+.modal-body label span{color:var(--vm);margin-left:2px}
+.modal-body input,.modal-body select{width:100%;padding:9px 12px;border:1.5px solid var(--bd);border-radius:8px;font-family:inherit;font-size:12px;color:var(--dk);outline:none;background:var(--wh);transition:border-color .15s,box-shadow .15s}
+.modal-body input:focus,.modal-body select:focus{border-color:var(--az);box-shadow:0 0 0 3px rgba(67,97,238,.12)}
+.modal-body input::placeholder{color:#c5ccd6}
+.modal-hint{font-size:10px;color:var(--gr);margin-top:5px}
+.fornec-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.fornec-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:var(--gr3);border:1px solid var(--bd);color:var(--dk2);cursor:pointer;transition:all .12s}
+.fornec-pill:hover,.fornec-pill.sel{background:var(--az-l);border-color:var(--az);color:var(--az)}
+.fornec-pill .fp-ico{width:14px;height:14px;border-radius:50%;background:var(--az);color:#fff;font-size:7px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cat-preview{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;margin-top:14px;background:var(--gr3);border:1px solid var(--bd)}
+.cat-preview-swatch{width:32px;height:32px;border-radius:8px;flex-shrink:0}
+.cat-preview-info .name{font-size:13px;font-weight:800;color:var(--dk)}
+.cat-preview-info .fornec{font-size:10px;color:var(--gr);margin-top:2px}
+.color-picks{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.cp{width:26px;height:26px;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:transform .12s,border-color .12s;flex-shrink:0}
+.cp:hover{transform:scale(1.15)}
+.cp.sel{border-color:var(--dk);transform:scale(1.1)}
+.modal-footer{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid var(--bd);background:#fafbfc;position:sticky;bottom:0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-      .modal-footer {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        padding: 16px 22px;
-        border-top: 1px solid var(--bd);
-        background: #fafbfc;
-      }
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--gr3)}
+::-webkit-scrollbar-thumb{background:#c5ccd6;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="tl">
+    <div class="logo">
+      <div class="logo-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      New OPP
+    </div>
+    <span class="sep">›</span>
+    <span class="ptitle">Planilha de Custos &amp; Receitas</span>
+    <span class="chip" id="proj-chip">OPP-2026-0312</span>
+    <span class="status-live"><span class="status-dot"></span>Sistema disponível 24/7</span>
+  </div>
+  <div class="topbar-r">
+    <button class="btn btn-lj" onclick="alert('Exportando versão interna completa (uso restrito)...')">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Interno
+    </button>
+    <button class="btn btn-vd" onclick="openExportModal()">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Exportar cliente
+    </button>
+    <button class="btn btn-az" onclick="alert('Salvo!')">
+      <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Salvar
+    </button>
+  </div>
+</div>
 
-      /* ── AUTOCOMPLETE ── */
-      .ac-wrap {
-        position: relative;
-      }
-      .ac-dropdown {
-        display: none;
-        position: absolute;
-        top: calc(100% + 4px);
-        left: 0;
-        right: 0;
-        background: var(--wh);
-        border: 1.5px solid var(--az);
-        border-radius: 8px;
-        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.14);
-        z-index: 200;
-        max-height: 228px;
-        overflow-y: auto;
-      }
-      .ac-dropdown.open {
-        display: block;
-      }
-      .ac-item {
-        padding: 8px 12px;
-        cursor: pointer;
-        border-bottom: 1px solid var(--gr2);
-        transition: background 0.1s;
-      }
-      .ac-item:last-child {
-        border-bottom: none;
-      }
-      .ac-item:hover {
-        background: var(--az-l);
-      }
-      .ac-item-name {
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--dk);
-      }
-      .ac-item-sub {
-        font-size: 10px;
-        color: var(--gr);
-        margin-top: 1px;
-      }
-      .ac-empty {
-        padding: 14px 12px;
-        text-align: center;
-        font-size: 11px;
-        color: var(--gr);
-      }
+<div class="body">
 
-      /* ── EMPTY STATE ── */
-      .empty-state {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 52px 24px;
-        gap: 10px;
-        color: var(--gr);
-        text-align: center;
-      }
-      .empty-state svg {
-        width: 40px;
-        height: 40px;
-        stroke: var(--gr2);
-        fill: none;
-        stroke-width: 1.5;
-        margin-bottom: 4px;
-      }
-      .empty-state strong {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--dk2);
-      }
-      .empty-state span {
-        font-size: 11px;
-      }
+  <div class="proj-hdr">
+    <div class="proj-grid">
+      <div class="pf"><label>Cliente</label>
+        <select>
+          <option>Farmabrasil S.A.</option>
+          <option>AstraZeneca Brasil</option>
+          <option>Pfizer Brasil</option>
+          <option>Johnson &amp; Johnson</option>
+          <option>Roche Brasil</option>
+          <option>Novo Nordisk</option>
+          <option>Bayer S.A.</option>
+          <option>Abbott Laboratories</option>
+          <option>Outro cliente</option>
+        </select>
+      </div>
+      <div class="pf"><label>Evento</label><input value="Convenção Anual 2026"></div>
+      <div class="pf"><label>Projeto nº</label><input id="f-num" value="OPP-2026-0312" oninput="document.getElementById('proj-chip').textContent=this.value"></div>
+      <div class="pf"><label>PM</label>
+        <select>
+          <option>Ana Beatriz</option>
+          <option>Carlos Mendes</option>
+          <option>Fernanda Lima</option>
+          <option>Gustavo Prado</option>
+          <option>Juliana Costa</option>
+          <option>Marcelo Rocha</option>
+          <option>Patricia Alves</option>
+          <option>Ricardo Nunes</option>
+        </select>
+      </div>
+      <div class="pf"><label>Local / Cidade</label><input value="Centro de Convenções SP"></div>
+      <div class="pf"><label>PAX</label><input type="number" value="350"></div>
+      <div class="pf"><label>Início</label><input type="date" value="2026-09-10"></div>
+      <div class="pf"><label>Término</label><input type="date" value="2026-09-12"></div>
+      <div class="pf"><label>BU</label>
+        <select>
+          <option>Corporate</option>
+          <option>Healthcare</option>
+          <option>Farmacêutico</option>
+          <option>Governo</option>
+          <option>Tecnologia</option>
+          <option>Associações</option>
+          <option>Financeiro</option>
+          <option>Educação</option>
+        </select>
+      </div>
+      <div class="pf"><label>PO</label><input value="PO-7782-B"></div>
+      <div class="pf"><label>Moeda base</label>
+        <select id="f-moeda-base" onchange="S.moedaBase=this.value;render()">
+          <option value="BRL" selected>Real (BRL)</option>
+          <option value="USD">Dólar (USD)</option>
+          <option value="EUR">Euro (EUR)</option>
+          <option value="MXN">Peso Mexicano (MXN)</option>
+        </select>
+      </div>
+      <div class="pf"><label>Fee MCI deste projeto (%)</label><input id="f-fee-pct" type="number" step="0.5" value="10" onchange="S.feeManualPct=+this.value;render()"></div>
+    </div>
+  </div>
 
-      /* ── SCROLLBAR ── */
-      ::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--gr3);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #c5ccd6;
-        border-radius: 2px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- ── TOPBAR ── -->
-    <div class="topbar">
-      <div class="tl">
-        <div class="logo">
-          <div class="logo-ico">
-            <svg viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
-          </div>
-          New OPP
+  <div class="kpi-row" id="kpi-row"></div>
+
+  <div class="fee-cambio-bar">
+    <div class="fc-item">
+      <label>Fee MCI</label>
+      <select id="fee-mode-sel" onchange="setFeeMode(this.value)">
+        <option value="manual" selected>Manual (%)</option>
+        <option value="auto">Por faixa de valor</option>
+      </select>
+      <span class="fc-badge manual" id="fee-mode-badge">10% fixo</span>
+    </div>
+    <div class="fc-divider"></div>
+    <div class="fc-item">
+      <label>Base de cálculo Fee</label>
+      <select id="fee-base-sel" onchange="S.feeBase=this.value;render()">
+        <option value="total">Total da planilha</option>
+        <option value="nd">Apenas itens ND</option>
+      </select>
+    </div>
+    <div class="fc-divider"></div>
+    <div class="fc-item">
+      <label>Câmbio</label>
+      <select id="cambio-mode-sel" onchange="setCambioMode(this.value)">
+        <option value="auto" selected>Automático (PTAX)</option>
+        <option value="manual">Manual</option>
+      </select>
+      <span class="fc-badge auto" id="cambio-mode-badge">PTAX hoje: 5,10</span>
+    </div>
+    <div class="fc-divider"></div>
+    <div class="fc-item">
+      <label>Colunas de moeda</label>
+      <div class="moeda-cols-wrap" id="moeda-cols-wrap"></div>
+      <button class="add-col-btn" onclick="addMoedaCol()" style="padding:3px 8px">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>+ Moeda
+      </button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <button class="btn btn-az" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nova categoria
+      </button>
+      <span style="font-size:11px;color:var(--gr)" id="cat-count"></span>
+    </div>
+    <div class="toolbar-right">
+      <button class="add-col-btn" onclick="addColPre()">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        + Coluna Pré
+      </button>
+      <button class="add-col-btn" onclick="addColPos()">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        + Coluna Pós
+      </button>
+    </div>
+  </div>
+
+  <div class="three-panels-wrap">
+  <div class="three-panels">
+
+    <div class="panel">
+      <div class="panel-hdr">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24" stroke="#00ab55"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Pré-evento
+          <span class="tag tag-pre">Estimativa</span>
         </div>
-        <span class="sep">›</span>
-        <span class="ptitle">Planilha de Custos &amp; Receitas</span>
-        <span class="chip" id="proj-chip">Nova OPP</span>
-        <span class="sep" id="sep-cliente" style="display: none">›</span>
-        <span class="topbar-cliente" id="topbar-cliente"></span>
-        <span class="topbar-cnpj" id="topbar-cnpj"></span>
+        <div class="panel-actions">
+          <button class="add-col-btn" onclick="addColPre()" title="Adicionar coluna">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="topbar-r">
-        <button class="btn btn-lj" onclick="alert('Exportando versão interna...')">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="11" width="18" height="11" rx="2" />
-            <path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>Interno
-        </button>
-        <button class="btn btn-vd" onclick="alert('Gerando PDF sem dados internos...')">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" /></svg>Exportar cliente
-        </button>
-        <button class="btn btn-az" onclick="alert('Salvo!')">
-          <svg viewBox="0 0 24 24">
-            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-            <polyline points="17 21 17 13 7 13 7 21" />
-            <polyline points="7 3 7 8 15 8" /></svg>Salvar
-        </button>
-      </div>
+      <div class="banner-pre panel-banner">SEÇÃO 1 · ESTIMATIVA PRÉ-EVENTO</div>
+      <div id="grid-pre" style="overflow-x:auto"></div>
     </div>
 
-    <div class="body">
-      <!-- PROJETO -->
-      <div class="proj-hdr">
-        <div class="proj-grid">
-          <div class="pf">
-            <label>Cliente</label>
-            <div class="ac-wrap">
-              <input id="f-cliente" placeholder="Nome ou CNPJ do cliente" autocomplete="off"
-                onfocus="acFilter('ac-cliente',this.value,CLIENTES,['nome','cnpj'],acRenderCliente)"
-                oninput="acFilter('ac-cliente',this.value,CLIENTES,['nome','cnpj'],acRenderCliente)" />
-              <div class="ac-dropdown" id="ac-cliente"></div>
-            </div>
-          </div>
-          <div class="pf">
-            <label>Evento</label><input placeholder="Nome do evento" />
-          </div>
-          <div class="pf">
-            <label>Projeto nº</label>
-            <input id="f-num" placeholder="OPP-0000-0000"
-              oninput="document.getElementById('proj-chip').textContent=this.value||'Nova OPP'" />
-          </div>
-          <div class="pf">
-            <label>PM</label>
-            <div class="ac-wrap">
-              <input id="f-pm" placeholder="Responsável" autocomplete="off"
-                onfocus="acFilter('ac-pm',this.value,PMS,['nome'],acRenderPM)"
-                oninput="acFilter('ac-pm',this.value,PMS,['nome'],acRenderPM)" />
-              <div class="ac-dropdown" id="ac-pm"></div>
-            </div>
-          </div>
-          <div class="pf">
-            <label>Local / Cidade</label><input placeholder="Local do evento" />
-          </div>
-          <div class="pf"><label>Início</label><input type="date" /></div>
-          <div class="pf"><label>Término</label><input type="date" /></div>
-          <div class="pf">
-            <label>PAX</label><input type="number" placeholder="0" />
-          </div>
-          <div class="pf">
-            <label>BU</label>
-            <div class="ac-wrap">
-              <input id="f-bu" placeholder="Business Unit" autocomplete="off"
-                onfocus="acFilter('ac-bu',this.value,BUS,['nome'],acRenderBU)"
-                oninput="acFilter('ac-bu',this.value,BUS,['nome'],acRenderBU)" />
-              <div class="ac-dropdown" id="ac-bu"></div>
-            </div>
-          </div>
-          <div class="pf">
-            <label>CO</label>
-            <div class="ac-wrap">
-              <input id="f-co" placeholder="Client Opportunity" autocomplete="off"
-                onfocus="acFilter('ac-co',this.value,COS,['nome'],acRenderCO)"
-                oninput="acFilter('ac-co',this.value,COS,['nome'],acRenderCO)" />
-              <div class="ac-dropdown" id="ac-co"></div>
-            </div>
-          </div>
-          <div class="pf">
-            <label>PO</label>
-            <div class="ac-wrap">
-              <input id="f-po" placeholder="Nº da PO" autocomplete="off"
-                onfocus="acFilter('ac-po',this.value,POS,['numero'],acRenderPO)"
-                oninput="acFilter('ac-po',this.value,POS,['numero'],acRenderPO)" />
-              <div class="ac-dropdown" id="ac-po"></div>
-            </div>
-          </div>
+    <div class="panel">
+      <div class="panel-hdr">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24" stroke="#e7515a"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="16 17 12 12 8 17"/></svg>
+          Pós-evento
+          <span class="tag tag-pos">Real</span>
         </div>
-      </div>
-
-      <!-- KPI -->
-      <div class="kpi-row" id="kpi-row"></div>
-
-      <!-- TOOLBAR -->
-      <div class="toolbar">
-        <div class="toolbar-left">
-          <button class="btn btn-az" onclick="openModal()">
-            <svg viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            Nova categoria
-          </button>
-          <span style="font-size: 11px; color: var(--gr)" id="cat-count"></span>
-        </div>
-        <div class="toolbar-right">
-          <button class="add-col-btn" onclick="addColPre()">
-            <svg viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            + Coluna Pré
-          </button>
-          <button class="add-col-btn" onclick="addColPos()">
-            <svg viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            + Coluna Pós
+        <div class="panel-actions">
+          <button class="add-col-btn" onclick="addColPos()" title="Adicionar coluna">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
         </div>
       </div>
-
-      <!-- 2 PAINÉIS -->
-      <div class="two-panels">
-        <!-- PRÉ-EVENTO -->
-        <div class="panel">
-          <div class="panel-hdr">
-            <div class="panel-title">
-              <svg viewBox="0 0 24 24" stroke="#00ab55">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
-              Pré-evento
-              <span class="tag tag-pre">Estimativa</span>
-            </div>
-            <div class="panel-actions">
-              <button class="add-col-btn" onclick="addColPre()">
-                <svg viewBox="0 0 24 24">
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" /></svg>+ Coluna
-              </button>
-            </div>
-          </div>
-          <div class="banner-pre panel-banner">ESTIMATIVA PRÉ-EVENTO</div>
-          <div id="grid-pre"></div>
-        </div>
-
-        <!-- PÓS-EVENTO -->
-        <div class="panel">
-          <div class="panel-hdr">
-            <div class="panel-title">
-              <svg viewBox="0 0 24 24" stroke="#e7515a">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <polyline points="16 17 12 12 8 17" />
-              </svg>
-              Pós-evento
-              <span class="tag tag-pos">Real</span>
-            </div>
-            <div class="panel-actions">
-              <button class="add-col-btn" onclick="addColPos()">
-                <svg viewBox="0 0 24 24">
-                  <line x1="12" y1="5" x2="12" y2="19" />
-                  <line x1="5" y1="12" x2="19" y2="12" /></svg>+ Coluna
-              </button>
-            </div>
-          </div>
-          <div class="banner-pos panel-banner">FECHAMENTO PÓS-EVENTO</div>
-          <div id="grid-pos"></div>
-        </div>
-      </div>
-
-      <!-- RESUMO -->
-      <div class="resumo">
-        <div class="resumo-hdr">
-          <div class="resumo-hdr-t">
-            <svg viewBox="0 0 24 24">
-              <line x1="12" y1="1" x2="12" y2="23" />
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-            Resumo Financeiro – base Pré-evento
-          </div>
-          <span style="font-size: 10px; color: rgba(255, 255, 255, 0.35)">Margem e BV são dados internos – não exportados ao cliente</span>
-        </div>
-        <div class="resumo-body">
-          <div class="r-col">
-            <div class="r-col-title">Composição do total</div>
-            <div id="r-comp"></div>
-          </div>
-          <div class="r-col">
-            <div class="r-col-title">Faturamentos</div>
-            <div id="r-fat"></div>
-          </div>
-          <div class="r-col">
-            <div class="r-col-title">Pré × Pós / Rentabilidade</div>
-            <div id="r-var"></div>
-          </div>
-        </div>
-      </div>
+      <div class="banner-pos panel-banner">SEÇÃO 2 · FECHAMENTO PÓS-EVENTO</div>
+      <div id="grid-pos" style="overflow-x:auto"></div>
     </div>
 
-    <!-- ── MODAL NOVA CATEGORIA ── -->
-    <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
-      <div class="modal" id="modal">
-        <div class="modal-head">
-          <div class="modal-head-title">
-            <svg viewBox="0 0 24 24">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-              <line x1="12" y1="11" x2="12" y2="17" />
-              <line x1="9" y1="14" x2="15" y2="14" />
-            </svg>
-            Nova Categoria
-          </div>
-          <button class="modal-close" onclick="closeModal()">
-            <svg viewBox="0 0 24 24">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+    <div class="panel">
+      <div class="panel-hdr">
+        <div class="panel-title">
+          <svg viewBox="0 0 24 24" stroke="#e2a03f"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Uso Interno
+          <span class="tag tag-int">Auditoria</span>
+        </div>
+        <div class="panel-actions">
+          <span class="lock-badge"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Restrito</span>
+        </div>
+      </div>
+      <div class="banner-int panel-banner">SEÇÃO 3 · FORNECEDOR &amp; RENTABILIDADE</div>
+      <div id="grid-int" style="overflow-x:auto"></div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="resumo">
+    <div class="resumo-hdr">
+      <div class="resumo-hdr-t">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Resumo Financeiro – base Pré-evento
+      </div>
+      <span style="font-size:10px;color:rgba(255,255,255,.35)">Margem e BV são dados internos – não exportados ao cliente</span>
+    </div>
+    <div class="resumo-body">
+      <div class="r-col"><div class="r-col-title">Composição do total</div><div id="r-comp"></div></div>
+      <div class="r-col"><div class="r-col-title">Faturamentos</div><div id="r-fat"></div></div>
+      <div class="r-col"><div class="r-col-title">Pré × Pós</div><div id="r-var"></div></div>
+      <div class="r-col"><div class="r-col-title">Rentabilidade (interno)</div><div id="r-rent"></div></div>
+    </div>
+  </div>
+
+  <div class="pag-section">
+    <div class="pag-hdr">
+      <div class="pag-hdr-t">
+        <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        Seção 4 · Solicitações de Pagamento – gerado a partir dos fornecedores identificados
+      </div>
+      <button class="btn btn-az" style="background:#fff;color:#2c1d54;border-color:#fff" onclick="gerarPagamentos()">
+        <svg viewBox="0 0 24 24" stroke="#2c1d54"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+        Gerar pagamentos pendentes
+      </button>
+    </div>
+    <div id="pag-body"></div>
+  </div>
+
+</div>
+
+<!-- MODAL CATEGORIA -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div class="modal-head-title">
+        <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+        Nova Categoria
+      </div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nome da categoria <span>*</span></label>
+        <input id="m-nome" placeholder="Ex: Alimentos &amp; Bebidas, Cenografia, Audiovisual..." oninput="updatePreview()">
+      </div>
+      <div class="form-group">
+        <label>Cor da categoria</label>
+        <div class="color-picks" id="color-picks"></div>
+      </div>
+      <div class="cat-preview" id="cat-preview">
+        <div class="cat-preview-swatch" id="prev-swatch" style="background:#4361ee"></div>
+        <div class="cat-preview-info">
+          <div class="name" id="prev-name">Nova categoria</div>
+          <div class="fornec" id="prev-fornec" style="color:var(--gr)">Os fornecedores são vinculados em cada linha de serviço, não na categoria</div>
+        </div>
+      </div>
+      <div class="modal-hint" style="margin-top:10px">
+        Uma categoria reúne vários serviços de fornecedores diferentes. Cada linha de serviço terá seu próprio fornecedor, vinculado na Seção 3 (Uso Interno).
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-az" onclick="salvarCategoria()">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Adicionar categoria
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VINCULAR FORNECEDOR -->
+<div class="modal-backdrop" id="fornec-modal-backdrop" onclick="fornecBackdropClick(event)">
+  <div class="modal" id="fornec-modal" style="width:420px">
+    <div class="modal-head" style="background:linear-gradient(135deg,#e2a03f,#c9891f)">
+      <div class="modal-head-title">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>
+        Vincular Fornecedor
+      </div>
+      <button class="modal-close" onclick="closeFornecModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Buscar por Razão Social, Nome Fantasia ou CNPJ</label>
+        <input id="fm-busca" placeholder="Digite para buscar..." oninput="filterFornecModal(this.value)">
+        <div class="fornec-list" id="fm-list"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Valor pago ao fornecedor (R$)</label>
+          <input id="fm-valor-pago" type="number" placeholder="0,00">
+        </div>
+        <div class="form-group">
+          <label>% pagamento adiantado</label>
+          <input id="fm-pct-pag" type="number" placeholder="50" value="100">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Data de pagamento estimada</label>
+        <input id="fm-data-pag" type="date">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeFornecModal()">Cancelar</button>
+      <button class="btn btn-lj" onclick="salvarFornecVinculo()">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Vincular fornecedor
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EXPORTAÇÃO -->
+<div class="modal-backdrop" id="export-modal-backdrop" onclick="exportBackdropClick(event)">
+  <div class="modal" id="export-modal" style="width:420px">
+    <div class="modal-head" style="background:linear-gradient(135deg,#00ab55,#009648)">
+      <div class="modal-head-title">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar para o Cliente
+      </div>
+      <button class="modal-close" onclick="closeExportModal()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Formato do arquivo</label>
+        <div style="display:flex;gap:8px">
+          <button class="btn export-fmt-btn active" data-fmt="pdf" onclick="selectExportFmt('pdf')" style="flex:1;justify-content:center">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF
           </button>
-        </div>
-
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Nome da categoria <span>*</span></label>
-            <input id="m-nome" placeholder="Ex: Catering / Alimentação" oninput="updatePreview()" />
-          </div>
-
-          <div class="form-group">
-            <label>Cor da categoria</label>
-            <div class="color-picks" id="color-picks"></div>
-          </div>
-
-          <div class="form-group">
-            <label>Fornecedor responsável</label>
-            <input id="m-fornec-input" placeholder="Digite o nome do fornecedor..."
-              oninput="filterFornec(this.value);updatePreview();" />
-            <div class="fornec-list" id="fornec-list"></div>
-            <div class="modal-hint">
-              Selecione um fornecedor existente ou digite um novo. O fornecedor aparecerá ao lado do nome da categoria.
-            </div>
-          </div>
-
-          <!-- PREVIEW -->
-          <div class="cat-preview" id="cat-preview">
-            <div class="cat-preview-swatch" id="prev-swatch" style="background: #4361ee"></div>
-            <div class="cat-preview-info">
-              <div class="name" id="prev-name">Nova categoria</div>
-              <div class="fornec" id="prev-fornec">Sem fornecedor</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn" onclick="closeModal()">Cancelar</button>
-          <button class="btn btn-az" onclick="salvarCategoria()">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
-            Adicionar categoria
+          <button class="btn export-fmt-btn" data-fmt="xlsx" onclick="selectExportFmt('xlsx')" style="flex:1;justify-content:center">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Excel
           </button>
         </div>
       </div>
+      <div class="form-group">
+        <label>Layout</label>
+        <select id="export-layout">
+          <option>Padrão MCI</option>
+          <option>Compacto (somente totais por categoria)</option>
+          <option>Detalhado (com descrição de itens)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Seções incluídas</label>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--dk2)"><input type="checkbox" checked disabled style="width:auto"> Pré-evento (Seção 1)</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--dk2)"><input type="checkbox" id="exp-pos" checked style="width:auto"> Pós-evento / Fechamento (Seção 2)</label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--gr)"><input type="checkbox" disabled style="width:auto"> Uso Interno (Seção 3) – nunca exportável</label>
+        </div>
+      </div>
+      <div class="modal-hint" style="background:var(--vd-l);padding:8px 10px;border-radius:6px;color:#067a3c">
+        Dados de fornecedor, BV e rentabilidade são removidos automaticamente nesta exportação.
+      </div>
     </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeExportModal()">Cancelar</button>
+      <button class="btn btn-vd" onclick="confirmExport()">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar
+      </button>
+    </div>
+  </div>
+</div>
 
-    <script>
-      const PTAX = 5.1;
-      const fmt = (v) => "R$ " + Math.round(Math.abs(v)).toLocaleString("pt-BR");
-      const fmtUSD = (v) => "US$ " + Math.round(v / PTAX).toLocaleString("pt-BR");
+<script>
+const PTAX_HOJE = 5.10;
+const fmt    = v => 'R$ ' + Math.round(Math.abs(v)).toLocaleString('pt-BR');
+const fmtUSD = v => 'US$ ' + Math.round(Math.abs(v)/PTAX_HOJE).toLocaleString('pt-BR');
 
-      const PALETA = [
-        "#4361ee","#00ab55","#185fa5","#534ab7","#854f0b","#993556",
-        "#3b6d11","#7b3f00","#a32d2d","#1d3557","#2196f3","#9c2027",
-        "#05704a","#6d28d9","#c2410c","#0369a1","#7e22ce","#065f46",
-      ];
+const PALETA = [
+  '#4361ee','#00ab55','#185fa5','#534ab7','#854f0b',
+  '#993556','#3b6d11','#7b3f00','#a32d2d','#1d3557',
+  '#2196f3','#9c2027','#05704a','#6d28d9','#c2410c',
+  '#0369a1','#7e22ce','#065f46'
+];
 
-      const FORNECEDORES_CADASTRADOS = [
-        "Transamerica Expo","Pullman SP","Executivo Transfer","SomTec",
-        "StreamBR","FotoEvent","VideoMCI","Gráfica Plus","MCI Brasil","Notiva",
-      ];
+const FORNECEDORES_BASE = [
+  {nome:'Transamerica Expo',    cnpj:'12.345.678/0001-90', categoria:'Espaço'},
+  {nome:'Pullman SP',           cnpj:'23.456.789/0001-01', categoria:'Hospedagem'},
+  {nome:'Executivo Transfer',   cnpj:'34.567.890/0001-12', categoria:'Transporte'},
+  {nome:'SomTec',               cnpj:'45.678.901/0001-23', categoria:'AV'},
+  {nome:'StreamBR',             cnpj:'56.789.012/0001-34', categoria:'AV'},
+  {nome:'FotoEvent',            cnpj:'67.890.123/0001-45', categoria:'Foto/Vídeo'},
+  {nome:'VideoMCI',             cnpj:'78.901.234/0001-56', categoria:'Foto/Vídeo'},
+  {nome:'Gráfica Plus',         cnpj:'89.012.345/0001-67', categoria:'Gráfica'},
+  {nome:'MCI Brasil',           cnpj:'11.222.333/0001-44', categoria:'Interno'},
+  {nome:'Buffet Sabor & Arte',  cnpj:'90.123.456/0001-78', categoria:'A&B'},
+  {nome:'Cenografia Total',     cnpj:'10.234.567/0001-89', categoria:'Cenografia'},
+];
 
-      const S = {
-        collPre: {},
-        collPos: {},
-        colsPre: [
-          { id: "qtde", label: "Qtde", fixed: true },
-          { id: "dias", label: "Diária", fixed: true },
-          { id: "unit", label: "Unit R$", fixed: true },
-        ],
-        colsPos: [
-          { id: "qtde", label: "Qtde", fixed: true },
-          { id: "dias", label: "Diária", fixed: true },
-          { id: "unit", label: "Unit R$", fixed: true },
-        ],
-        cats: [],
-      };
-      let colCtr = 20;
+// ── ESTADO GLOBAL ──────────────────────────────────────────────
+const S = {
+  collPre:{}, collPos:{}, collInt:{},
+  colsPre:[
+    {id:'qtde',label:'Qtde',fixed:true},
+    {id:'dias',label:'Diária',fixed:true},
+    {id:'unit',label:'Unit R$',fixed:true},
+  ],
+  colsPos:[
+    {id:'qtde',label:'Qtde',fixed:true},
+    {id:'dias',label:'Diária',fixed:true},
+    {id:'unit',label:'Unit R$',fixed:true},
+  ],
+  cats: [],
+  moedaBase: 'BRL',
+  moedasExtra: [
+    {id:'usd', simbolo:'US$', taxa: PTAX_HOJE, label:'USD'},
+  ],
+  feeMode: 'manual',
+  feeManualPct: 10,
+  feeBase: 'total',
+  cambioMode: 'auto',
+  cambioManual: PTAX_HOJE,
+};
+let colCtr = 20;
+let pagamentosGerados = [];
 
-      S.cats = [];
+// ── DADOS INICIAIS ─────────────────────────────────────────────
+S.cats = [
+  {id:1,nome:'Espaço / Local do Evento',cor:'#4361ee',items:[
+    {desc:'Pavilhão principal',fat:'NF MCI',pre:{qtde:1,dias:3,unit:45000},pos:{qtde:1,dias:3,unit:47500},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Sala de apoio VIP', fat:'NF MCI',pre:{qtde:1,dias:3,unit:8500}, pos:{qtde:1,dias:3,unit:8500}, fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:2,nome:'Hospedagem',cor:'#00ab55',items:[
+    {desc:'Apartamentos standard',fat:'ND MCI',pre:{qtde:80,dias:2,unit:450}, pos:{qtde:78,dias:2,unit:450}, fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Suite executiva',     fat:'ND MCI',pre:{qtde:5, dias:2,unit:1200},pos:{qtde:5, dias:2,unit:1250},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:3,nome:'Transporte',cor:'#185fa5',items:[
+    {desc:'Transfer aeroporto - hotel',fat:'NF MCI',pre:{qtde:4,dias:1,unit:2800},pos:{qtde:4,dias:1,unit:3100},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Transfer hotel - evento',   fat:'NF MCI',pre:{qtde:6,dias:3,unit:1800},pos:{qtde:6,dias:3,unit:1800},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:4,nome:'Alimentos & Bebidas',cor:'#854f0b',items:[
+    {desc:'Coffee break manhã',   fat:'ND MCI',pre:{qtde:350,dias:3,unit:45}, pos:{qtde:350,dias:3,unit:48}, fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Jantar de gala',       fat:'ND MCI',pre:{qtde:350,dias:1,unit:180},pos:{qtde:350,dias:1,unit:210},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:5,nome:'Equipamentos AV / Transmissão',cor:'#534ab7',items:[
+    {desc:'Sistema de som line-array',fat:'NF MCI',pre:{qtde:1,dias:3,unit:18000},pos:{qtde:1,dias:3,unit:18000},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Transmissão ao vivo',       fat:'NF MCI',pre:{qtde:1,dias:1,unit:12000},pos:{qtde:1,dias:1,unit:13500},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:6,nome:'Entretenimento / Palestrantes',cor:'#993556',items:[
+    {desc:'Palestrante principal',    fat:'Cliente',pre:{qtde:1,dias:1,unit:25000},pos:{qtde:1,dias:1,unit:25000},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Atração cultural (banda)', fat:'ND MCI', pre:{qtde:1,dias:1,unit:15000},pos:{qtde:1,dias:1,unit:15000},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:7,nome:'Cenografia',cor:'#7b3f00',items:[
+    {desc:'Cenário palco principal', fat:'ND MCI',pre:{qtde:1,dias:1,unit:38000},pos:{qtde:1,dias:1,unit:38000},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:8,nome:'Time MCI',cor:'#05704a',items:[
+    {desc:'PM Sênior',                fat:'NF MCI',pre:{qtde:1,dias:30,unit:580},pos:{qtde:1,dias:32,unit:580},fornecedor:'MCI Brasil',cnpj:'11.222.333/0001-44',valorPago:0,pctPag:100,dataPag:''},
+    {desc:'Coordenador de Operações', fat:'NF MCI',pre:{qtde:1,dias:30,unit:380},pos:{qtde:1,dias:32,unit:380},fornecedor:'MCI Brasil',cnpj:'11.222.333/0001-44',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+  {id:9,nome:'Criação e Planejamento MCI',cor:'#6d28d9',items:[
+    {desc:'Direção criativa', fat:'NF MCI',pre:{qtde:1,dias:1,unit:18000},pos:{qtde:1,dias:1,unit:18000},fornecedor:'MCI Brasil',cnpj:'11.222.333/0001-44',valorPago:0,pctPag:100,dataPag:''},
+  ]},
+];
 
-      // ── CÁLCULOS ──────────────────────────────────────────────────
-      function itTotPre(it) {
-        let t = (it.pre.qtde || 0) * (it.pre.dias || 1) * (it.pre.unit || 0);
-        S.colsPre.filter((c) => c.extra).forEach((c) => { t += it.pre[c.id] || 0; });
-        return t;
-      }
-      function itTotPos(it) {
-        let t = (it.pos.qtde || 0) * (it.pos.dias || 1) * (it.pos.unit || 0);
-        S.colsPos.filter((c) => c.extra).forEach((c) => { t += it.pos[c.id] || 0; });
-        return t;
-      }
-      function catTotPre(cat) { return cat.items.reduce((s, i) => s + itTotPre(i), 0); }
-      function catTotPos(cat) { return cat.items.reduce((s, i) => s + itTotPos(i), 0); }
-      function grandPre() { return S.cats.reduce((s, c) => s + catTotPre(c), 0); }
-      function grandPos() { return S.cats.reduce((s, c) => s + catTotPos(c), 0); }
-      function feeVal(t) {
-        return t > 5e6 ? 0.04*t : t > 1e6 ? 0.05*t : t > 5e5 ? 0.06*t
-             : t > 3e5 ? 0.1*t  : t > 1e5 ? 0.15*t : 0.2*t;
-      }
-      function fatClass(f) {
-        return f === "NF MCI" ? "nf" : f === "ND MCI" ? "nd" : f === "SR MCI" ? "sr" : "cli";
-      }
+// ── CÁLCULOS ───────────────────────────────────────────────────
+function itTotPre(it){
+  let t=(it.pre.qtde||0)*(it.pre.dias||1)*(it.pre.unit||0);
+  S.colsPre.filter(c=>c.extra).forEach(c=>{ t+=(it.pre[c.id]||0); });
+  return t;
+}
+function itTotPos(it){
+  let t=(it.pos.qtde||0)*(it.pos.dias||1)*(it.pos.unit||0);
+  S.colsPos.filter(c=>c.extra).forEach(c=>{ t+=(it.pos[c.id]||0); });
+  return t;
+}
+function catTotPre(cat){ return cat.items.reduce((s,i)=>s+itTotPre(i),0); }
+function catTotPos(cat){ return cat.items.reduce((s,i)=>s+itTotPos(i),0); }
+function grandPre(){ return S.cats.reduce((s,c)=>s+catTotPre(c),0); }
+function grandPos(){ return S.cats.reduce((s,c)=>s+catTotPos(c),0); }
 
-      function calcSummary() {
-        const gp = grandPre(), gpo = grandPos(), fee = feeVal(gp), imp = (gp + fee) * 0.065;
-        const nf = S.cats.reduce((s,c) => s + c.items.filter(i=>i.fat==="NF MCI").reduce((ss,i)=>ss+itTotPre(i),0), 0);
-        const nd = S.cats.reduce((s,c) => s + c.items.filter(i=>i.fat==="ND MCI").reduce((ss,i)=>ss+itTotPre(i),0), 0);
-        const cl = S.cats.reduce((s,c) => s + c.items.filter(i=>i.fat==="Cliente").reduce((ss,i)=>ss+itTotPre(i),0), 0);
-        return { gp, gpo, fee, imp, nf, nd, cl, totalNF: nf+fee+imp, totalGeral: nf+fee+imp+nd+cl };
-      }
+function feeValPorFaixa(t){
+  return t>5e6?.04*t:t>1e6?.05*t:t>5e5?.06*t:t>3e5?.1*t:t>1e5?.15*t:.2*t;
+}
+function feeBaseAmount(){
+  if(S.feeBase==='nd'){
+    return S.cats.reduce((s,c)=>s+c.items.filter(i=>i.fat==='ND MCI').reduce((ss,i)=>ss+itTotPre(i),0),0);
+  }
+  return grandPre();
+}
+function feeVal(){
+  const base=feeBaseAmount();
+  if(S.feeMode==='manual') return base*(S.feeManualPct/100);
+  return feeValPorFaixa(base);
+}
+function feePctEfetivo(){
+  const base=feeBaseAmount();
+  if(base<=0) return 0;
+  return Math.round(feeVal()/base*100);
+}
+function fatClass(f){ return f==='NF MCI'?'nf':f==='ND MCI'?'nd':f==='SR MCI'?'sr':'cli'; }
 
-      // ── BUILD GRID ────────────────────────────────────────────────
-      function buildGrid(modo) {
-        if (S.cats.length === 0) {
-          return `<div class="empty-state">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-            <strong>Nenhuma categoria adicionada</strong>
-            <span>Clique em <b>Nova categoria</b> para começar a montar o orçamento.</span>
-          </div>`;
-        }
+function calcSummary(){
+  const gp=grandPre(),gpo=grandPos(),fee=feeVal(),imp=(gp+fee)*.065;
+  const nf=S.cats.reduce((s,c)=>s+c.items.filter(i=>i.fat==='NF MCI').reduce((ss,i)=>ss+itTotPre(i),0),0);
+  const nd=S.cats.reduce((s,c)=>s+c.items.filter(i=>i.fat==='ND MCI').reduce((ss,i)=>ss+itTotPre(i),0),0);
+  const sr=S.cats.reduce((s,c)=>s+c.items.filter(i=>i.fat==='SR MCI').reduce((ss,i)=>ss+itTotPre(i),0),0);
+  const cl=S.cats.reduce((s,c)=>s+c.items.filter(i=>i.fat==='Cliente').reduce((ss,i)=>ss+itTotPre(i),0),0);
+  return{gp,gpo,fee,imp,nf,nd,sr,cl,totalNF:nf+fee+imp,totalGeral:nf+fee+imp+nd+sr+cl};
+}
 
-        const isPre = modo === "pre";
-        const dataKey = isPre ? "pre" : "pos";
-        const collKey = isPre ? "collPre" : "collPos";
-        const extras = isPre ? S.colsPre.filter(c=>c.extra) : S.colsPos.filter(c=>c.extra);
-        const thCls = isPre ? "th-pre" : "th-pos";
-        const totCls = isPre ? "td-tot-pre" : "td-tot-pos";
-        const grandFn = isPre ? grandPre : grandPos;
-        const catTotFn = isPre ? catTotPre : catTotPos;
-        const itTotFn = isPre ? itTotPre : itTotPos;
-        const corDot = isPre ? "#86efac" : "#fca5a5";
-        const n = extras.length;
-        const totalCols = 8 + n;
+// ── CÁLCULO RENTABILIDADE (Seção 3) ───────────────────────────
+function itValorCobrado(it){ return itTotPre(it); }
+function itRentBruta(it){ return itValorCobrado(it)-(it.valorPago||0); }
+function itRentLiquida(it){
+  const bruta=itRentBruta(it);
+  if(bruta<=0) return bruta;
+  return bruta*0.893;
+}
+function catRentLiquida(cat){ return cat.items.reduce((s,i)=>s+itRentLiquida(i),0); }
+function totalRentLiquida(){ return S.cats.reduce((s,c)=>s+catRentLiquida(c),0); }
+function totalValorPagoFornecedores(){
+  return S.cats.reduce((s,c)=>s+c.items.reduce((ss,i)=>ss+(i.valorPago||0),0),0);
+}
 
-        let h = `<table class="gtable"><colgroup>`;
-        h += `<col><col style="width:70px"><col style="width:55px"><col style="width:60px"><col style="width:90px">`;
-        extras.forEach(() => { h += `<col style="width:90px">`; });
-        h += `<col style="width:110px"><col style="width:90px"><col style="width:36px">`;
-        h += `</colgroup><tbody>`;
+// ── BUILD GRID (Pré / Pós) ─────────────────────────────────────
+function buildGrid(modo){
+  if(S.cats.length===0){
+    return `<div class="empty-state">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <strong>Nenhuma categoria adicionada</strong>
+      <span>Clique em <b>Nova categoria</b> para começar a montar o orçamento.</span>
+    </div>`;
+  }
+  const isPre=modo==='pre';
+  const dataKey=isPre?'pre':'pos';
+  const collKey=isPre?'collPre':'collPos';
+  const extras=isPre?S.colsPre.filter(c=>c.extra):S.colsPos.filter(c=>c.extra);
+  const thCls=isPre?'th-pre':'th-pos';
+  const totCls=isPre?'td-tot-pre':'td-tot-pos';
+  const grandFn=isPre?grandPre:grandPos;
+  const catTotFn=isPre?catTotPre:catTotPos;
+  const itTotFn=isPre?itTotPre:itTotPos;
+  const n=extras.length;
+  const totalCols=8+n;
 
-        S.cats.forEach((cat, ci) => {
-          const cor = cat.cor || "#4361ee";
-          const coll = S[collKey][ci];
-          const ctot = catTotFn(cat);
+  let h=`<table class="gtable" style="min-width:520px"><colgroup>`;
+  h+=`<col style="width:160px"><col style="width:58px"><col style="width:46px"><col style="width:50px"><col style="width:76px">`;
+  extras.forEach(()=>{ h+=`<col style="width:76px">`; });
+  h+=`<col style="width:92px"><col style="width:72px"><col style="width:30px">`;
+  h+=`</colgroup><tbody>`;
 
-          h += `<tr class="tr-cat" onclick="toggleCat('${modo}',${ci})">`;
-          h += `<td colspan="${totalCols}" style="border-left:4px solid ${cor}">`;
-          h += `<div style="display:flex;align-items:center;gap:8px;width:100%">`;
-          h += `<span class="cat-num" style="background:${cor}">${cat.id}</span>`;
-          h += `<div style="min-width:0;display:flex;flex-direction:column;gap:2px">`;
-          h += `<span class="cat-nome">${cat.nome}</span>`;
-          if (cat.fornecedor) h += `<span class="cat-fornec">Fornecedor: ${cat.fornecedor}</span>`;
-          h += `</div>`;
-          h += `<div class="cat-actions">`;
-          h += `<button class="cat-btn" onclick="event.stopPropagation();editCat(${ci})" title="Editar categoria">`;
-          h += `<svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
-          h += `</button>`;
-          h += `<button class="cat-btn" onclick="event.stopPropagation();delCat(${ci})" title="Excluir categoria">`;
-          h += `<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>`;
-          h += `</button></div>`;
-          h += `<div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0">`;
-          h += `<span class="cat-tot">${fmt(ctot)}</span>`;
-          h += `<span class="cat-usd">${fmtUSD(ctot)}</span>`;
-          h += `<span class="chevron ${coll ? "" : "open"}">›</span>`;
-          h += `</div></div></td></tr>`;
+  S.cats.forEach((cat,ci)=>{
+    const cor=cat.cor||'#4361ee';
+    const coll=S[collKey][ci];
+    const ctot=catTotFn(cat);
+    const nFornec=new Set(cat.items.map(i=>i.fornecedor).filter(Boolean)).size;
 
-          if (!coll) {
-            h += `<tr class="tr-subhdr">`;
-            h += `<th class="left ${thCls}" style="padding-left:12px">Descrição</th>`;
-            h += `<th class="ctr ${thCls}">Fat.</th>`;
-            h += `<th class="${thCls}">Qtde</th>`;
-            h += `<th class="${thCls}">Diária</th>`;
-            h += `<th class="${thCls}">Unit R$</th>`;
-            extras.forEach((c) => {
-              h += `<th class="${thCls}">`;
-              h += `<input class="inp-hdr" style="color:${corDot}" value="${c.label}" onchange="renameCol('${modo}','${c.id}',this.value)">`;
-              h += `<button class="rm-col-btn" onclick="removeCol('${modo}','${c.id}')">×</button></th>`;
-            });
-            h += `<th class="${thCls}">Total R$</th>`;
-            h += `<th class="${thCls}">USD</th>`;
-            h += `<th style="background:#1b2e4b"></th>`;
-            h += `</tr>`;
+    h+=`<tr class="tr-cat" onclick="toggleCat('${modo}',${ci})">`;
+    h+=`<td colspan="${totalCols}" style="border-left:4px solid ${cor}">`;
+    h+=`<div style="display:flex;align-items:center;gap:8px;width:100%">`;
+    h+=`<span class="cat-num" style="background:${cor}">${cat.id}</span>`;
+    h+=`<div style="min-width:0;display:flex;flex-direction:column;gap:1px">`;
+    h+=`<span class="cat-nome">${cat.nome}</span>`;
+    h+=`<span class="cat-fornec">${cat.items.length} serviço${cat.items.length!==1?'s':''}${nFornec?` · ${nFornec} fornecedor${nFornec!==1?'es':''}`:''}</span>`;
+    h+=`</div>`;
+    h+=`<div class="cat-actions">`;
+    h+=`<button class="cat-btn" onclick="event.stopPropagation();editCat(${ci})" title="Editar"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>`;
+    h+=`<button class="cat-btn" onclick="event.stopPropagation();delCat(${ci})" title="Excluir"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>`;
+    h+=`</div>`;
+    h+=`<div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0">`;
+    h+=`<span class="cat-tot">${fmt(ctot)}</span><span class="cat-usd">${fmtUSD(ctot)}</span>`;
+    h+=`<span class="chevron ${coll?'':'open'}">▸</span>`;
+    h+=`</div></div></td></tr>`;
 
-            cat.items.forEach((it, ii) => {
-              const tot = itTotFn(it);
-              const fc = fatClass(it.fat);
-              const data = it[dataKey];
-              const bg = ii % 2 === 0 ? "#fff" : "#fafbfc";
+    if(!coll){
+      h+=`<tr class="tr-subhdr">`;
+      h+=`<th class="left ${thCls}" style="padding-left:12px">Descrição</th>`;
+      h+=`<th class="ctr ${thCls}">Fat.</th>`;
+      h+=`<th class="${thCls}">Qtde</th><th class="${thCls}">Diária</th><th class="${thCls}">Unit R$</th>`;
+      extras.forEach(c=>{
+        h+=`<th class="${thCls}"><input class="inp-hdr" style="color:${isPre?'#86efac':'#fca5a5'}" value="${c.label}" onchange="renameCol('${modo}','${c.id}',this.value)"><button class="rm-col-btn" onclick="removeCol('${modo}','${c.id}')">×</button></th>`;
+      });
+      h+=`<th class="${thCls}">Total R$</th><th class="${thCls}">USD</th><th style="background:#1b2e4b"></th></tr>`;
 
-              h += `<tr class="tr-item" style="background:${bg}">`;
-              h += `<td style="padding:0;border-left:3px solid ${cor}">`;
-              h += `<input class="inp-desc" value="${it.desc.replace(/"/g,"&quot;")}" onchange="S.cats[${ci}].items[${ii}].desc=this.value;render()"></td>`;
+      cat.items.forEach((it,ii)=>{
+        const tot=itTotFn(it);
+        const fc=fatClass(it.fat);
+        const data=it[dataKey];
+        const bg=ii%2===0?'#fff':'#fafbfc';
 
-              h += `<td class="td-fat">`;
-              h += `<select class="fat-sel ${fc}" onchange="S.cats[${ci}].items[${ii}].fat=this.value;this.className='fat-sel '+fatClass(this.value);render()">`;
-              h += `<option ${it.fat==="NF MCI"?"selected":""}>NF MCI</option>`;
-              h += `<option ${it.fat==="ND MCI"?"selected":""}>ND MCI</option>`;
-              h += `<option ${it.fat==="SR MCI"?"selected":""}>SR MCI</option>`;
-              h += `<option ${it.fat==="Cliente"?"selected":""}>Cliente</option>`;
-              h += `</select></td>`;
-
-              h += `<td><input class="inp-num" type="number" min="1" value="${data.qtde}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.qtde=+this.value;render()"></td>`;
-              h += `<td><input class="inp-num" type="number" min="1" value="${data.dias}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.dias=+this.value;render()"></td>`;
-              h += `<td><input class="inp-num" type="number" min="0" step="100" value="${data.unit}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.unit=+this.value;render()"></td>`;
-
-              extras.forEach((c) => {
-                const v = data[c.id] || 0;
-                h += `<td><input class="inp-num" type="number" min="0" step="100" value="${v}" onchange="S.cats[${ci}].items[${ii}].${dataKey}['${c.id}']=+this.value;render()"></td>`;
-              });
-
-              h += `<td class="td-tot ${totCls}">${fmt(tot)}</td>`;
-              h += `<td class="td-usd">${fmtUSD(tot)}</td>`;
-              h += `<td class="td-del"><button class="del-btn" onclick="delItem(${ci},${ii})" title="Excluir linha">`;
-              h += `<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>`;
-              h += `</button></td></tr>`;
-            });
-
-            h += `<tr><td colspan="${totalCols}"><div class="add-item-wrap">`;
-            h += `<button class="add-item-btn" onclick="addItem(${ci},'${dataKey}')">`;
-            h += `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Adicionar linha`;
-            h += `</button></div></td></tr>`;
-          }
+        h+=`<tr class="tr-item" style="background:${bg}">`;
+        h+=`<td style="padding:0;border-left:3px solid ${cor}"><input class="inp-desc" value="${it.desc.replace(/"/g,'&quot;')}" onchange="S.cats[${ci}].items[${ii}].desc=this.value;render()"></td>`;
+        h+=`<td class="td-fat"><select class="fat-sel ${fc}" onchange="S.cats[${ci}].items[${ii}].fat=this.value;this.className='fat-sel '+fatClass(this.value);render()">`;
+        h+=`<option ${it.fat==='NF MCI'?'selected':''}>NF MCI</option>`;
+        h+=`<option ${it.fat==='ND MCI'?'selected':''}>ND MCI</option>`;
+        h+=`<option ${it.fat==='SR MCI'?'selected':''}>SR MCI</option>`;
+        h+=`<option ${it.fat==='Cliente'?'selected':''}>Cliente</option>`;
+        h+=`</select></td>`;
+        h+=`<td><input class="inp-num" type="number" min="1" value="${data.qtde}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.qtde=+this.value;render()"></td>`;
+        h+=`<td><input class="inp-num" type="number" min="1" value="${data.dias}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.dias=+this.value;render()"></td>`;
+        h+=`<td><input class="inp-num" type="number" min="0" step="100" value="${data.unit}" onchange="S.cats[${ci}].items[${ii}].${dataKey}.unit=+this.value;render()"></td>`;
+        extras.forEach(c=>{
+          const v=data[c.id]||0;
+          h+=`<td><input class="inp-num" type="number" min="0" step="100" value="${v}" onchange="S.cats[${ci}].items[${ii}].${dataKey}['${c.id}']=+this.value;render()"></td>`;
         });
+        h+=`<td class="td-tot ${totCls}">${fmt(tot)}</td>`;
+        h+=`<td class="td-usd">${fmtUSD(tot)}</td>`;
+        h+=`<td class="td-del"><button class="del-btn" onclick="delItem(${ci},${ii})"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>`;
+        h+=`</tr>`;
+      });
 
-        const grand = grandFn();
-        h += `<tr class="tr-grand">`;
-        h += `<td colspan="${5+n}" style="padding-left:12px">TOTAL GERAL</td>`;
-        h += `<td class="grand-val" style="color:${isPre?"#00ab55":"#e7515a"}">${fmt(grand)}</td>`;
-        h += `<td class="grand-usd">${fmtUSD(grand)}</td>`;
-        h += `<td></td></tr>`;
-        h += `</tbody></table>`;
-        return h;
+      h+=`<tr><td colspan="${totalCols}"><div class="add-item-wrap"><button class="add-item-btn" onclick="addItem(${ci},'${dataKey}')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Adicionar linha</button></div></td></tr>`;
+    }
+  });
+
+  const grand=grandFn();
+  h+=`<tr class="tr-grand"><td colspan="${5+n}" style="padding-left:12px">TOTAL GERAL</td>`;
+  h+=`<td class="grand-val" style="color:${isPre?'#00ab55':'#e7515a'}">${fmt(grand)}</td>`;
+  h+=`<td class="grand-usd">${fmtUSD(grand)}</td><td></td></tr>`;
+  h+=`</tbody></table>`;
+  return h;
+}
+
+// ── BUILD GRID INTERNO (Seção 3) ───────────────────────────────
+function buildGridInt(){
+  if(S.cats.length===0){
+    return `<div class="empty-state">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <strong>Nenhum dado interno ainda</strong>
+      <span>Adicione categorias e vincule fornecedores às linhas de serviço.</span>
+    </div>`;
+  }
+  let h=`<table class="gtable" style="min-width:520px"><colgroup>`;
+  h+=`<col style="width:96px"><col style="width:96px"><col style="width:90px"><col style="width:96px"><col style="width:160px"><col style="width:30px">`;
+  h+=`</colgroup><tbody>`;
+
+  S.cats.forEach((cat,ci)=>{
+    const cor=cat.cor||'#4361ee';
+    const coll=S.collInt[ci];
+    const rentTot=catRentLiquida(cat);
+    const nFornec=new Set(cat.items.map(i=>i.fornecedor).filter(Boolean)).size;
+
+    h+=`<tr class="tr-cat" onclick="toggleCat('int',${ci})">`;
+    h+=`<td colspan="6" style="border-left:4px solid ${cor}">`;
+    h+=`<div style="display:flex;align-items:center;gap:8px;width:100%">`;
+    h+=`<span class="cat-num" style="background:${cor}">${cat.id}</span>`;
+    h+=`<div style="min-width:0;display:flex;flex-direction:column;gap:1px">`;
+    h+=`<span class="cat-nome">${cat.nome}</span>`;
+    h+=`<span class="cat-fornec">${cat.items.length} serviço${cat.items.length!==1?'s':''}${nFornec?` · ${nFornec} fornecedor${nFornec!==1?'es':''}`:''}</span>`;
+    h+=`</div>`;
+    h+=`<div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0">`;
+    h+=`<span class="cat-tot" style="color:${rentTot>=0?'#00ab55':'#e7515a'}">${rentTot>=0?'+':'-'}${fmt(rentTot)}</span>`;
+    h+=`<span class="chevron ${coll?'':'open'}">▸</span>`;
+    h+=`</div></div></td></tr>`;
+
+    if(!coll){
+      h+=`<tr class="tr-subhdr">`;
+      h+=`<th class="th-int">Valor fornecedor</th>`;
+      h+=`<th class="th-int">Valor cobrado cliente</th>`;
+      h+=`<th class="th-int">BV emitido</th>`;
+      h+=`<th class="th-int" style="background:#9c2027;color:#fecaca">BV líquido MCI</th>`;
+      h+=`<th class="left th-int">Razão social</th>`;
+      h+=`<th style="background:#1b2e4b"></th></tr>`;
+
+      cat.items.forEach((it,ii)=>{
+        const cobrado=itValorCobrado(it);
+        const bvEmitido=itRentBruta(it);
+        const rentLiq=itRentLiquida(it);
+        const bg=ii%2===0?'#fff':'#fafbfc';
+        const linked=!!it.fornecedor;
+
+        h+=`<tr class="tr-item" style="background:${bg}">`;
+        h+=`<td style="border-left:3px solid ${cor}"><input class="inp-num" type="number" min="0" step="50" value="${it.valorPago||0}" onchange="S.cats[${ci}].items[${ii}].valorPago=+this.value;render()" placeholder="0"></td>`;
+        h+=`<td class="td-usd" style="text-align:right;padding-right:8px;font-weight:600;color:var(--dk)">${fmt(cobrado)}</td>`;
+        h+=`<td class="td-usd" style="text-align:right;padding-right:8px;font-weight:600;color:var(--dk)">${fmt(bvEmitido)}</td>`;
+        h+=`<td class="td-rent ${rentLiq>=0?'pos':'neg'}" style="background:#fff5f5">${rentLiq>=0?'+':'-'}${fmt(rentLiq)}</td>`;
+        h+=`<td class="int-fornec-cell">`;
+        h+=`<button class="int-fornec-link ${linked?'linked':''}" onclick="openFornecModal(${ci},${ii})" title="${linked?'Trocar fornecedor':'Vincular fornecedor'}">`;
+        h+=linked
+          ?`<svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>`
+          :`<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+        h+=`</button>`;
+        if(linked){
+          h+=`<div style="min-width:0;display:flex;flex-direction:column">`;
+          h+=`<span style="font-size:10px;font-weight:700;color:var(--dk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${it.fornecedor}</span>`;
+          h+=`<span class="cnpj-tag">${it.cnpj||''}</span>`;
+          h+=`</div>`;
+        } else {
+          h+=`<span style="font-size:10px;color:var(--gr);font-style:italic">não vinculado</span>`;
+        }
+        h+=`</td><td></td></tr>`;
+      });
+
+      h+=`<tr><td colspan="6"><div class="add-item-wrap"><div class="add-item-btn" style="color:var(--gr);cursor:default">`;
+      h+=`<svg viewBox="0 0 24 24" stroke="var(--lj)"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Dados visíveis apenas para Finance Manager / Admin – não exportados ao cliente`;
+      h+=`</div></div></td></tr>`;
+    }
+  });
+
+  const rentGeral=totalRentLiquida();
+  const pagoGeral=totalValorPagoFornecedores();
+  h+=`<tr class="tr-grand">`;
+  h+=`<td colspan="2" style="padding-left:12px">RENTABILIDADE TOTAL</td>`;
+  h+=`<td class="grand-usd" style="text-align:right">${fmt(pagoGeral)} pago</td>`;
+  h+=`<td></td>`;
+  h+=`<td class="grand-val" style="color:${rentGeral>=0?'#00ab55':'#e7515a'}">${rentGeral>=0?'+':'-'}${fmt(rentGeral)}</td>`;
+  h+=`<td></td></tr>`;
+  h+=`</tbody></table>`;
+  return h;
+}
+
+// ── SEÇÃO 4 – SOLICITAÇÕES DE PAGAMENTO ───────────────────────
+function listarFornecedoresIdentificados(){
+  const lista=[];
+  S.cats.forEach(cat=>{
+    cat.items.forEach(it=>{
+      if(it.fornecedor&&it.cnpj){
+        lista.push({
+          categoria:cat.nome,desc:it.desc,
+          fornecedor:it.fornecedor,cnpj:it.cnpj,
+          valor:it.valorPago||itValorCobrado(it),
+          pct:it.pctPag||100,data:it.dataPag||'',
+        });
       }
+    });
+  });
+  return lista;
+}
 
-      // ── RESUMO / KPI ──────────────────────────────────────────────
-      function renderResumo() {
-        const s = calcSummary();
-        const fp = Math.round((s.fee / s.gp) * 100);
-        const diff = s.gpo - s.gp;
-        const dpct = s.gp > 0 ? (diff / s.gp) * 100 : 0;
-        const gm = s.totalGeral - s.gp;
-        const gmpct = s.totalGeral > 0 ? Math.round((gm / s.totalGeral) * 100) : 0;
-        const dc = diff >= 0 ? "vm" : "vd";
+function gerarPagamentos(){
+  const lista=listarFornecedoresIdentificados();
+  if(lista.length===0){
+    alert('Nenhum fornecedor identificado ainda. Vincule fornecedores na Seção 3 (Uso Interno) primeiro.');
+    return;
+  }
+  pagamentosGerados=lista.map((f,i)=>({id:'PAG-'+(1000+i),...f,status:'pendente'}));
+  renderPagamentos();
+}
 
-        document.getElementById("r-comp").innerHTML = `
+function renderPagamentos(){
+  const body=document.getElementById('pag-body');
+  if(pagamentosGerados.length===0){
+    body.innerHTML=`<div class="pag-empty">Nenhuma solicitação gerada ainda. Vincule fornecedores na Seção 3 e clique em <b>Gerar pagamentos pendentes</b>.<br><span style="font-size:9px;color:var(--gr)">⚠ O sistema só permite solicitar pagamento para CNPJs identificados nesta planilha.</span></div>`;
+    return;
+  }
+  let h=`<table class="pag-table"><thead><tr><th>ID</th><th>Fornecedor</th><th>Categoria / Serviço</th><th>Valor</th><th>Condição</th><th>Status</th></tr></thead><tbody>`;
+  pagamentosGerados.forEach(p=>{
+    h+=`<tr>`;
+    h+=`<td style="font-size:9px;color:var(--gr);font-weight:700">${p.id}</td>`;
+    h+=`<td><div style="font-weight:700;font-size:11px;color:var(--dk)">${p.fornecedor}</div><div class="pag-cnpj">${p.cnpj}</div></td>`;
+    h+=`<td style="font-size:10px;color:var(--gr)">${p.categoria}<br><span style="color:var(--dk2)">${p.desc}</span></td>`;
+    h+=`<td style="font-weight:700">${fmt(p.valor)}</td>`;
+    h+=`<td><span class="pag-pct">${p.pct}% · ${p.data||'data a definir'}</span></td>`;
+    h+=`<td><span class="pag-status ${p.status}">${p.status==='pendente'?'Aguarda NF':p.status==='aprovacao'?'Em aprovação':'Aprovado'}</span></td>`;
+    h+=`</tr>`;
+  });
+  h+=`</tbody></table>`;
+  body.innerHTML=h;
+}
+
+// ── RESUMO / KPI ───────────────────────────────────────────────
+function renderResumo(){
+  const s=calcSummary();
+  const fp=feePctEfetivo();
+  const diff=s.gpo-s.gp;
+  const dpct=s.gp>0?(diff/s.gp*100):0;
+  const dc=diff>=0?'vm':'vd';
+
+  document.getElementById('r-comp').innerHTML=`
     <div class="r-row"><span class="rl">Subtotal de custos</span><span class="rv">${fmt(s.gp)}</span></div>
-    <div class="r-row"><span class="rl">Fee MCI<span class="fee-sub">${fp}% do subtotal</span></span><span class="rv">${fmt(s.fee)}</span></div>
+    <div class="r-row"><span class="rl">Fee MCI<span class="fee-sub">${fp}% · base: ${S.feeBase==='nd'?'itens ND':'total'}</span></span><span class="rv">${fmt(s.fee)}</span></div>
     <div class="r-row"><span class="rl">Impostos NF (6,5%)</span><span class="rv">${fmt(s.imp)}</span></div>
     <div class="r-row"><span class="rl">Total NF MCI</span><span class="rv vd">${fmt(s.totalNF)}</span></div>
     <div class="r-row"><span class="rl">Total ND MCI</span><span class="rv">${fmt(s.nd)}</span></div>
+    <div class="r-row"><span class="rl">Total SR MCI</span><span class="rv rx">${fmt(s.sr)}</span></div>
     <div class="r-row"><span class="rl">Total cliente direto</span><span class="rv">${fmt(s.cl)}</span></div>
     <div class="r-row tot"><span class="rl">TOTAL GERAL CLIENTE</span><span class="rv">${fmt(s.totalGeral)}</span></div>`;
 
-        document.getElementById("r-fat").innerHTML = `
+  const lista=listarFornecedoresIdentificados();
+  document.getElementById('r-fat').innerHTML=`
     <div class="r-row"><span class="rl">NF MCI a emitir</span><span class="rv vd">${fmt(s.totalNF)}</span></div>
     <div class="r-row"><span class="rl">ND MCI a emitir</span><span class="rv">${fmt(s.nd)}</span></div>
     <div class="r-row"><span class="rl">Direto ao cliente</span><span class="rv">${fmt(s.cl)}</span></div>
-    <div class="r-row" style="margin-top:10px;padding-top:10px;border-top:1px dashed #e0e6ed"><span class="rl">GM Projeto (interno)</span><span class="rv vd">${fmt(gm)}</span></div>
-    <div class="r-row"><span class="rl">Rentabilidade (interno)</span><span class="rv vd">${gmpct}%</span></div>
-    <div class="r-row"><span class="rl">BV líquido MCI (interno)</span><span class="rv lj">${fmt(s.fee * 0.85)}</span></div>
-    <div class="r-row tot"><span class="rl">SALDO A FATURAR</span><span class="rv">${fmt(s.totalGeral)}</span></div>`;
+    <div class="r-row tot"><span class="rl">SALDO A FATURAR</span><span class="rv">${fmt(s.totalGeral)}</span></div>
+    <div class="r-row" style="margin-top:8px;padding-top:8px;border-top:1px dashed #e0e6ed"><span class="rl">Fornecedores identificados</span><span class="rv">${lista.length}</span></div>
+    <div class="r-row"><span class="rl">Solicitações geradas</span><span class="rv">${pagamentosGerados.length}</span></div>`;
 
-        const bw = Math.min(Math.abs(dpct), 100);
-        const bc = diff >= 0 ? "#e7515a" : "#00ab55";
-        document.getElementById("r-var").innerHTML = `
+  const bw=Math.min(Math.abs(dpct),100);
+  const bc=diff>=0?'#e7515a':'#00ab55';
+  document.getElementById('r-var').innerHTML=`
     <div class="r-row"><span class="rl">Total Pré-evento</span><span class="rv vd">${fmt(s.gp)}</span></div>
     <div class="r-row"><span class="rl">Total Pós-evento</span><span class="rv vm">${fmt(s.gpo)}</span></div>
-    <div class="r-row"><span class="rl">Variação (R$)</span><span class="rv ${dc}">${diff>=0?"+":"-"}${fmt(Math.abs(diff))}</span></div>
-    <div class="r-row"><span class="rl">Variação (%)</span><span class="rv ${dc}">${diff>=0?"+":""}${Math.round(dpct)}%</span></div>
+    <div class="r-row"><span class="rl">Variação (R$)</span><span class="rv ${dc}">${diff>=0?'+':'-'}${fmt(Math.abs(diff))}</span></div>
+    <div class="r-row"><span class="rl">Variação (%)</span><span class="rv ${dc}">${diff>=0?'+':''}${Math.round(dpct)}%</span></div>
     <div class="var-bar"><div class="var-fill" style="width:${bw}%;background:${bc}"></div></div>
-    <div style="font-size:9px;color:var(--gr);margin-top:2px">${diff>0?"Pós-evento acima do estimado":diff<0?"Pós-evento abaixo do estimado":"Sem variação"}</div>
-    <div class="r-row tot"><span class="rl">DIFERENÇA</span><span class="rv ${dc}">${diff>=0?"+":"-"}${fmt(Math.abs(diff))}</span></div>`;
-      }
+    <div style="font-size:9px;color:var(--gr);margin-top:2px">${diff>0?'Pós-evento acima do estimado':diff<0?'Pós-evento abaixo do estimado':'Sem variação'}</div>`;
 
-      function renderKPI() {
-        const s = calcSummary();
-        const n = S.cats.reduce((a,c) => a+c.items.length, 0);
-        document.getElementById("kpi-row").innerHTML = `
+  const rentTot=totalRentLiquida();
+  const pagoTot=totalValorPagoFornecedores();
+  const rentPct=s.totalGeral>0?Math.round(rentTot/s.totalGeral*100):0;
+  document.getElementById('r-rent').innerHTML=`
+    <div class="r-row"><span class="rl">Cobrado do cliente</span><span class="rv">${fmt(s.gp)}</span></div>
+    <div class="r-row"><span class="rl">Pago a fornecedores</span><span class="rv">${fmt(pagoTot)}</span></div>
+    <div class="r-row"><span class="rl">Rentabilidade bruta</span><span class="rv">${fmt(s.gp-pagoTot)}</span></div>
+    <div class="r-row tot"><span class="rl">BV LÍQUIDO MCI</span><span class="rv lj">${rentTot>=0?'+':'-'}${fmt(rentTot)}</span></div>
+    <div style="font-size:9px;color:var(--gr);margin-top:4px">${rentPct}% de rentabilidade sobre o total · 🔒 não exportável</div>`;
+}
+
+function renderKPI(){
+  const s=calcSummary();
+  const n=S.cats.reduce((a,c)=>a+c.items.length,0);
+  const rentTot=totalRentLiquida();
+  document.getElementById('kpi-row').innerHTML=`
     <div class="kpi"><div class="kpi-lbl">Total Pré-evento</div><div class="kpi-val c-vd">${fmt(s.gp)}</div><div class="kpi-sub">${n} itens · ${S.cats.length} categorias</div></div>
     <div class="kpi"><div class="kpi-lbl">Total Pós-evento</div><div class="kpi-val c-vm">${fmt(s.gpo)}</div><div class="kpi-sub">Fechamento real</div></div>
-    <div class="kpi"><div class="kpi-lbl">Fee MCI</div><div class="kpi-val">${fmt(s.fee)}</div><div class="kpi-sub">${Math.round((s.fee/s.gp)*100)}% do subtotal</div></div>
-    <div class="kpi"><div class="kpi-lbl">Impostos NF</div><div class="kpi-val">${fmt(s.imp)}</div><div class="kpi-sub">6,5% sobre NF</div></div>
+    <div class="kpi"><div class="kpi-lbl">Fee MCI</div><div class="kpi-val">${fmt(s.fee)}</div><div class="kpi-sub">${feePctEfetivo()}% (${S.feeMode==='manual'?'manual':'por faixa'})</div></div>
     <div class="kpi"><div class="kpi-lbl">Total NF MCI</div><div class="kpi-val c-az">${fmt(s.totalNF)}</div></div>
-    <div class="kpi"><div class="kpi-lbl">Total geral cliente</div><div class="kpi-val c-lj">${fmt(s.totalGeral)}</div></div>`;
-        document.getElementById("cat-count").textContent = `${S.cats.length} categorias · ${n} itens`;
-      }
+    <div class="kpi"><div class="kpi-lbl">Total geral cliente</div><div class="kpi-val c-lj">${fmt(s.totalGeral)}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Rentabilidade (interno)</div><div class="kpi-val c-rx">${rentTot>=0?'+':'-'}${fmt(rentTot)}</div><div class="kpi-sub">🔒 não exportável</div></div>`;
+  document.getElementById('cat-count').textContent=`${S.cats.length} categorias · ${n} itens`;
+}
 
-      // ── AÇÕES GRID ────────────────────────────────────────────────
-      function toggleCat(modo, ci) {
-        const k = modo === "pre" ? "collPre" : "collPos";
-        S[k][ci] = !S[k][ci];
-        render();
-      }
-      function delItem(ci, ii) {
-        if (S.cats[ci].items.length <= 1) { alert("A categoria precisa ter ao menos 1 item."); return; }
-        if (confirm("Excluir esta linha?")) { S.cats[ci].items.splice(ii, 1); render(); }
-      }
-      function addItem(ci, dataKey) {
-        const it = { desc: "Novo item", fat: "NF MCI", pre: {qtde:1,dias:1,unit:0}, pos: {qtde:1,dias:1,unit:0} };
-        S.colsPre.filter(c=>c.extra).forEach(c => { it.pre[c.id]=0; });
-        S.colsPos.filter(c=>c.extra).forEach(c => { it.pos[c.id]=0; });
-        S.cats[ci].items.push(it);
-        render();
-      }
-      function delCat(ci) {
-        if (!confirm(`Excluir a categoria "${S.cats[ci].nome}" e todos os seus itens?`)) return;
-        S.cats.splice(ci, 1);
-        render();
-      }
-      function editCat(ci) {
-        const cat = S.cats[ci];
-        MODAL_STATE.editingCi = ci;
-        document.getElementById("m-nome").value = cat.nome;
-        document.getElementById("m-fornec-input").value = cat.fornecedor || "";
-        MODAL_STATE.corSel = cat.cor || PALETA[0];
-        MODAL_STATE.fornecSel = cat.fornecedor || "";
-        renderColorPicks();
-        filterFornec("");
-        updatePreview();
-        document.querySelector(".modal-head-title").lastChild.textContent = " Editar Categoria";
-        document.getElementById("modal-backdrop").classList.add("open");
-      }
+// ── AÇÕES GRID ─────────────────────────────────────────────────
+function toggleCat(modo,ci){
+  const k=modo==='pre'?'collPre':modo==='pos'?'collPos':'collInt';
+  S[k][ci]=!S[k][ci]; render();
+}
+function delItem(ci,ii){
+  if(S.cats[ci].items.length<=1){alert('A categoria precisa ter ao menos 1 item.');return;}
+  if(confirm('Excluir esta linha?')){S.cats[ci].items.splice(ii,1);render();}
+}
+function addItem(ci,dataKey){
+  const it={desc:'Novo serviço',fat:'NF MCI',pre:{qtde:1,dias:1,unit:0},pos:{qtde:1,dias:1,unit:0},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''};
+  S.colsPre.filter(c=>c.extra).forEach(c=>{it.pre[c.id]=0;});
+  S.colsPos.filter(c=>c.extra).forEach(c=>{it.pos[c.id]=0;});
+  S.cats[ci].items.push(it);
+  render();
+}
+function delCat(ci){
+  if(!confirm(`Excluir a categoria "${S.cats[ci].nome}" e todos os seus itens?`))return;
+  S.cats.splice(ci,1); render();
+}
+function editCat(ci){
+  const cat=S.cats[ci];
+  MODAL_STATE.editingCi=ci;
+  document.getElementById('m-nome').value=cat.nome;
+  MODAL_STATE.corSel=cat.cor||PALETA[0];
+  renderColorPicks(); updatePreview();
+  document.querySelector('#modal .modal-head-title').innerHTML=
+    `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" width="18" height="18"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Editar Categoria`;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+function addColPre(){
+  const lbl=prompt('Nome da nova coluna (Pré-evento):','Extras');
+  if(!lbl)return;
+  const id='ep_'+(++colCtr);
+  S.colsPre.push({id,label:lbl,extra:true});
+  S.cats.forEach(c=>c.items.forEach(it=>{it.pre[id]=0;}));
+  render();
+}
+function addColPos(){
+  const lbl=prompt('Nome da nova coluna (Pós-evento):','Ajuste');
+  if(!lbl)return;
+  const id='ep_'+(++colCtr);
+  S.colsPos.push({id,label:lbl,extra:true});
+  S.cats.forEach(c=>c.items.forEach(it=>{it.pos[id]=0;}));
+  render();
+}
+function removeCol(modo,id){
+  if(!confirm('Remover esta coluna e seus valores?'))return;
+  if(modo==='pre') S.colsPre=S.colsPre.filter(c=>c.id!==id);
+  else             S.colsPos=S.colsPos.filter(c=>c.id!==id);
+  render();
+}
+function renameCol(modo,id,lbl){
+  const cols=modo==='pre'?S.colsPre:S.colsPos;
+  const c=cols.find(c=>c.id===id);
+  if(c)c.label=lbl;
+}
 
-      function addColPre() {
-        const lbl = prompt("Nome da nova coluna (Pré-evento):", "Extras");
-        if (!lbl) return;
-        const id = "ep_" + ++colCtr;
-        S.colsPre.push({ id, label: lbl, extra: true });
-        S.cats.forEach(c => c.items.forEach(it => { it.pre[id]=0; }));
-        render();
-      }
-      function addColPos() {
-        const lbl = prompt("Nome da nova coluna (Pós-evento):", "Ajuste");
-        if (!lbl) return;
-        const id = "ep_" + ++colCtr;
-        S.colsPos.push({ id, label: lbl, extra: true });
-        S.cats.forEach(c => c.items.forEach(it => { it.pos[id]=0; }));
-        render();
-      }
-      function removeCol(modo, id) {
-        if (!confirm("Remover esta coluna e seus valores?")) return;
-        if (modo === "pre") S.colsPre = S.colsPre.filter(c=>c.id!==id);
-        else S.colsPos = S.colsPos.filter(c=>c.id!==id);
-        render();
-      }
-      function renameCol(modo, id, lbl) {
-        const cols = modo === "pre" ? S.colsPre : S.colsPos;
-        const c = cols.find(c=>c.id===id);
-        if (c) c.label = lbl;
-      }
+// ── FEE / CÂMBIO ───────────────────────────────────────────────
+function setFeeMode(mode){
+  S.feeMode=mode;
+  const badge=document.getElementById('fee-mode-badge');
+  badge.textContent=mode==='manual'?S.feeManualPct+'% fixo':'por faixa de valor';
+  badge.className='fc-badge '+(mode==='manual'?'manual':'auto');
+  render();
+}
+function setCambioMode(mode){
+  S.cambioMode=mode;
+  const badge=document.getElementById('cambio-mode-badge');
+  if(mode==='auto'){
+    badge.textContent='PTAX hoje: '+PTAX_HOJE.toFixed(2).replace('.',',');
+    badge.className='fc-badge auto';
+  } else {
+    const v=prompt('Câmbio manual (R$ por US$):',S.cambioManual.toFixed(2));
+    if(v&&!isNaN(+v)) S.cambioManual=+v;
+    badge.textContent='Manual: '+S.cambioManual.toFixed(2).replace('.',',');
+    badge.className='fc-badge manual';
+  }
+  render();
+}
+function renderMoedaCols(){
+  document.getElementById('moeda-cols-wrap').innerHTML=S.moedasExtra.map((m,i)=>
+    `<span class="moeda-pill">${m.label}<button onclick="removeMoedaCol(${i})" title="Remover">×</button></span>`
+  ).join('');
+}
+function addMoedaCol(){
+  const label=prompt('Código da moeda (ex: EUR, MXN, GBP):','EUR');
+  if(!label)return;
+  const taxa=prompt('Taxa de conversão (1 '+label.toUpperCase()+' = quantos R$?):','5.50');
+  if(!taxa||isNaN(+taxa))return;
+  S.moedasExtra.push({id:label.toLowerCase(),simbolo:label.toUpperCase(),taxa:+taxa,label:label.toUpperCase()});
+  renderMoedaCols();
+}
+function removeMoedaCol(i){ S.moedasExtra.splice(i,1); renderMoedaCols(); }
 
-      // ── MODAL ─────────────────────────────────────────────────────
-      const MODAL_STATE = { corSel: PALETA[0], fornecSel: "", editingCi: null };
+// ── MODAL CATEGORIA ────────────────────────────────────────────
+const MODAL_STATE={corSel:PALETA[0],editingCi:null};
+function renderColorPicks(){
+  document.getElementById('color-picks').innerHTML=PALETA.map(cor=>
+    `<div class="cp${MODAL_STATE.corSel===cor?' sel':''}" style="background:${cor}" onclick="selCor('${cor}')"></div>`
+  ).join('');
+}
+function selCor(cor){ MODAL_STATE.corSel=cor; renderColorPicks(); updatePreview(); }
+function updatePreview(){
+  const nome=document.getElementById('m-nome').value.trim()||'Nova categoria';
+  document.getElementById('prev-swatch').style.background=MODAL_STATE.corSel;
+  document.getElementById('prev-name').textContent=nome;
+}
+function openModal(){
+  MODAL_STATE.editingCi=null;
+  MODAL_STATE.corSel=PALETA[S.cats.length%PALETA.length];
+  document.getElementById('m-nome').value='';
+  document.querySelector('#modal .modal-head-title').innerHTML=
+    `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg> Nova Categoria`;
+  renderColorPicks(); updatePreview();
+  document.getElementById('modal-backdrop').classList.add('open');
+  setTimeout(()=>document.getElementById('m-nome').focus(),220);
+}
+function closeModal(){ document.getElementById('modal-backdrop').classList.remove('open'); }
+function backdropClick(e){ if(e.target===document.getElementById('modal-backdrop')) closeModal(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeFornecModal(); closeExportModal(); } });
 
-      function renderColorPicks() {
-        document.getElementById("color-picks").innerHTML = PALETA.map(cor =>
-          `<div class="cp${MODAL_STATE.corSel===cor?" sel":""}" style="background:${cor}" onclick="selCor('${cor}')" title="${cor}"></div>`
-        ).join("");
-      }
+function salvarCategoria(){
+  const nome=document.getElementById('m-nome').value.trim();
+  if(!nome){ document.getElementById('m-nome').style.borderColor='#e7515a'; document.getElementById('m-nome').focus(); return; }
+  document.getElementById('m-nome').style.borderColor='';
+  const ci=MODAL_STATE.editingCi;
+  if(ci!==null){
+    S.cats[ci].nome=nome; S.cats[ci].cor=MODAL_STATE.corSel;
+  } else {
+    const newId=S.cats.length>0?Math.max(...S.cats.map(c=>c.id))+1:1;
+    const it={desc:'Novo serviço',fat:'NF MCI',pre:{qtde:1,dias:1,unit:0},pos:{qtde:1,dias:1,unit:0},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''};
+    S.colsPre.filter(c=>c.extra).forEach(c=>{it.pre[c.id]=0;});
+    S.colsPos.filter(c=>c.extra).forEach(c=>{it.pos[c.id]=0;});
+    S.cats.push({id:newId,nome,cor:MODAL_STATE.corSel,items:[it]});
+  }
+  closeModal(); render();
+}
 
-      function selCor(cor) {
-        MODAL_STATE.corSel = cor;
-        renderColorPicks();
-        updatePreview();
-      }
+// ── MODAL VINCULAR FORNECEDOR ──────────────────────────────────
+const FORNEC_MODAL_STATE={ci:null,ii:null,selecionado:null};
+function openFornecModal(ci,ii){
+  FORNEC_MODAL_STATE.ci=ci; FORNEC_MODAL_STATE.ii=ii;
+  const it=S.cats[ci].items[ii];
+  FORNEC_MODAL_STATE.selecionado=it.fornecedor?{nome:it.fornecedor,cnpj:it.cnpj}:null;
+  document.getElementById('fm-busca').value='';
+  document.getElementById('fm-valor-pago').value=it.valorPago||'';
+  document.getElementById('fm-pct-pag').value=it.pctPag||100;
+  document.getElementById('fm-data-pag').value=it.dataPag||'';
+  filterFornecModal('');
+  document.getElementById('fornec-modal-backdrop').classList.add('open');
+  setTimeout(()=>document.getElementById('fm-busca').focus(),220);
+}
+function closeFornecModal(){ document.getElementById('fornec-modal-backdrop').classList.remove('open'); }
+function fornecBackdropClick(e){ if(e.target===document.getElementById('fornec-modal-backdrop')) closeFornecModal(); }
 
-      function filterFornec(q) {
-        const list = document.getElementById("fornec-list");
-        const todos = [...FORNECEDORES_CADASTRADOS,
-          ...S.cats.map(c=>c.fornecedor).filter(f=>f&&!FORNECEDORES_CADASTRADOS.includes(f))];
-        const filtrados = q ? todos.filter(f=>f.toLowerCase().includes(q.toLowerCase())) : todos;
-        list.innerHTML = filtrados.slice(0,8).map(f => {
-          const ini = f.trim().slice(0,2).toUpperCase();
-          const sel = MODAL_STATE.fornecSel===f?" sel":"";
-          return `<div class="fornec-pill${sel}" onclick="selFornec('${f.replace(/'/g,"\\'")}')">
-            <div class="fp-ico">${ini}</div>${f}
-          </div>`;
-        }).join("");
-      }
+function filterFornecModal(q){
+  const list=document.getElementById('fm-list');
+  const todos=[...FORNECEDORES_BASE];
+  S.cats.forEach(c=>c.items.forEach(it=>{
+    if(it.fornecedor&&!todos.find(f=>f.nome===it.fornecedor))
+      todos.push({nome:it.fornecedor,cnpj:it.cnpj||'',categoria:'Customizado'});
+  }));
+  const filtrados=q?todos.filter(f=>f.nome.toLowerCase().includes(q.toLowerCase())||f.cnpj.includes(q)):todos;
+  list.innerHTML=filtrados.slice(0,8).map(f=>{
+    const ini=f.nome.trim().slice(0,2).toUpperCase();
+    const sel=FORNEC_MODAL_STATE.selecionado&&FORNEC_MODAL_STATE.selecionado.nome===f.nome?' sel':'';
+    return `<div class="fornec-pill${sel}" onclick='selFornecModal(${JSON.stringify(f.nome)},${JSON.stringify(f.cnpj||"")})'>
+      <div class="fp-ico">${ini}</div>${f.nome}<span style="opacity:.6;font-weight:500"> · ${f.cnpj||'sem CNPJ'}</span>
+    </div>`;
+  }).join('');
+  if(q&&!todos.find(f=>f.nome.toLowerCase()===q.toLowerCase())&&q.length>2){
+    list.innerHTML+=`<div class="fornec-pill" style="border-style:dashed" onclick='criarNovoFornec(${JSON.stringify(q)})'>
+      <div class="fp-ico">+</div>Cadastrar "${q}"
+    </div>`;
+  }
+}
+function selFornecModal(nome,cnpj){
+  FORNEC_MODAL_STATE.selecionado={nome,cnpj};
+  filterFornecModal(document.getElementById('fm-busca').value);
+}
+function criarNovoFornec(nome){
+  const cnpj=prompt('CNPJ do novo fornecedor "'+nome+'":','');
+  if(cnpj===null)return;
+  FORNECEDORES_BASE.push({nome,cnpj,categoria:'Novo'});
+  FORNEC_MODAL_STATE.selecionado={nome,cnpj};
+  filterFornecModal('');
+}
+function salvarFornecVinculo(){
+  if(!FORNEC_MODAL_STATE.selecionado){alert('Selecione ou cadastre um fornecedor primeiro.');return;}
+  const {ci,ii}=FORNEC_MODAL_STATE;
+  const it=S.cats[ci].items[ii];
+  it.fornecedor=FORNEC_MODAL_STATE.selecionado.nome;
+  it.cnpj=FORNEC_MODAL_STATE.selecionado.cnpj;
+  it.valorPago=+document.getElementById('fm-valor-pago').value||0;
+  it.pctPag=+document.getElementById('fm-pct-pag').value||100;
+  it.dataPag=document.getElementById('fm-data-pag').value||'';
+  closeFornecModal(); render();
+}
 
-      function selFornec(nome) {
-        MODAL_STATE.fornecSel = nome;
-        document.getElementById("m-fornec-input").value = nome;
-        filterFornec(nome);
-        updatePreview();
-      }
+// ── MODAL EXPORTAÇÃO ───────────────────────────────────────────
+let exportFmt='pdf';
+function selectExportFmt(f){ exportFmt=f; document.querySelectorAll('.export-fmt-btn').forEach(b=>b.classList.toggle('active',b.dataset.fmt===f)); }
+function openExportModal(){ document.getElementById('export-modal-backdrop').classList.add('open'); }
+function closeExportModal(){ document.getElementById('export-modal-backdrop').classList.remove('open'); }
+function exportBackdropClick(e){ if(e.target===document.getElementById('export-modal-backdrop')) closeExportModal(); }
+function confirmExport(){
+  const layout=document.getElementById('export-layout').value;
+  const incluiPos=document.getElementById('exp-pos').checked;
+  closeExportModal();
+  alert(`Exportando planilha do cliente:\nFormato: ${exportFmt.toUpperCase()}\nLayout: ${layout}\nSeções: Pré-evento${incluiPos?' + Pós-evento':''}\n\n(Dados de fornecedor, BV e rentabilidade omitidos automaticamente)`);
+}
 
-      function updatePreview() {
-        const nome = document.getElementById("m-nome").value.trim() || "Nova categoria";
-        const fornec = document.getElementById("m-fornec-input").value.trim();
-        MODAL_STATE.fornecSel = fornec;
-        document.getElementById("prev-swatch").style.background = MODAL_STATE.corSel;
-        document.getElementById("prev-name").textContent = nome;
-        document.getElementById("prev-fornec").textContent = fornec ? "📦 " + fornec : "Sem fornecedor";
-      }
+// ── RENDER PRINCIPAL ───────────────────────────────────────────
+function render(){
+  document.getElementById('grid-pre').innerHTML=buildGrid('pre');
+  document.getElementById('grid-pos').innerHTML=buildGrid('pos');
+  document.getElementById('grid-int').innerHTML=buildGridInt();
+  renderKPI();
+  renderResumo();
+  renderPagamentos();
+}
 
-      function openModal() {
-        MODAL_STATE.editingCi = null;
-        MODAL_STATE.corSel = PALETA[S.cats.length % PALETA.length];
-        MODAL_STATE.fornecSel = "";
-        document.getElementById("m-nome").value = "";
-        document.getElementById("m-fornec-input").value = "";
-        document.querySelector(".modal-head-title").innerHTML =
-          `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" width="18" height="18"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg> Nova Categoria`;
-        renderColorPicks();
-        filterFornec("");
-        updatePreview();
-        document.getElementById("modal-backdrop").classList.add("open");
-        setTimeout(() => document.getElementById("m-nome").focus(), 220);
-      }
-
-      function closeModal() {
-        document.getElementById("modal-backdrop").classList.remove("open");
-      }
-
-      function backdropClick(e) {
-        if (e.target === document.getElementById("modal-backdrop")) closeModal();
-      }
-
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-
-      function salvarCategoria() {
-        const nome = document.getElementById("m-nome").value.trim();
-        if (!nome) {
-          document.getElementById("m-nome").focus();
-          document.getElementById("m-nome").style.borderColor = "#e7515a";
-          return;
-        }
-        document.getElementById("m-nome").style.borderColor = "";
-        const fornec = document.getElementById("m-fornec-input").value.trim();
-        const ci = MODAL_STATE.editingCi;
-
-        if (ci !== null) {
-          S.cats[ci].nome = nome;
-          S.cats[ci].cor = MODAL_STATE.corSel;
-          S.cats[ci].fornecedor = fornec;
-        } else {
-          const newId = S.cats.length > 0 ? Math.max(...S.cats.map(c=>c.id)) + 1 : 1;
-          const novaCat = {
-            id: newId, nome, cor: MODAL_STATE.corSel, fornecedor: fornec,
-            items: [{ desc: "Novo item", fat: "NF MCI", pre: {qtde:1,dias:1,unit:0}, pos: {qtde:1,dias:1,unit:0} }],
-          };
-          S.colsPre.filter(c=>c.extra).forEach(c => { novaCat.items[0].pre[c.id]=0; });
-          S.colsPos.filter(c=>c.extra).forEach(c => { novaCat.items[0].pos[c.id]=0; });
-          S.cats.push(novaCat);
-        }
-        closeModal();
-        render();
-      }
-
-      // ── AUTOCOMPLETE ──────────────────────────────────────────────
-      const CLIENTES = [
-        { nome: "Farmabrasil S.A.", cnpj: "12.345.678/0001-99" },
-        { nome: "TechCorp Brasil Ltda", cnpj: "23.456.789/0001-88" },
-        { nome: "Grupo Saúde Plus", cnpj: "34.567.890/0001-77" },
-        { nome: "Eventos Prime S.A.", cnpj: "45.678.901/0001-66" },
-        { nome: "Financeira Nacional Ltda", cnpj: "56.789.012/0001-55" },
-        { nome: "Construtora Ventura S.A.", cnpj: "67.890.123/0001-44" },
-        { nome: "Varejo Mix S.A.", cnpj: "78.901.234/0001-33" },
-        { nome: "AutoParts Brasil Ltda", cnpj: "89.012.345/0001-22" },
-        { nome: "Seguros Confiança Ltda", cnpj: "90.123.456/0001-11" },
-        { nome: "Digital Hub Brasil", cnpj: "01.234.567/0001-00" },
-      ];
-
-      const PMS = [
-        { nome: "Ana Beatriz" }, { nome: "Carlos Souza" },
-        { nome: "Fernanda Lima" }, { nome: "Rafael Mendes" }, { nome: "Juliana Costa" },
-      ];
-
-      const BUS = [{ nome: "CORP" }, { nome: "PCO" }, { nome: "AM&C" }, { nome: "INCENTIVOS" }];
-
-      const COS = [
-        { nome: "CORP INCENTIVES" }, { nome: "STRATEGIC ACCOUNTS" },
-        { nome: "MEETINGS & EVENTS" }, { nome: "AM&C" }, { nome: "PCO" }, { nome: "COMUNIDADES" },
-      ];
-
-      const POS = [
-        { numero: "PO-7782-A" }, { numero: "PO-7782-B" }, { numero: "PO-8801-A" },
-        { numero: "PO-9120-B" }, { numero: "PO-9340-C" }, { numero: "PO-6655-A" },
-        { numero: "PO-5500-B" }, { numero: "PO-4410-A" }, { numero: "PO-3321-C" }, { numero: "PO-1190-A" },
-      ];
-
-      function acFilter(dropId, q, list, keys, renderFn) {
-        const drop = document.getElementById(dropId);
-        const ql = q.toLowerCase().trim();
-        const filtered = ql ? list.filter(item => keys.some(k => (item[k]||"").toLowerCase().includes(ql))) : list;
-        drop.innerHTML = filtered.length ? filtered.map(renderFn).join("") : '<div class="ac-empty">Nenhum resultado encontrado</div>';
-        drop.classList.add("open");
-      }
-
-      function acRenderCliente(item) {
-        const n = item.nome.replace(/'/g,"\\'"), c = item.cnpj.replace(/'/g,"\\'");
-        return `<div class="ac-item" onclick="acSelectCliente('${n}','${c}')">
-          <div class="ac-item-name">${item.nome}</div>
-          <div class="ac-item-sub">CNPJ: ${item.cnpj}</div>
-        </div>`;
-      }
-      function acRenderPM(item) {
-        const n = item.nome.replace(/'/g,"\\'");
-        return `<div class="ac-item" onclick="acSelectPM('${n}')"><div class="ac-item-name">${item.nome}</div></div>`;
-      }
-      function acSelectCliente(nome, cnpj) {
-        document.getElementById("f-cliente").value = nome;
-        const v = nome.trim();
-        document.getElementById("topbar-cliente").textContent = v;
-        document.getElementById("sep-cliente").style.display = v ? "" : "none";
-        const cnpjEl = document.getElementById("topbar-cnpj");
-        cnpjEl.textContent = cnpj ? " · " + cnpj : "";
-        cnpjEl.style.display = cnpj ? "" : "none";
-        document.getElementById("ac-cliente").classList.remove("open");
-      }
-      function acSelectPM(nome) {
-        document.getElementById("f-pm").value = nome;
-        document.getElementById("ac-pm").classList.remove("open");
-      }
-      function acRenderBU(item) {
-        const n = item.nome.replace(/'/g,"\\'");
-        return `<div class="ac-item" onclick="acSelectBU('${n}')"><div class="ac-item-name">${item.nome}</div></div>`;
-      }
-      function acSelectBU(nome) {
-        document.getElementById("f-bu").value = nome;
-        document.getElementById("ac-bu").classList.remove("open");
-      }
-      function acRenderCO(item) {
-        const n = item.nome.replace(/'/g,"\\'");
-        return `<div class="ac-item" onclick="acSelectCO('${n}')"><div class="ac-item-name">${item.nome}</div></div>`;
-      }
-      function acSelectCO(nome) {
-        document.getElementById("f-co").value = nome;
-        document.getElementById("ac-co").classList.remove("open");
-      }
-      function acRenderPO(item) {
-        const n = item.numero.replace(/'/g,"\\'");
-        return `<div class="ac-item" onclick="acSelectPO('${n}')"><div class="ac-item-name">${item.numero}</div></div>`;
-      }
-      function acSelectPO(numero) {
-        document.getElementById("f-po").value = numero;
-        document.getElementById("ac-po").classList.remove("open");
-      }
-
-      document.addEventListener("click", function(e) {
-        document.querySelectorAll(".ac-dropdown.open").forEach(function(d) {
-          if (!d.closest(".ac-wrap").contains(e.target)) d.classList.remove("open");
-        });
-      });
-
-      // ── RENDER PRINCIPAL ──────────────────────────────────────────
-      function render() {
-        document.getElementById("grid-pre").innerHTML = buildGrid("pre");
-        document.getElementById("grid-pos").innerHTML = buildGrid("pos");
-        renderKPI();
-        renderResumo();
-      }
-
-      render();
-    </script>
-  </body>
+renderMoedaCols();
+render();
+</script>
+</body>
 </html>
