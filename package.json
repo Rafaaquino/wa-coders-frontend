@@ -10,7 +10,7 @@
     "start": "node server",
     "start:dev": "ng serve",
     "build": "ng build",
-    "build:ghpages": "ng build --configuration production --base-href='/' --output-path=dist/wa-coders",
+    "build:ghpages": "ng build --configuration production --base-href='/' --output-path=dist/wa-coders --output-hashing=all",
     "deploy": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/wa-coders --branch=gh-pages",
     "deploy:ssh": "./deploy-ghpages.sh",
     "deploy:dry-run": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/wa-coders --branch=gh-pages --dry-run",
