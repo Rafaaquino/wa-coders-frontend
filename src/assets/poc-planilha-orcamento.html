@@ -441,6 +441,7 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
     <span class="sec-presets-lbl">Modo de trabalho</span>
     <button class="preset-btn" data-preset="pre-int" onclick="applyPreset('pre-int')">Pré-evento + Uso Interno</button>
     <button class="preset-btn" data-preset="pos-int" onclick="applyPreset('pos-int')">Fechamento + Uso Interno</button>
+    <button class="preset-btn" data-preset="pre-pos" onclick="applyPreset('pre-pos')">Pré-evento + Fechamento</button>
     <button class="preset-btn" data-preset="all" onclick="applyPreset('all')">Todas as seções</button>
   </div>
 
@@ -1213,6 +1214,7 @@ function toggleSection(sec){
 function applyPreset(name){
   if(name==='pre-int') S.secOpen={pre:true,pos:false,int:true};
   else if(name==='pos-int') S.secOpen={pre:false,pos:true,int:true};
+  else if(name==='pre-pos') S.secOpen={pre:true,pos:true,int:false};
   else S.secOpen={pre:true,pos:true,int:true};
   syncSectionUI();
 }
@@ -1222,7 +1224,7 @@ function syncSectionUI(){
     if(el) el.classList.toggle('closed', !S.secOpen[sec]);
   });
   const p=S.secOpen;
-  const activeName = (p.pre&&!p.pos&&p.int)?'pre-int':(!p.pre&&p.pos&&p.int)?'pos-int':(p.pre&&p.pos&&p.int)?'all':null;
+  const activeName = (p.pre&&!p.pos&&p.int)?'pre-int':(!p.pre&&p.pos&&p.int)?'pos-int':(p.pre&&p.pos&&!p.int)?'pre-pos':(p.pre&&p.pos&&p.int)?'all':null;
   document.querySelectorAll('.preset-btn').forEach(b=>{
     b.classList.toggle('active', activeName!==null && b.dataset.preset===activeName);
   });
