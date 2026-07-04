@@ -40,6 +40,7 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
 .btn-az{background:var(--az);color:#fff;border-color:var(--az)}.btn-az:hover{background:var(--az2);border-color:var(--az2)}
 .btn-vd{background:var(--vd);color:#fff;border-color:var(--vd)}.btn-vd:hover{background:#009648}
 .btn-lj{background:var(--lj);color:#fff;border-color:var(--lj)}.btn-lj:hover{background:#c9891f}
+.btn-vm-out{background:var(--wh);color:var(--vm);border-color:var(--vm)}.btn-vm-out:hover{background:var(--vm-l)}
 .btn-ghost{background:none;border:1px dashed var(--bd);color:var(--gr)}.btn-ghost:hover{color:var(--az);border-color:var(--az);background:var(--az-l)}
 
 .body{padding:18px 22px 56px}
@@ -79,14 +80,31 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
 .moeda-pill{display:inline-flex;align-items:center;gap:5px;background:var(--az-l);color:var(--az);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
 .moeda-pill button{background:none;border:none;color:var(--az);cursor:pointer;font-size:11px;padding:0;display:flex}
 
-.three-panels-wrap{overflow-x:auto;padding-bottom:6px;margin-bottom:0}
-.three-panels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:start;min-width:1140px}
+.sec-presets{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.sec-presets-lbl{font-size:10px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.4px;margin-right:2px}
+.preset-btn{padding:6px 13px;font-size:10.5px;font-weight:700;border:1px solid var(--bd);border-radius:20px;background:var(--wh);color:var(--dk2);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap}
+.preset-btn:hover{border-color:var(--az);color:var(--az)}
+.preset-btn.active{background:var(--az);border-color:var(--az);color:#fff}
+
+.three-panels-wrap{overflow-x:auto;padding-bottom:8px;margin-bottom:0}
+.three-panels{display:flex;gap:14px;align-items:flex-start}
 .three-panels-wrap::-webkit-scrollbar{height:8px}
 .three-panels-wrap::-webkit-scrollbar-track{background:var(--gr3);border-radius:4px}
 .three-panels-wrap::-webkit-scrollbar-thumb{background:#c5ccd6;border-radius:4px}
 .three-panels-wrap::-webkit-scrollbar-thumb:hover{background:var(--gr)}
 
-.panel{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden}
+.panel{background:var(--wh);border-radius:var(--rl);border:1px solid var(--bd);box-shadow:var(--sh);overflow:hidden;flex:0 0 auto;max-width:min(680px,92vw)}
+.panel.closed{width:42px}
+.panel-scroll{overflow-x:auto}
+.panel-scroll::-webkit-scrollbar{height:8px}
+.panel-scroll::-webkit-scrollbar-track{background:var(--gr3);border-radius:4px}
+.panel-scroll::-webkit-scrollbar-thumb{background:#c5ccd6;border-radius:4px}
+.panel.closed .panel-hdr,.panel.closed .panel-body{display:none}
+.panel:not(.closed) .panel-collapsed-strip{display:none}
+.panel-collapsed-strip{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding:16px 0;cursor:pointer;height:100%;min-height:260px;transition:background .15s}
+.panel-collapsed-strip:hover{background:#f5f6fa}
+.panel-collapsed-strip svg{width:13px;height:13px;stroke:var(--gr);fill:none;stroke-width:2.3;flex-shrink:0}
+.panel-collapsed-strip span{writing-mode:vertical-rl;font-size:10px;font-weight:800;color:var(--gr);letter-spacing:.6px;text-transform:uppercase;white-space:nowrap}
 .panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--bd);background:#fafbfc;gap:8px}
 .panel-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--dk);flex:1;min-width:0}
 .panel-title svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke-width:2.2}
@@ -95,6 +113,9 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
 .tag-pos{background:var(--vm-l);color:var(--vm)}
 .tag-int{background:var(--lj-l);color:var(--lj)}
 .panel-actions{display:flex;gap:5px;align-items:center;flex-shrink:0}
+.sec-toggle-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;border:1px solid var(--bd);background:var(--wh);color:var(--gr);cursor:pointer;flex-shrink:0}
+.sec-toggle-btn:hover{color:var(--az);border-color:var(--az)}
+.sec-toggle-btn svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.4}
 
 .panel-banner{padding:5px 14px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;text-align:center}
 .banner-pre{background:#05704a;color:#a7f3d0}
@@ -279,6 +300,9 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
     <span class="status-live"><span class="status-dot"></span>Sistema disponível 24/7</span>
   </div>
   <div class="topbar-r">
+    <button class="btn btn-vm-out" onclick="confirmResetPlanilha()">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>Zerar planilha
+    </button>
     <button class="btn btn-lj" onclick="alert('Exportando versão interna completa (uso restrito)...')">
       <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Interno
     </button>
@@ -395,6 +419,10 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Nova categoria
       </button>
+      <button class="btn btn-vm-out" onclick="confirmLimparItens()">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+        Limpar itens
+      </button>
       <span style="font-size:11px;color:var(--gr)" id="cat-count"></span>
     </div>
     <div class="toolbar-right">
@@ -409,10 +437,17 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
     </div>
   </div>
 
+  <div class="sec-presets">
+    <span class="sec-presets-lbl">Modo de trabalho</span>
+    <button class="preset-btn" data-preset="pre-int" onclick="applyPreset('pre-int')">Pré-evento + Uso Interno</button>
+    <button class="preset-btn" data-preset="pos-int" onclick="applyPreset('pos-int')">Fechamento + Uso Interno</button>
+    <button class="preset-btn" data-preset="all" onclick="applyPreset('all')">Todas as seções</button>
+  </div>
+
   <div class="three-panels-wrap">
   <div class="three-panels">
 
-    <div class="panel">
+    <div class="panel" id="panel-pre">
       <div class="panel-hdr">
         <div class="panel-title">
           <svg viewBox="0 0 24 24" stroke="#00ab55"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -423,13 +458,22 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
           <button class="add-col-btn" onclick="addColPre()" title="Adicionar coluna">
             <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
+          <button class="sec-toggle-btn" onclick="toggleSection('pre')" title="Fechar seção">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
         </div>
       </div>
-      <div class="banner-pre panel-banner">SEÇÃO 1 · ESTIMATIVA PRÉ-EVENTO</div>
-      <div id="grid-pre" style="overflow-x:auto"></div>
+      <div class="panel-body">
+        <div class="banner-pre panel-banner">SEÇÃO 1 · ESTIMATIVA PRÉ-EVENTO</div>
+        <div class="panel-scroll" id="grid-pre"></div>
+      </div>
+      <div class="panel-collapsed-strip" onclick="toggleSection('pre')" title="Abrir seção">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Pré-evento</span>
+      </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" id="panel-pos">
       <div class="panel-hdr">
         <div class="panel-title">
           <svg viewBox="0 0 24 24" stroke="#e7515a"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="16 17 12 12 8 17"/></svg>
@@ -440,13 +484,22 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
           <button class="add-col-btn" onclick="addColPos()" title="Adicionar coluna">
             <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
+          <button class="sec-toggle-btn" onclick="toggleSection('pos')" title="Fechar seção">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
         </div>
       </div>
-      <div class="banner-pos panel-banner">SEÇÃO 2 · FECHAMENTO PÓS-EVENTO</div>
-      <div id="grid-pos" style="overflow-x:auto"></div>
+      <div class="panel-body">
+        <div class="banner-pos panel-banner">SEÇÃO 2 · FECHAMENTO PÓS-EVENTO</div>
+        <div class="panel-scroll" id="grid-pos"></div>
+      </div>
+      <div class="panel-collapsed-strip" onclick="toggleSection('pos')" title="Abrir seção">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Pós-evento</span>
+      </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" id="panel-int">
       <div class="panel-hdr">
         <div class="panel-title">
           <svg viewBox="0 0 24 24" stroke="#e2a03f"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -455,10 +508,19 @@ body{font-family:'Nunito',sans-serif;background:#f1f5f9;color:#0e1726;min-height
         </div>
         <div class="panel-actions">
           <span class="add-col-btn"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Restrito</span>
+          <button class="sec-toggle-btn" onclick="toggleSection('int')" title="Fechar seção">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
         </div>
       </div>
-      <div class="banner-int panel-banner">SEÇÃO 3 · FORNECEDOR &amp; RENTABILIDADE</div>
-      <div id="grid-int" style="overflow-x:auto"></div>
+      <div class="panel-body">
+        <div class="banner-int panel-banner">SEÇÃO 3 · FORNECEDOR &amp; RENTABILIDADE</div>
+        <div class="panel-scroll" id="grid-int"></div>
+      </div>
+      <div class="panel-collapsed-strip" onclick="toggleSection('int')" title="Abrir seção">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Uso Interno</span>
+      </div>
     </div>
 
   </div>
@@ -684,6 +746,7 @@ const S = {
   feeBase: 'total',
   cambioMode: 'auto',
   cambioManual: PTAX_HOJE,
+  secOpen: {pre:true, pos:false, int:true},
 };
 let colCtr = 20;
 let pagamentosGerados = [];
@@ -1142,6 +1205,29 @@ function renameCol(modo,id,lbl){
   if(c)c.label=lbl;
 }
 
+// ── SEÇÕES COLAPSÁVEIS (abrir/fechar como grupos de colunas) ───
+function toggleSection(sec){
+  S.secOpen[sec]=!S.secOpen[sec];
+  syncSectionUI();
+}
+function applyPreset(name){
+  if(name==='pre-int') S.secOpen={pre:true,pos:false,int:true};
+  else if(name==='pos-int') S.secOpen={pre:false,pos:true,int:true};
+  else S.secOpen={pre:true,pos:true,int:true};
+  syncSectionUI();
+}
+function syncSectionUI(){
+  ['pre','pos','int'].forEach(sec=>{
+    const el=document.getElementById('panel-'+sec);
+    if(el) el.classList.toggle('closed', !S.secOpen[sec]);
+  });
+  const p=S.secOpen;
+  const activeName = (p.pre&&!p.pos&&p.int)?'pre-int':(!p.pre&&p.pos&&p.int)?'pos-int':(p.pre&&p.pos&&p.int)?'all':null;
+  document.querySelectorAll('.preset-btn').forEach(b=>{
+    b.classList.toggle('active', activeName!==null && b.dataset.preset===activeName);
+  });
+}
+
 // ── FEE / CÂMBIO ───────────────────────────────────────────────
 function setFeeMode(mode){
   S.feeMode=mode;
@@ -1297,6 +1383,63 @@ function confirmExport(){
   alert(`Exportando planilha do cliente:\nFormato: ${exportFmt.toUpperCase()}\nLayout: ${layout}\nSeções: Pré-evento${incluiPos?' + Pós-evento':''}\n\n(Dados de fornecedor, BV e rentabilidade omitidos automaticamente)`);
 }
 
+// ── LIMPAR ITENS (mantém as categorias) ────────────────────────
+function confirmLimparItens(){
+  if(S.cats.length===0){ alert('Não há categorias na planilha ainda.'); return; }
+  if(!confirm('Tem certeza que deseja limpar todos os itens das categorias?\n\nAs categorias criadas serão mantidas, mas todos os serviços, valores e fornecedores vinculados serão apagados. Essa ação não pode ser desfeita.')) return;
+  limparItens();
+}
+function limparItens(){
+  S.cats.forEach(cat=>{
+    const it={desc:'Novo serviço',fat:'NF MCI',pre:{qtde:1,dias:1,unit:0},pos:{qtde:1,dias:1,unit:0},fornecedor:'',cnpj:'',valorPago:0,pctPag:100,dataPag:''};
+    S.colsPre.filter(c=>c.extra).forEach(c=>{it.pre[c.id]=0;});
+    S.colsPos.filter(c=>c.extra).forEach(c=>{it.pos[c.id]=0;});
+    cat.items=[it];
+  });
+  S.collPre={}; S.collPos={}; S.collInt={};
+  pagamentosGerados=[];
+  render();
+}
+
+// ── ZERAR PLANILHA ─────────────────────────────────────────────
+function confirmResetPlanilha(){
+  if(!confirm('Tem certeza que deseja zerar esta planilha?\n\nTodas as categorias, itens, fornecedores vinculados, colunas extras, fee e câmbio voltarão ao estado inicial. Essa ação não pode ser desfeita.')) return;
+  resetPlanilha();
+}
+function resetPlanilha(){
+  S.cats=[];
+  S.collPre={}; S.collPos={}; S.collInt={};
+  S.colsPre=[
+    {id:'qtde',label:'Qtde',fixed:true},
+    {id:'dias',label:'Diária',fixed:true},
+    {id:'unit',label:'Unit R$',fixed:true},
+  ];
+  S.colsPos=[
+    {id:'qtde',label:'Qtde',fixed:true},
+    {id:'dias',label:'Diária',fixed:true},
+    {id:'unit',label:'Unit R$',fixed:true},
+  ];
+  S.moedaBase='BRL';
+  S.moedasExtra=[{id:'usd',simbolo:'US$',taxa:PTAX_HOJE,label:'USD'}];
+  S.feeMode='manual'; S.feeManualPct=10; S.feeBase='total';
+  S.cambioMode='auto'; S.cambioManual=PTAX_HOJE;
+  S.secOpen={pre:true,pos:false,int:true};
+  pagamentosGerados=[];
+
+  document.getElementById('f-moeda-base').value='BRL';
+  document.getElementById('f-fee-pct').value=10;
+  document.getElementById('fee-mode-sel').value='manual';
+  document.getElementById('fee-base-sel').value='total';
+  document.getElementById('cambio-mode-sel').value='auto';
+  document.getElementById('fee-mode-badge').textContent='10% fixo';
+  document.getElementById('fee-mode-badge').className='fc-badge manual';
+  document.getElementById('cambio-mode-badge').textContent='PTAX hoje: '+PTAX_HOJE.toFixed(2).replace('.',',');
+  document.getElementById('cambio-mode-badge').className='fc-badge auto';
+
+  renderMoedaCols();
+  render();
+}
+
 // ── RENDER PRINCIPAL ───────────────────────────────────────────
 function render(){
   document.getElementById('grid-pre').innerHTML=buildGrid('pre');
@@ -1305,6 +1448,7 @@ function render(){
   renderKPI();
   renderResumo();
   renderPagamentos();
+  syncSectionUI();
 }
 
 renderMoedaCols();
