@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /reset-password
+Disallow: /code-auth-password
+Disallow: /poc-planilha-orcamento
+
+Sitemap: https://www.wacoders.com/sitemap.xml

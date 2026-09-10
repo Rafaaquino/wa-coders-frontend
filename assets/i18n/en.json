@@ -1,9 +1,15 @@
 {
+  "seo": {
+    "title": "WA Coders — Nearshore Software Development for the US & EU",
+    "description": "Senior nearshore engineering team in Miami & São Paulo. Custom software, web and mobile apps for US and European companies, in your time zone."
+  },
   "nav": {
     "home": "Home",
     "services": "Services",
     "features": "Features",
     "proccess": "Process",
+    "portfolio": "Portfolio",
+    "sapSolution": "SAP/CRM",
     "technologies": "Technologies",
     "contact": "Contact",
     "login": "Login",
@@ -11,44 +17,46 @@
     "tryItFree": "Try it Free"
   },
   "home": {
-    "title": "We help your company develop quality software",
-    "description": "We help your company pursue technological innovation through software development solutions, application modernization or total digital transformation services."
+    "title": "Senior software engineering for U.S. and European companies",
+    "description": "WA Coders is a nearshore development team with offices in Miami and São Paulo. We build custom software, web platforms and mobile apps in your time zone — senior engineers, at a fraction of the cost of hiring locally."
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Complete digital transformation and software development solutions.",
+    "title": "Software Development Services",
+    "subtitle": "From your first idea to a live product in your customers' hands — we design, build, and maintain the software your business runs on. Every engagement is staffed with senior engineers who write production-ready code from day one, not junior developers learning on your budget.",
     "customSoftware": {
       "title": "Custom Software Development",
-      "description": "Build custom software tailored to business needs, including front-end interfaces and core back-end technology."
+      "description": "Full-stack applications built around your business logic — from internal tools to customer-facing platforms. We handle architecture, database design, APIs, and the front-end interfaces your team and customers interact with every day, all built to scale as you grow."
     },
     "website": {
-      "title": "Website",
-      "description": "We specialize in developing professional websites and use the most modern web design techniques."
+      "title": "Web Development",
+      "description": "Fast, responsive websites and web applications built with modern frameworks like Angular and React. We optimize every page for conversion, page speed, and search visibility, so your site turns visitors into leads instead of just looking good."
     },
     "mobileApp": {
       "title": "Mobile App Development",
-      "description": "Develop high performance, secure mobile applications for iOS and Android devices."
+      "description": "Native and cross-platform iOS and Android apps, built for performance and a seamless user experience. From the first wireframe to App Store and Google Play submission, we handle the full mobile development lifecycle."
     },
     "outsourcing": {
-      "title": "Software Development Outsourcing",
-      "description": "We allocate great professionals to join your development team and accelerate software deliveries."
+      "title": "Dedicated Development Teams",
+      "description": "Senior engineers embedded directly in your team on a flexible monthly contract — no recruiting, onboarding delays, or long-term commitment. Scale your engineering capacity up or down as your roadmap changes, without the overhead of local hiring."
     },
     "design": {
-      "title": "UX/UI Design Branding",
-      "description": "Create beautiful, user-friendly designs for websites, mobile apps, and other human-machine interfaces."
+      "title": "UX/UI Design",
+      "description": "User research, wireframing, and interface design that turn complex products into experiences your customers actually enjoy using. We design in Figma, validate with real users, and hand off production-ready components your developers can implement directly."
     },
     "integrations": {
-      "title": "integrations and improvements",
-      "description": "Improvements or new scopes for your software solution. We implement improvements and integrations with other platforms"
+      "title": "Integrations & Modernization",
+      "description": "Connect your CRM, payment gateway, ERP, or any third-party system to the software you already have. We also migrate legacy platforms to modern stacks without disrupting the operations that depend on them."
     }
   },
   "features": {
     "title": "A software house that understands business.",
-    "description": "We combine your company's vision with our expertise in software development and business strategies to achieve extraordinary results. Our goal is to deliver value in software development projects. With our culture and a prepared team, we simplify innovation through the latest development methodologies.",
+    "description": "We combine deep engineering expertise with your business goals to ship software that actually moves the needle. As a nearshore team based in Miami and São Paulo, we work inside your time zone, communicate fluently in English, and follow the same engineering standards you'd expect from an in-house senior team — without the overhead of building one from scratch.",
     "item1": "Multidisciplinary and qualified teams.",
-    "item2": "AI in software development.",
+    "item2": "AI-assisted development that speeds up delivery without cutting corners on quality.",
     "item3": "Agility, flexibility and transparency.",
     "item4": "Professionals with more than 10 years of experience.",
+    "item5": "Overlapping time zones with the U.S. and Europe — real-time collaboration, not async delays.",
+    "item6": "Fluent English communication and clear, documented handoffs at every stage.",
     "getFreeQuotes": "Get free quotes",
     "formQuote": "Form Quote"
   },
@@ -138,10 +146,64 @@
   "footer": {
     "copyright": "© WA Coders."
   },
+  "portfolio": {
+    "title": "Our Work",
+    "subtitle": "Real products we've designed, built, and continue to maintain — not agency mockups.",
+    "filters": {
+      "all": "All",
+      "enterprise": "Enterprise Software",
+      "saas": "SaaS Platform",
+      "ai": "Artificial Intelligence"
+    },
+    "projects": {
+      "opportunity": {
+        "name": "Opportunity",
+        "tagline": "Payment Approvals for SAP",
+        "description": "A payment request and approval platform built natively on SAP Business One and SAP C4C. Teams submit payment requests with invoices attached, route them through multi-level approval workflows by spending authority, and see everything post straight to SAP — no spreadsheets, no manual re-entry, full audit trail."
+      },
+      "jurione": {
+        "name": "JuriOne",
+        "tagline": "AI-Powered Legal Practice Management",
+        "description": "A complete legal practice management platform with AI built in — automated petition drafting, case and deadline tracking, client and contract management, and billing, all in one system. Law firms using JuriOne report saving up to 4 hours a day that used to go into manual paperwork."
+      },
+      "upsee": {
+        "name": "Upsee",
+        "tagline": "AI-Powered Retail Analytics",
+        "description": "A computer vision platform that turns in-store cameras into real-time analytics — foot traffic, visitor demographics, and conversion metrics — giving retail chains the same data insight e-commerce stores have had for years."
+      }
+    },
+    "cta": "Want something like this for your business?",
+    "visit": "Visit website"
+  },
+  "sapSolution": {
+    "title": "SAP & CRM Customization",
+    "subtitle": "SAP Business One and CRM systems hold everything your company needs — but weren't built for a quick, everyday look at what matters.",
+    "description": "We build a customization layer on top of your existing SAP Business One and CRM (C4C) data, so your team can consult reports, payments, clients, and projects without digging through menus or exporting spreadsheets. Every implementation starts from Opportunity, our own production-tested platform, and is then tailored to your company's specific workflows, approval rules, and branding.",
+    "badge": "Built on Opportunity, customized for you",
+    "items": {
+      "reports": {
+        "title": "Reports & Dashboards",
+        "description": "Live financial and operational reports pulled straight from SAP — no manual exports."
+      },
+      "payments": {
+        "title": "Payments",
+        "description": "Track payment requests, approvals, and status in one clear view."
+      },
+      "clients": {
+        "title": "Clients",
+        "description": "Client data and history synced automatically from your CRM."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "Project budgets, activity, and progress linked to the right client and payment."
+      }
+    },
+    "cta": "Want to customize SAP for your company?"
+  },
   "stack": {
     "process": {
-      "title": "Our process. Simple, seamless, streamlined",
-      "subtitle": "In an ideal world this website wouldn't exist, a client would acknowledge the importance of having web copy before the Proin vitae ipsum vel ex finibus semper design starts.",
+      "title": "Our process. Simple, transparent, senior-led.",
+      "subtitle": "No lengthy discovery phases or details lost in handoffs. You talk directly with senior engineers from day one, and always know exactly what's being built and when.",
       "step1": {
         "title": "Tell us what you need",
         "description": "Fill out a form so we can understand your company."
