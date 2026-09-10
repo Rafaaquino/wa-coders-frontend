@@ -46,12 +46,21 @@ import { TranslationService } from '../../services/translation.service';
       }
       .language-flag.active {
         opacity: 1;
-        border: 2px solid #4341cc;
+        border: 2px solid #f09105;
         border-radius: 4px;
-        box-shadow: 0 0 8px rgba(67, 65, 204, 0.5);
+        box-shadow: 0 0 8px rgba(240, 145, 5, 0.5);
       }
       #navbar .navbar-nav .nav-link {
         white-space: nowrap;
+      }
+      #navbar .nav-button .navbar-nav {
+        margin-left: 0;
+        flex-wrap: nowrap;
+      }
+      #navbar .nav-button {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
       }
     `,
   ],

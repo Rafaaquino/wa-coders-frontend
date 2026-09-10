@@ -15,8 +15,8 @@
 
 .btn-portfolio-filter.active,
 .btn-portfolio-filter:hover {
-  background-color: var(--bs-primary, #4341cc);
-  border-color: var(--bs-primary, #4341cc);
+  background-color: #f09105;
+  border-color: #f09105;
   color: #fff;
 }
 
@@ -86,7 +86,6 @@
   margin-top: 14px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--bs-primary, #4341cc);
 }
 
 .portfolio-visit-link:hover {

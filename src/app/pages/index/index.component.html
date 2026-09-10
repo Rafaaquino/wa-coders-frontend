@@ -1,6 +1,6 @@
 <!-- STRAT NAVBAR -->
 <nav
-  class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark"
+  class="navbar navbar-expand-xl fixed-top navbar-custom sticky sticky-dark"
   (window:scroll)="windowScroll()"
   id="navbar"
 >
@@ -89,14 +89,6 @@
             href="javascript: void(0);"
             class="nav-link"
             >{{ 'nav.proccess' | translate }}</a
-          >
-        </li>
-        <li class="nav-item" [ngClass]="{ active: currentSection === 'team' }">
-          <a
-            [ngxScrollTo]="'#team'"
-            href="javascript: void(0);"
-            class="nav-link"
-            >{{ 'nav.technologies' | translate }}</a
           >
         </li>
         <li
