@@ -17,6 +17,8 @@ export class QuoteComponent implements OnInit {
   selectedCountry: any;
   countries: ICountry[];
   value: Date;
+  showMessage = false;
+  msgs: any[] = [];
   plataforms = [
     { name: 'web', code: 'web' },
     { name: 'mobile', code: 'mobile' },
@@ -153,12 +155,28 @@ export class QuoteComponent implements OnInit {
 
   onSubmitQuoteSuccess(response) {
     console.log(response);
+    this.msgs = [
+      {
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Thanks! We received your request and will get back to you within 24 hours.',
+      },
+    ];
+    this.showMessage = true;
     this.quoteForm.reset();
     this.currentStep = 1;
   }
 
   onSubmitQuoteError(error) {
     console.log(error);
+    this.msgs = [
+      {
+        severity: 'error',
+        summary: 'Error',
+        detail: 'We could not submit your request. Please try again or email us at contact@wacoders.com.',
+      },
+    ];
+    this.showMessage = true;
   }
 
   removeFalseValues(form: any): void {

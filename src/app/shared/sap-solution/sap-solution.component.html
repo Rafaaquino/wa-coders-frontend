@@ -1,0 +1,62 @@
+<!--START SAP SOLUTION-->
+<section class="section pt-5 bg-light" id="sap-solution">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <h1 class="section-title text-center">
+          {{ 'sapSolution.title' | translate }}
+        </h1>
+        <div class="section-title-border mt-3"></div>
+        <p class="section-subtitle text-muted text-center pt-4 font-secondary">
+          {{ 'sapSolution.subtitle' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="row vertical-content mt-5">
+      <div class="col-lg-5">
+        <div class="features-box">
+          <p class="text-muted web-desc">
+            {{ 'sapSolution.description' | translate }}
+          </p>
+
+          <div class="sap-badge">
+            <i class="pe-7s-rocket text-primary"></i>
+            <span>{{ 'sapSolution.badge' | translate }}</span>
+          </div>
+
+          <a (click)="openModal()" class="btn btn-primary mt-4"
+            >{{ 'sapSolution.cta' | translate }} <i class="mdi mdi-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-sm-6 mt-3" *ngFor="let item of items">
+            <div class="services-box sap-item-box hover-effect text-center">
+              <i class="{{ item.icon }} text-primary"></i>
+              <h4 class="pt-3">{{ 'sapSolution.items.' + item.key + '.title' | translate }}</h4>
+              <p class="text-muted">
+                {{ 'sapSolution.items.' + item.key + '.description' | translate }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END SAP SOLUTION-->
+
+<p-dialog
+  [header]="'features.formQuote' | translate"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '50%' }"
+>
+  <div class="modal-content">
+    <app-quote></app-quote>
+  </div>
+</p-dialog>

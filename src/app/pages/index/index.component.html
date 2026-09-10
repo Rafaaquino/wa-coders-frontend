@@ -60,6 +60,28 @@
         </li>
         <li
           class="nav-item"
+          [ngClass]="{ active: currentSection === 'portfolio' }"
+        >
+          <a
+            [ngxScrollTo]="'#portfolio'"
+            href="javascript: void(0);"
+            class="nav-link"
+            >{{ 'nav.portfolio' | translate }}</a
+          >
+        </li>
+        <li
+          class="nav-item"
+          [ngClass]="{ active: currentSection === 'sap-solution' }"
+        >
+          <a
+            [ngxScrollTo]="'#sap-solution'"
+            href="javascript: void(0);"
+            class="nav-link"
+            >{{ 'nav.sapSolution' | translate }}</a
+          >
+        </li>
+        <li
+          class="nav-item"
           [ngClass]="{ active: currentSection === 'proccess' }"
         >
           <a
@@ -103,6 +125,12 @@
               [ngClass]="{ active: currentLanguage === 'en' }"
               (click)="changeLanguage('en')"
               title="English"
+            ></span>
+            <span
+              class="flag-icon flag-icon-es language-flag"
+              [ngClass]="{ active: currentLanguage === 'es' }"
+              (click)="changeLanguage('es')"
+              title="Español"
             ></span>
           </li>
           <li>
@@ -213,6 +241,8 @@
 >
   <app-services></app-services>
   <app-features></app-features>
+  <app-portfolio></app-portfolio>
+  <app-sap-solution></app-sap-solution>
   <app-stack></app-stack>
   <app-contact></app-contact>
   <app-footer></app-footer>

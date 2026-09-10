@@ -50,6 +50,9 @@ import { TranslationService } from '../../services/translation.service';
         border-radius: 4px;
         box-shadow: 0 0 8px rgba(67, 65, 204, 0.5);
       }
+      #navbar .navbar-nav .nav-link {
+        white-space: nowrap;
+      }
     `,
   ],
 })

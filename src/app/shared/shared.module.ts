@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicesComponent } from './myService/services.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FeaturesComponent } from './features/features.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { SapSolutionComponent } from './sap-solution/sap-solution.component';
 import { TeamComponent } from './team/team.component';
 import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
@@ -34,6 +36,8 @@ import { NavDashComponent } from './dashboard/nav/nav.component';
     ServicesComponent,
     PricingComponent,
     FeaturesComponent,
+    PortfolioComponent,
+    SapSolutionComponent,
     TeamComponent,
     BlogComponent,
     ContactComponent,
@@ -61,6 +65,8 @@ import { NavDashComponent } from './dashboard/nav/nav.component';
     ServicesComponent,
     PricingComponent,
     FeaturesComponent,
+    PortfolioComponent,
+    SapSolutionComponent,
     TeamComponent,
     BlogComponent,
     ContactComponent,

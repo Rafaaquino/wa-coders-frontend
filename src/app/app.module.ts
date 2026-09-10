@@ -21,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
     AppRoutingModule,
     NgbModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'pt',
+      defaultLanguage: 'en',
     }),
   ],
   providers: [

@@ -73,22 +73,33 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmitSuccess(response) {
-    //document.getElementById('error-msg')!.innerHTML =
-    // "<div class='alert alert-success error_message'><i data-feather='home' class='icon-sm align-middle me-2'></i>Email successfully sent</div>";
-    this.show();
+    this.showSuccess();
     this.formEmail.reset();
   }
 
   onSubmitError(error: any) {
     console.log(error);
+    this.showError();
   }
 
-  show() {
+  showSuccess() {
+    this.msgs = [];
     this.showMessage = true;
     this.msgs.push({
       severity: 'success',
       summary: 'Success',
-      detail: 'Message Content',
+      detail: 'Your message was sent. We will get back to you soon.',
+    });
+  }
+
+  showError() {
+    this.msgs = [];
+    this.showMessage = true;
+    this.msgs.push({
+      severity: 'error',
+      summary: 'Error',
+      detail:
+        'We could not send your message. Please try again or email us directly at contact@wacoders.com.',
     });
   }
 

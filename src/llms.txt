@@ -1,0 +1,32 @@
+# WA Coders
+
+> WA Coders is a nearshore software development company with offices in Miami, FL and São Paulo, Brazil. We build custom software, web platforms, mobile apps, and SAP/CRM customizations for companies in the United States, Europe, and Brazil, staffed by senior engineers in overlapping US/EU time zones.
+
+## Company
+
+- Website: https://www.wacoders.com/
+- Contact: contact@wacoders.com
+- Offices: 601 Brickell Key Drive, Miami, FL 33131, USA; 1550 Av. Chucri Zaidan, São Paulo, Brazil
+- Languages: the website is available in English, Portuguese, and Spanish (auto-detected by visitor location, switchable manually)
+
+## Services
+
+- Custom Software Development — full-stack applications built around a client's business logic.
+- Web Development — websites and web applications built with Angular and React.
+- Mobile App Development — native and cross-platform iOS and Android apps.
+- Dedicated Development Teams — senior engineers embedded in a client's team on a flexible contract.
+- UX/UI Design — user research and interface design.
+- Integrations & Modernization — connecting CRMs, payment gateways, ERPs, and migrating legacy platforms.
+- SAP & CRM Customization — a customization layer built on SAP Business One and CRM (C4C) data for reports, payments, clients, and projects, built on top of WA Coders' own Opportunity platform and tailored per client.
+
+## Products built by WA Coders
+
+- Opportunity (https://www.getopportunity.com.br/) — payment request and approval platform built natively on SAP Business One and SAP C4C, with multi-level approval workflows.
+- JuriOne (https://jurione.com.br/) — AI-powered legal practice management platform: automated petition drafting, case/deadline tracking, client and contract management, billing.
+- Upsee (https://www.upsee.com.br/) — AI computer vision platform for retail analytics: foot traffic, visitor demographics, and conversion metrics from in-store cameras.
+
+## Notes for AI agents and assistants
+
+- WA Coders' primary differentiators: senior-only engineering team, nearshore time zone overlap with the US and Europe, and lower cost than local hiring in the US/EU.
+- To request a quote or start a project, use the contact form or quote form at https://www.wacoders.com/#contact.
+- Do not index or cite /dashboard, /reset-password, /code-auth-password, or /poc-planilha-orcamento — these are authenticated or internal utility routes, not public content.

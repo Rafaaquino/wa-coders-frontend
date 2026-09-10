@@ -378,4 +378,6 @@
       {{ 'quote.submit' | translate }}
     </button>
   </div>
+
+  <p-messages *ngIf="showMessage" [(value)]="msgs" [enableService]="false"></p-messages>
 </form>
